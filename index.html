@@ -1,0 +1,273 @@
+<!DOCTYPE html><html lang="ja"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>朝のニュースレポート - ゲーム業界</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.header h1 {
+  color: #333;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header p {
+  color: #666;
+  font-size: 1.1em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card-content {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 600;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+
+.card-title {
+  margin: 10px 0;
+  flex: 1;
+}
+
+.card-title a {
+  color: #333;
+  text-decoration: none;
+  font-size: 1.2em;
+  font-weight: 700;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.card-title a:hover {
+  color: #667eea;
+}
+
+.card-description {
+  color: #666;
+  font-size: 0.95em;
+  line-height: 1.6;
+  margin: 15px 0;
+  flex: 1;
+}
+
+.card-source {
+  color: #999;
+  font-size: 0.85em;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  font-weight: 600;
+}
+
+.footer {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  color: #666;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .header h1 {
+    font-size: 1.8em;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>🎮 朝のゲーム業界ニュースレポート</h1>
+    <p>本日のゲーム関連ニュースをお届けします</p>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776249642438/400/200" alt="ドラクエスマッシュグロウ" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">ゲーム</span>
+        <div class="card-title">
+          <a href="https://game.watch.impress.co.jp" target="_blank">「ドラクエ」のローグライトRPG「ドラゴンクエストスマッシュグロウ」4月21日にリリース決定！</a>
+        </div>
+        <p class="card-description">人気シリーズ「ドラゴンクエスト」がローグライク要素を組み合わせた新作ゲームとしてリリースされることが決定しました。4月21日のリリース予定で、ファンから大きな注目を集めています。ドラクエシリーズの新しい展開として期待が高まります。</p>
+        <div class="card-source">出典: GAME Watch</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776249642439/400/200" alt="ブレインロット" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">社会問題</span>
+        <div class="card-title">
+          <a href="https://news.yahoo.co.jp" target="_blank">なぜ小中学生はゲーム『ブレインロットを盗む』に夢中になる？ ゲーム内トラブルが現実の友人関係に波及も</a>
+        </div>
+        <p class="card-description">人気ゲーム「ブレインロットを盗む」が小中学生の間で大流行していますが、ゲーム内のトラブルが現実の友人関係に影響を与える事例が報告されています。親や教育関係者が注視すべき課題として浮かび上がります。</p>
+        <div class="card-source">出典: Yahoo!ニュース (AERA with Kids+)</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776249642440/400/200" alt="LoLパッチ" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">アップデート</span>
+        <div class="card-title">
+          <a href="https://www.leagueoflegends.com" target="_blank">リーグ・オブ・レジェンド パッチノート26.8</a>
+        </div>
+        <p class="card-description">世界中で人気のMOBA「リーグ・オブ・レジェンド」の最新パッチ26.8がリリースされました。複数のチャンピオンのバランス調整やバグ修正が含まれており、ゲームバランスの改善が図られています。</p>
+        <div class="card-source">出典: League of Legends</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776249642441/400/200" alt="新世紀GPXサイバーフォーミュラ" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">新作ゲーム</span>
+        <div class="card-title">
+          <a href="https://www.sunrise.co.jp" target="_blank">[新世紀ＧＰＸサイバーフォーミュラ] 【シリーズ35周年】新作ゲームソフト発売決定！</a>
+        </div>
+        <p class="card-description">サンライズの名作アニメシリーズ「新世紀GPXサイバーフォーミュラ」がシリーズ35周年を記念して新作ゲームソフトの発売を決定しました。懐かしのファンから新規層まで、幅広い層からの期待が集まります。</p>
+        <div class="card-source">出典: サンライズ</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776249642442/400/200" alt="SDGsカードゲーム" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">教育</span>
+        <div class="card-title">
+          <a href="https://news.ntv.co.jp" target="_blank">カードゲームで『SDGs』学ぶ、この春入学したばかりの高校生…試されるのは「交渉力」・仙台市</a>
+        </div>
+        <p class="card-description">仙台市の高校で、カードゲームを通じてSDGsを学ぶ取り組みが行われています。生徒たちの交渉力を試しながら、社会問題への理解を深める教育プログラムとして注目されています。</p>
+        <div class="card-source">出典: 日テレNEWS NNN</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776249642443/400/200" alt="Star Fire" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">新作ゲーム</span>
+        <div class="card-title">
+          <a href="https://www.dmenu.jp" target="_blank">E-Home、ローグライク要素を組み合わせた横スクロールアクションゲーム『Star Fire: Eternal Cycle』をPS5とXbox向けに4月23日に配信</a>
+        </div>
+        <p class="card-description">E-Homeが開発したローグライク横スクロールアクションゲーム『Star Fire: Eternal Cycle』が4月23日にPS5とXbox向けに配信されます。爽快感のあるアクション体験が期待できます。</p>
+        <div class="card-source">出典: dメニューニュース</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776249642444/400/200" alt="アウトバウンド" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">新作ゲーム</span>
+        <div class="card-title">
+          <a href="https://www.dmenu.jp" target="_blank">最大4人マルチの拡張可能キャンピングカーで旅するスローライフADV『アウトバウンド』最新プレイ映像公開！</a>
+        </div>
+        <p class="card-description">最大4人までのマルチプレイに対応したスローライフアドベンチャーゲーム『アウトバウンド』の最新プレイ映像が公開されました。キャンピングカーをカスタマイズしながら自由に旅ができるゲーム体験が特徴です。</p>
+        <div class="card-source">出典: dメニューニュース</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776249642445/400/200" alt="GAME FUTURE SUMMIT" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">イベント</span>
+        <div class="card-title">
+          <a href="https://www.gamer.ne.jp" target="_blank">ゲームのプロデュースとマーケティングに特化したビジネスイベント「GAME FUTURE SUMMIT 2026」参加エントリー受付が開始！</a>
+        </div>
+        <p class="card-description">ゲーム業界最大級のビジネスイベント「GAME FUTURE SUMMIT 2026」の参加エントリー受付が開始されました。プロデューサーやマーケターが参加する重要なビジネスイベントです。</p>
+        <div class="card-source">出典: Gamer</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776249642446/400/200" alt="どうぶつの森" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">コラボ</span>
+        <div class="card-title">
+          <a href="https://game.watch.impress.co.jp" target="_blank">「あつまれ どうぶつの森」、長野・蓼科「東急リゾートタウン蓼科」コラボの公式ショットが解禁！</a>
+        </div>
+        <p class="card-description">「あつまれ どうぶつの森」と長野県の蓼科にある「東急リゾートタウン蓼科」のコラボレーションが実現しました。リアルな観光地とゲームを融合させた取り組みとして注目を集めています。</p>
+        <div class="card-source">出典: GAME Watch</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776249642447/400/200" alt="EVO Japan 2026" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">イベント</span>
+        <div class="card-title">
+          <a href="https://game.watch.impress.co.jp" target="_blank">GRAPHT、アケコン「iO」
