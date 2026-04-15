@@ -1,166 +1,270 @@
 <!DOCTYPE html><html lang="ja"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ゲーム朝刊 - 最新ニュース</title>
+<title>朝の一覧レポート - ゲーム・テック</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #333; padding: 20px; min-height: 100vh; }
-.container { max-width: 1200px; margin: 0 auto; }
-header { text-align: center; color: white; margin-bottom: 40px; }
-header h1 { font-size: 2.5em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-header p { font-size: 1.1em; opacity: 0.9; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 24px; }
-.card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.card:hover { transform: translateY(-8px); box-shadow: 0 12px 48px rgba(0,0,0,0.25); }
-.card-image { width: 100%; height: 200px; object-fit: cover; display: block; }
-.card-content { padding: 20px; }
-.card-category { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85em; font-weight: 600; margin-bottom: 12px; }
-.card-title { margin-bottom: 12px; }
-.card-title a { color: #667eea; text-decoration: none; font-size: 1.15em; font-weight: 700; transition: color 0.3s ease; line-height: 1.4; }
-.card-title a:hover { color: #764ba2; text-decoration: underline; }
-.card-description { color: #666; font-size: 0.95em; line-height: 1.6; margin-bottom: 12px; }
-.card-source { color: #999; font-size: 0.85em; padding-top: 12px; border-top: 1px solid #eee; }
-@media (max-width: 768px) { .grid { grid-template-columns: 1fr; } header h1 { font-size: 1.8em; } }
+* {margin: 0; padding: 0; box-sizing: border-box;}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.header {
+  text-align: center;
+  color: white;
+  margin-bottom: 40px;
+}
+.header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.header p {
+  font-size: 1.1em;
+  opacity: 0.95;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.card-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.tag {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75em;
+  font-weight: bold;
+  margin-bottom: 12px;
+  width: fit-content;
+}
+.card-title {
+  margin-bottom: 12px;
+  flex-grow: 1;
+}
+.card-title a {
+  color: #333;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: 600;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+.card-title a:hover {
+  color: #667eea;
+}
+.card-description {
+  color: #666;
+  font-size: 0.95em;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  font-size: 0.85em;
+  color: #999;
+}
 </style>
 </head>
 <body>
 <div class="container">
-<header>
-<h1>🎮 ゲーム朝刊</h1>
-<p>最新のゲーム業界ニュースをお届けします</p>
-</header>
-<div class="grid">
-<div class="card">
-<img src="https://picsum.photos/seed/1776251389109/400/200" alt="">
-<div class="card-content">
-<span class="card-category">ゲームリリース</span>
-<div class="card-title"><a href="https://game.watch.impress.co.jp/docs/news/1668098.html" target="_blank">「ドラゴンクエストスマッシュグロウ」4月21日リリース決定</a></div>
-<p class="card-description">ドラクエのローグライトRPG「ドラゴンクエストスマッシュグロウ」が4月21日にリリース決定。ダンジョン探索と戦略的なバトルが融合した新作。プレイヤーは毎回異なるダンジョン構成に挑戦し、強力なボスを倒すことを目指します。</p>
-<div class="card-source">📰 GAME Watch</div>
-</div>
-</div>
+  <div class="header">
+    <h1>🎮 朝のゲーム・テックレポート</h1>
+    <p>最新のゲームニュースを毎朝配信</p>
+  </div>
+  
+  <div class="grid">
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776268455500/400/200" alt="維新の嵐">
+      <div class="card-content">
+        <span class="tag">ゲーム配信</span>
+        <div class="card-title">
+          <a href="#" target="_blank">「コンソールアーカイブス」シリーズで歴史シミュレーションゲーム「維新の嵐」が4月16日に配信開始</a>
+        </div>
+        <p class="card-description">コンソールアーカイブスシリーズに歴史シミュレーション「維新の嵐」が加わります。懐かしのゲームがモダンなプラットフォームで復活。幕末の日本を舞台にした戦略的なゲームプレイが体験できます。</p>
+        <div class="card-footer">
+          <span>📰 GAME Watch</span>
+        </div>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/seed/1776251389110/400/200" alt="">
-<div class="card-content">
-<span class="card-category">アップデート</span>
-<div class="card-title"><a href="https://gamebiz.jp/" target="_blank">『Assetto Corsa EVO』無料コンテンツアップデート</a></div>
-<p class="card-description">505 Gamesが『Assetto Corsa EVO』の無料コンテンツアップデートをリリース。新しいコースや車両が追加され、より充実したレーシング体験が実現します。プレイヤーのフィードバックに応じた改善も多数実施。</p>
-<div class="card-source">📰 gamebiz</div>
-</div>
-</div>
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776268455501/400/200" alt="Trees Hate You">
+      <div class="card-content">
+        <span class="tag">新作ゲーム</span>
+        <div class="card-title">
+          <a href="#" target="_blank">『Trees Hate You』Steamで2026年中のリリースを予定。森の木が初見殺しを仕掛けてくるゲーム</a>
+        </div>
+        <p class="card-description">ユニークな設定が特徴の『Trees Hate You』がSteamでリリース予定です。森の木が意外な攻撃を仕掛けてくるというアクティブな敵設定。ギミックとしても面白い、新感覚のゲームが登場します。</p>
+        <div class="card-footer">
+          <span>📰 電ファミニコゲーマー</span>
+        </div>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/seed/1776251389111/400/200" alt="">
-<div class="card-content">
-<span class="card-category">話題・トレンド</span>
-<div class="card-title"><a href="https://news.yahoo.co.jp/" target="_blank">小中学生が夢中の『ブレインロット』ゲーム内トラブル拡大</a></div>
-<p class="card-description">ゲーム『ブレインロットを盗む』が小中学生の間で流行し、ゲーム内のトラブルが現実の友人関係に波及している事例が報告されています。親や教育関係者からも懸念の声が上がっており、適切な対策が求められています。</p>
-<div class="card-source">📰 Yahoo!ニュース</div>
-</div>
-</div>
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776268455502/400/200" alt="Book of Travels">
+      <div class="card-content">
+        <span class="tag">オープンワールド</span>
+        <div class="card-title">
+          <a href="#" target="_blank">オープンワールドTMORPG『Book of Travels』完全オフライン移行決定に伴い大幅値下げ</a>
+        </div>
+        <p class="card-description">『Book of Travels』がサーバー終了に伴い、完全オフラインゲームへの移行が決定しました。大幅な値下げも予定されており、MODの全面許可も告知されています。</p>
+        <div class="card-footer">
+          <span>📰 Yahoo!ニュース</span>
+        </div>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/seed/1776251389112/400/200" alt="">
-<div class="card-content">
-<span class="card-category">パッチノート</span>
-<div class="card-title"><a href="https://www.leagueoflegends.com/" target="_blank">リーグ・オブ・レジェンド パッチノート26.8</a></div>
-<p class="card-description">リーグ・オブ・レジェンドの最新パッチノート26.8がリリース。複数のチャンピオンのバランス調整とゲームプレイの改善が実施されました。プロシーンとカジュアルプレイの両方を考慮した調整が行われています。</p>
-<div class="card-source">📰 League of Legends</div>
-</div>
-</div>
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776268455503/400/200" alt="Remothered">
+      <div class="card-content">
+        <span class="tag">リリース情報</span>
+        <div class="card-title">
+          <a href="#" target="_blank">Stormind Games、『Remothered: Red Nun's Legacy』パッケージ版販売に関してMaximum Entertainmentと協力</a>
+        </div>
+        <p class="card-description">『Remothered: Red Nun's Legacy』のパッケージ版販売がMaximum Entertainmentとの協業で進行中です。ホラーゲームの新作がより多くのプラットフォームでアクセス可能になります。</p>
+        <div class="card-footer">
+          <span>📰 GAME Watch</span>
+        </div>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/seed/1776251389113/400/200" alt="">
-<div class="card-content">
-<span class="card-category">新作ゲーム</span>
-<div class="card-title"><a href="https://sunrise-web.jp/" target="_blank">新世紀GPXサイバーフォーミュラ 新作ゲーム発売決定</a></div>
-<p class="card-description">シリーズ35周年を記念して新作ゲームソフト発売が決定。サンライズが手がける同シリーズの新たなチャレンジとして注目を集めています。アニメーションスタジオの制作ノウハウが詰まった作品が期待されます。</p>
-<div class="card-source">📰 サンライズ</div>
-</div>
-</div>
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776268455504/400/200" alt="トモダチコレクション">
+      <div class="card-content">
+        <span class="tag">新作リリース</span>
+        <div class="card-title">
+          <a href="#" target="_blank">シリーズ最新作「トモダチコレクション わくわく生活」本日発売</a>
+        </div>
+        <p class="card-description">人気シリーズ「トモダチコレクション」の最新作がリリースされました。Miiたちの自由気ままなわくわく生活を島の管理人として見守る楽しさが満載。キャラクターとの関係性を深められます。</p>
+        <div class="card-footer">
+          <span>📰 GAME Watch</span>
+        </div>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/seed/1776251389114/400/200" alt="">
-<div class="card-content">
-<span class="card-category">教育・学習</span>
-<div class="card-title"><a href="https://www.ntv.co.jp/" target="_blank">カードゲームでSDGsを学ぶ高校生たち</a></div>
-<p class="card-description">仙台市の高校では、カードゲームを通じてSDGsについて学ぶ授業が展開されています。生徒たちは交渉力やビジネス感覚を磨きながら、持続可能な開発目標について深い理解を得ています。</p>
-<div class="card-source">📰 日テレNEWS</div>
-</div>
-</div>
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776268455505/400/200" alt="League of Legends">
+      <div class="card-content">
+        <span class="tag">アップデート</span>
+        <div class="card-title">
+          <a href="#" target="_blank">リーグ・オブ・レジェンド パッチノート26.8</a>
+        </div>
+        <p class="card-description">LoLの最新パッチ26.8がリリースされました。バランス調整やバグ修正など、ゲームの最新の変更点について詳しく記載されています。プロシーンにも影響を与える重要なアップデートです。</p>
+        <div class="card-footer">
+          <span>📰 League of Legends</span>
+        </div>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/seed/1776251389115/400/200" alt="">
-<div class="card-content">
-<span class="card-category">ビジネスイベント</span>
-<div class="card-title"><a href="https://gamerfocus.co.jp/" target="_blank">「GAME FUTURE SUMMIT 2026」参加エントリー受付開始</a></div>
-<p class="card-description">ゲームのプロデュースとマーケティングに特化したビジネスイベント「GAME FUTURE SUMMIT 2026」の参加エントリー受付が開始されました。業界トップ企業が参集し、最新トレンドが共有されます。</p>
-<div class="card-source">📰 Gamer</div>
-</div>
-</div>
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776268455506/400/200" alt="GPXサイバーフォーミュラ">
+      <div class="card-content">
+        <span class="tag">ゲーム発売</span>
+        <div class="card-title">
+          <a href="#" target="_blank">[新世紀ＧＰＸサイバーフォーミュラ] 【シリーズ35周年】新作ゲームソフト発売決定！</a>
+        </div>
+        <p class="card-description">新世紀GPXサイバーフォーミュラがシリーズ35周年を迎え、新作ゲームソフトの発売が決定されました。懐かしのアニメシリーズをゲーム化した注目作となります。</p>
+        <div class="card-footer">
+          <span>📰 サンライズ</span>
+        </div>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/seed/1776251389116/400/200" alt="">
-<div class="card-content">
-<span class="card-category">コラボレーション</span>
-<div class="card-title"><a href="https://game.watch.impress.co.jp/" target="_blank">「あつまれ どうぶつの森」東急リゾートコラボ公開</a></div>
-<p class="card-description">「あつまれ どうぶつの森」と長野の東急リゾートタウン蓼科とのコラボレーションが発表されました。リアルワールドとゲーム内世界が融合した特別なイベントが予定されています。</p>
-<div class="card-source">📰 GAME Watch</div>
-</div>
-</div>
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776268455507/400/200" alt="SDGs学習">
+      <div class="card-content">
+        <span class="tag">教育</span>
+        <div class="card-title">
+          <a href="#" target="_blank">カードゲームで『SDGs』学ぶ、この春入学したばかりの高校生…試されるのは「交渉力」・仙台市</a>
+        </div>
+        <p class="card-description">高校生がカードゲームを通じてSDGsについて学習しています。ゲームを使った教育的アプローチで、交渉力や問題解決能力を養うプログラムが注目されています。</p>
+        <div class="card-footer">
+          <span>📰 日テレNEWS</span>
+        </div>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/seed/1776251389117/400/200" alt="">
-<div class="card-content">
-<span class="card-category">アップデート</span>
-<div class="card-title"><a href="https://game.watch.impress.co.jp/" target="_blank">「FFXIV」パッチ7.5新情報公開</a></div>
-<p class="card-description">ファイナルファンタジーXIVのパッチ7.5で「ウィンダス：ザ・サードウォーク」と「北征編」の新エリア情報が公開されました。プレイヤーが期待する新ストーリーとコンテンツが盛りだくさんです。</p>
-<div class="card-source">📰 GAME Watch</div>
-</div>
-</div>
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776268455508/400/200" alt="TATSUJIN">
+      <div class="card-content">
+        <span class="tag">懐かしゲーム</span>
+        <div class="card-title">
+          <a href="#" target="_blank">復活した伝説のSTG『TATSUJIN EXTREME』スイッチ2版は「ゲームカード」採用</a>
+        </div>
+        <p class="card-description">懐かしのシューティングゲーム『TATSUJIN EXTREME』がSwitch 2で復活します。ゲームカード採用で確実な入手が保証されています。スイッチ2での魅力的なタイトルとなります。</p>
+        <div class="card-footer">
+          <span>📰 ｄメニューニュース</span>
+        </div>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/seed/1776251389118/400/200" alt="">
-<div class="card-content">
-<span class="card-category">イベント</span>
-<div class="card-title"><a href="https://game.watch.impress.co.jp/" target="_blank">GRAPHT「EVO Japan 2026」に過去最大規模で出展</a></div>
-<p class="card-description">GRAPHTがアケコン「iO」やボタンの試遊・販売を実施し、「EVO Japan 2026」に過去最大規模で出展します。業界内での影響力をさらに強化する戦略的な展開が注目されています。</p>
-<div class="card-source">📰 GAME Watch</div>
-</div>
-</div>
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776268455509/400/200" alt="Sky星を紡ぐ">
+      <div class="card-content">
+        <span class="tag">イベント</span>
+        <div class="card-title">
+          <a href="#" target="_blank">オンラインゲーム「Sky 星を紡ぐ子どもたち」、江の島でビーチクリーン</a>
+        </div>
+        <p class="card-description">『Sky 星を紡ぐ子どもたち』が江の島でビーチクリーンイベントを開催しました。ゲームコミュニティが実際の社会貢献活動に参加する素晴らしい取り組みです。</p>
+        <div class="card-footer">
+          <span>📰 湘南経済新聞</span>
+        </div>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/seed/1776251389119/400/200" alt="">
-<div class="card-content">
-<span class="card-category">スポーツゲーム</span>
-<div class="card-title"><a href="https://www.utsunomiya-brex.jp/" target="_blank">京都戦 PLAYER OF THE GAME</a></div>
-<p class="card-description">宇都宮ブレックスの京都戦（4月4日・5日）でのプレイヤーオブザゲームが決定。チームの勝利に貢献した選手たちの活躍が評価されました。</p>
-<div class="card-source">📰 宇都宮ブレックス</div>
-</div>
-</div>
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776268455510/400/200" alt="バニーガーデン2">
+      <div class="card-content">
+        <span class="tag">新作ゲーム</span>
+        <div class="card-title">
+          <a href="#" target="_blank">「バニーガーデン2」本日発売。"お紳士のお遊び"が進化 Switch版は5月7日まで10%オフ</a>
+        </div>
+        <p class="card-description">人気シリーズ「バニーガーデン」の最新作がリリースされました。Switch版は期間限定で10%割引キャンペーン中。前作からの進化した内容が期待できます。</p>
+        <div class="card-footer">
+          <span>📰 GAME Watch</span>
+        </div>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/seed/1776251389120/400/200" alt="">
-<div class="card-content">
-<span class="card-category">ゲーム更新</span>
-<div class="card-title"><a href="https://game.watch.impress.co.jp/" target="_blank">「ハースストーン」バトルグラウンド・シーズン13開幕</a></div>
-<p class="card-description">「ハースストーン」のバトルグラウンド・シーズン13「終焉のいざない」が開幕。新しいメカニクスと戦略的な要素が加わり、プレイヤーに新たなチャレンジをもたらします。</p>
-<div class="card-source">📰 GAME Watch</div>
-</div>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/seed/1776251389121/400/200" alt="">
-<div class="card-content">
-<span class="card-category">レトログames</span>
-<div class="card-title"><a href="https://news.yahoo.co.jp/" target="_blank">「維新の嵐」4月16日配信開始</a></div>
-<p class="card-description">「コンソールアーカイブス」シリーズで懐かしの歴史シミュレーションゲーム「維新の嵐」が4月16日に配信開始されます。クラシックゲームの復刻を通じた新世代へのゲーム文化継承が実現します。</p>
-<div class="card-source">📰 Yahoo!ニュース</div>
-</div>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/seed/1776251389122/400/200" alt="">
-<div class="card-content">
-<span class="card-category">
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776268455511/400/200" alt="ニンテンドーゲーム">
+      <div class="card-content">
+        <span class="tag">アップデート</span>
+        <div class="card-title">
