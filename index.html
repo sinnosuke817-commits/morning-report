@@ -1,226 +1,260 @@
 <!DOCTYPE html><html lang="ja"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ゲーム業界 朝刊レポート</title>
+<title>朝刊レポート - ゲーム最新ニュース</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
   padding: 20px;
 }
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
+
 .header {
   background: white;
   padding: 30px;
   border-radius: 10px;
   margin-bottom: 30px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
+
 .header h1 {
   color: #667eea;
   font-size: 2.5em;
   margin-bottom: 10px;
 }
+
 .header p {
   color: #666;
   font-size: 1.1em;
 }
-.grid {
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.articles-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 20px;
+  gap: 25px;
+  margin-bottom: 30px;
 }
+
 .card {
   background: white;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
 }
+
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
 }
-.card img {
+
+.card-image {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  background: #f0f0f0;
 }
+
 .card-content {
   padding: 20px;
-  flex: 1;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
-.card-title {
-  margin-bottom: 10px;
-}
-.card-title a {
-  font-size: 1.3em;
-  font-weight: bold;
-  color: #667eea;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.card-title a:hover {
-  color: #764ba2;
-  text-decoration: underline;
-}
-.card-tags {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-}
-.tag {
+
+.card-tag {
   display: inline-block;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #667eea;
   color: white;
   padding: 5px 12px;
   border-radius: 20px;
   font-size: 0.8em;
-  font-weight: bold;
+  font-weight: 600;
+  margin-bottom: 12px;
+  width: fit-content;
 }
+
+.card-title {
+  margin: 0 0 12px 0;
+}
+
+.card-title a {
+  color: #333;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: 700;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.card-title a:hover {
+  color: #667eea;
+}
+
 .card-description {
-  color: #555;
+  color: #666;
   font-size: 0.95em;
   line-height: 1.6;
-  margin-bottom: 12px;
-  flex: 1;
+  margin-bottom: 15px;
+  flex-grow: 1;
 }
+
 .card-source {
-  font-size: 0.85em;
   color: #999;
+  font-size: 0.85em;
   border-top: 1px solid #eee;
-  padding-top: 10px;
+  padding-top: 12px;
   margin-top: auto;
 }
-@media (max-width: 768px) {
-  .header h1 { font-size: 1.8em; }
-  .grid { grid-template-columns: 1fr; }
+
+.footer {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: #666;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 </style>
 </head>
 <body>
-<div class="container">
+
 <div class="header">
-<h1>🎮 ゲーム業界 朝刊レポート</h1>
-<p>最新ゲーム情報をお届けします</p>
+  <h1>🎮 朝刊レポート</h1>
+  <p>ゲーム業界の最新ニュースをお届けします</p>
 </div>
 
-<div class="grid">
+<div class="container">
+  <div class="articles-grid">
+    
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776382236879/400/200" alt="メトロ 2039" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">FPS</span>
+        <h2 class="card-title"><a href="#">「メトロ 2039」先行映像レビュー ロシアのウクライナ侵攻がゲームのプロジェクトそのものを大きく変えた</a></h2>
+        <p class="card-description">最新作「METRO 2039」はウクライナ発のポストアポカリプスFPS。戦争の実際の影響を受けてゲーム開発自体が変わった。モスクワ地下鉄が舞台となり、核戦争後の世界を描く。</p>
+        <p class="card-source">📰 GAME Watch</p>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/seed/1776365060785/400/200" alt="テニスの王子様">
-<div class="card-content">
-<div class="card-title">
-<a href="https://news.google.com/CBMic0FVX3lxTFBaUkRzNVA2X2djbVBtMW1kbUg5cGJ4SWZ2aXVuVF8wNldxdzMzMFFZMFdxQy01dFlnVnFGRFBNbUlzZ1lsYmVOZGpBODZsVV9qdjBFbkU3Nl9rdEdEYXhoVW1TUlNaVEh5bkF6OVJ3dEN2WWM" target="_blank">「テニスの王子様」の恋愛アドベンチャーゲーム 『学プリ』・『ドキサバ』両タイトルを7月30日発売決定！</a>
-</div>
-<div class="card-tags">
-<span class="tag">ゲーム</span>
-<span class="tag">アドベンチャー</span>
-</div>
-<div class="card-description">
-人気漫画「テニスの王子様」の公式恋愛アドベンチャーゲーム『学園プリンセス』と『ドキドキサバイバル』が7月30日に同時発売されることが決定しました。豪華版の特典も公開されており、ファンの期待が高まっています。両タイトルともキャラクターボイスを収録した本格的なアドベンチャーゲームとなります。
-</div>
-<div class="card-source">出典: コナミグループ</div>
-</div>
-</div>
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776382236880/400/200" alt="学プリ ドキサバ" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">恋愛ADV</span>
+        <h2 class="card-title"><a href="#">「テニスの王子様」の恋愛アドベンチャーゲーム『学プリ』『ドキサバ』両タイトルを7月30日に発売決定</a></h2>
+        <p class="card-description">コナミが「テニスの王子様」の恋愛ADVゲームを発表。「学プリ」と「ドキサバ」の両タイトルが7月30日にリリースされる。豪華版の特典も公開予定。</p>
+        <p class="card-source">📰 KONAMI GROUP</p>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/seed/1776365060786/400/200" alt="バニーガーデン2">
-<div class="card-content">
-<div class="card-title">
-<a href="https://news.google.com/CBMiZkFVX3lxTFBsYUduMk01aXNTeFV3TmlNYjh3d0F4YzZ0Ui1ablZCOTMzd2RaQ3Fuc0thSk9Wdy1pam5XUUR3VUZZRzNsOXdhQjlScEt3eVVSR2FTMjhZTlgyWllLc0M4Nm9OZEZwZw" target="_blank">「バニーガーデン2」本日発売。"お紳士のお遊び"が進化</a>
-</div>
-<div class="card-tags">
-<span class="tag">シミュレーション</span>
-<span class="tag">Switch</span>
-</div>
-<div class="card-description">
-『バニーガーデン2』が本日発売となりました。ゲームの遊びがさらに進化し、Switch版は5月7日まで10%のセール価格で購入可能です。前作の高い評価を受けて、さらに充実したコンテンツが追加されています。
-</div>
-<div class="card-source">出典: ゲームウォッチ</div>
-</div>
-</div>
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776382236881/400/200" alt="League of Legends" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">MOBA</span>
+        <h2 class="card-title"><a href="#">リーグ・オブ・レジェンド パッチノート26.8</a></h2>
+        <p class="card-description">League of Legendsの最新パッチノート26.8が発表。ゲームバランスの調整やバグ修正が施される。プロシーンと環境への影響が予想される。</p>
+        <p class="card-source">📰 League of Legends</p>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/seed/1776365060787/400/200" alt="メトロ 2039">
-<div class="card-content">
-<div class="card-title">
-<a href="https://news.google.com/CBMif0FVX3lxTFBhSm92NzFtN1EzcWk2MHJaZmtkT0FJdWEzUFF0TUYzVm5kVUt5b2Jwb19GUFdvOThCUG01VmZIbmxMendxWFo2ZGVOMC1kZVh4SHRiTjdUYVpyVkt1NFJSNWZQb2NOSDhKMV9IaW5KZk05SHFjRTAybFBXdnJaY28" target="_blank">「メトロ 2039」先行映像レビュー</a>
-</div>
-<div class="card-tags">
-<span class="tag">FPS</span>
-<span class="tag">ポストアポカリプス</span>
-</div>
-<div class="card-description">
-シリーズ7年ぶりの最新作『メトロ 2039』の先行映像がレビュー公開されました。モスクワ地下鉄が舞台のポストアポカリプスFPSで、ロシアのウクライナ侵攻がゲームのプロジェクト自体に大きな影響を与えたとのことです。今冬の発売が決定しています。
-</div>
-<div class="card-source">出典: ゲームウォッチ</div>
-</div>
-</div>
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776382236882/400/200" alt="ピックモス" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">ポケモン系</span>
+        <h2 class="card-title"><a href="#">『ポケモン』『パルワールド』そっくりな『ピックモス』Steamから突然削除</a></h2>
+        <p class="card-description">ポケモンとパルワールドに酷似したゲーム「ピックモス」がSteamから削除された。パブリッシャーが声明を発表するも、具体的な削除理由は明かされず謎のまま。</p>
+        <p class="card-source">📰 Yahoo!ニュース</p>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/seed/1776365060788/400/200" alt="リーグ・オブ・レジェンド">
-<div class="card-content">
-<div class="card-title">
-<a href="https://news.google.com/CBMilgFBVV95cUxPWkIzV3RHX1hrSnFTdE14QTNZc2hveVVScDhpZGZWdU9QUmVySlRfNGJZZVAwaGNORVhOQnpSTEh5NmNhMDJBekpLbXpxOGNTajdqdTZWeWNVQ2JYcjMxTVpWWHZTTTgzMmJ0bFJCQzZ0X1NOXzRnQllENEdGdC1kblNfelF6ODhlbFNTcEFpYV9RR1VpQmc" target="_blank">リーグ・オブ・レジェンド パッチノート26.8</a>
-</div>
-<div class="card-tags">
-<span class="tag">MOBA</span>
-<span class="tag">更新</span>
-</div>
-<div class="card-description">
-『リーグ・オブ・レジェンド』の新しいパッチノート26.8が公開されました。ゲームバランスの調整や新機能の実装など、プレイヤー体験の向上に向けた多数の変更が含まれています。詳細な調整内容は公式サイトでご確認ください。
-</div>
-<div class="card-source">出典: League of Legends</div>
-</div>
-</div>
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776382236883/400/200" alt="サイバーフォーミュラ" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">レーシング</span>
+        <h2 class="card-title"><a href="#">【シリーズ35周年】新世紀ＧＰＸサイバーフォーミュラ 新作ゲームソフト発売決定</a></h2>
+        <p class="card-description">サンライズの「新世紀GPXサイバーフォーミュラ」シリーズが35周年を迎え、新作ゲームソフトの発売が決定。懐かしのロボレーサーがゲーム化される。</p>
+        <p class="card-source">📰 サンライズ</p>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/seed/1776365060789/400/200" alt="新世紀ＧＰＸサイバーフォーミュラ">
-<div class="card-content">
-<div class="card-title">
-<a href="https://news.google.com/CBMiYkFVX3lxTE9BaElMOEszRUhYb3pzM18wTDczZVRISkxOV2p5a1NJajBlRm1ybzU0b0tvM1UyUWU1bGxjM3BOR24zZDFYYWlPbzRrTGNNbzdZMnFQMVc4YVQ4THUwYWxyYVhB" target="_blank">[新世紀ＧＰＸサイバーフォーミュラ] シリーズ35周年新作ゲームソフト発売決定！</a>
-</div>
-<div class="card-tags">
-<span class="tag">レーシング</span>
-<span class="tag">アニメ</span>
-</div>
-<div class="card-description">
-懐かしのロボットアニメ『新世紀ＧＰＸサイバーフォーミュラ』がシリーズ35周年を迎え、新作ゲームソフトの発売が決定しました。サンライズが手がける本作品は、ファンの期待が高く、レーシングゲームとしての内容も充実しているとのことです。
-</div>
-<div class="card-source">出典: サンライズ</div>
-</div>
-</div>
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776382236884/400/200" alt="It's Fine" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">インディーズ</span>
+        <h2 class="card-title"><a href="#">Buma Games、インディーゲーム開発の「クランチ」をテーマにしたデビュータイトル『It's Fine』を発表</a></h2>
+        <p class="card-description">Buma Gamesがデビュー作『It's Fine』を発表。ゲーム開発のクランチをテーマにしたゲーム。無料デモ版も公開され、開発者の経験が反映されている。</p>
+        <p class="card-source">📰 gamebiz</p>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/seed/1776365060790/400/200" alt="It's Fine">
-<div class="card-content">
-<div class="card-title">
-<a href="https://news.google.com/CBMiREFVX3lxTE9SUFB1em1wQkRsazFsNkZkMExRR0JIdEpxZGluRGFBNmxDWGpRRmUyZUhaMUhzN0s5N1ExZ2EzUk9XblA1" target="_blank">Buma Games、インディーゲーム開発の「クランチ」をテーマにしたデビュータイトル『It's Fine』を発表</a>
-</div>
-<div class="card-tags">
-<span class="tag">インディー</span>
-<span class="tag">シミュレーション</span>
-</div>
-<div class="card-description">
-Buma Gamesのデビュータイトル『It's Fine』がアナウンスされました。ゲーム開発スタジオの過酷な環境「クランチ」をテーマにした作品で、現在無料デモ版が公開中です。独特の視点でゲーム業界の現実を描いた注目作となっています。
-</div>
-<div class="card-source">出典: gamebiz</div>
-</div>
-</div>
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776382236885/400/200" alt="SDGs学習" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">教育</span>
+        <h2 class="card-title"><a href="#">カードゲームで『SDGs』学ぶ、この春入学したばかりの高校生…試されるのは「交渉力」</a></h2>
+        <p class="card-description">仙台市の高校でカードゲームを使ったSDGs学習が実施された。新入生が交渉力などのスキルを試される。ゲームを教育ツールとして活用する取り組み。</p>
+        <p class="card-source">📰 日テレNEWS</p>
+      </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/seed/1776365060791/400/200" alt="SDGsカードゲーム">
-<div class="card-content">
-<div class="card-title">
-<a href="https://news.google.com/CBMihwFBVV95cUxPbE12czhlM2dCT2ZpQzNQX3FGb2pfUzhBR0FpbWJfNk5nVEE4REhzS0dQclBYN3hwbXVHQWRna2tOMWMxUHozQTdCOGhnYmd5d3g1M0VxOTZ6UkxNTUphZnpPOERWN0kwdE4tTXREdmtLNjlwVWlyS0xIMEVadWlYLTBOY0ZGSU0" target="_blank">カードゲ
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776382236886/400/200" alt="プラグマタ" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">アクションADV</span>
+        <h2 class="card-title"><a href="#">ゲーム「プラグマタ」4月17日に発売 DLC「シェルターバラエティパック」</a></h2>
+        <p class="card-description">カプコンの新作『プラグマタ』がPS5/Xbox Series X|S/Steam版で4月17日に発売。アンドロイド少女とおじさんが月面世界を探索する。レビューは好調評価。</p>
+        <p class="card-source">📰 ライブドアニュース</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776382236887/400/200" alt="ぽこあポケモン" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">ポケモン</span>
+        <h2 class="card-title"><a href="#">4月19日より『ぽこ あ ポケモン』のイベント「おおなわとび大会」が開催</a></h2>
+        <p class="card-description">『ぽこ あ ポケモン』で新イベント「おおなわとび大会」が4月19日より開催。トロフィーなどのご褒美がもらえる。期間限定のゲームイベント。</p>
+        <p class="card-source">📰 Nintendo DREAM WEB</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776382236888/400/200" alt="回転寿司シミュレーター" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">シミュレーター</span>
+        <h2 class="card-title"><a href="#">へいらっしゃい！店舗内にコンベアを自在に配置できる『回転寿司シミュレーター』Steam配信開始</a></h2>
+        <p class="card-description">『回転寿司シミュレーター』がSteamで配信開始。店舗内のコンベアを自由に配置して経営。ユニークなシミュレーションゲーム。</p>
+        <p class="card-source">📰 Game Spark</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776382236889/400/200" alt="Atomic Heart DLC" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">アクション</span>
+        <h2 class="card-title"><a href="#">『Atomic Heart』最終DLC「Blood on Crystal」配信！続編やスピンオフのストーリーへの道を開く</a></h2>
+        <p class="card-description">『Atomic Heart』の最終DLC「Blood on Crystal」が配信。続編やスピンオフへの伏線が張られる。ストーリーの重要なターニングポイント。</p>
+        <p class="card-source">📰 Game Spark</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/seed/1776382236890/400/200" alt="スクエニポップアップ" class="card-image">
+      <div class="card-content">
+        <span class="card-tag">イベント</span>
+        <h2 class="card-title"><a href="#">スクエニ、「SQUARE ENIX POP UP STORE」を本日4月17日より期間限定で東京「池袋PARCO」にて開催</a></h2>
+        <p class="card-description">スクウェア・エニックスが池袋PARCOでポップアップストアを
