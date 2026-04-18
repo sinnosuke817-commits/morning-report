@@ -7,18 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Yomogi&family=Noto+Sans+JP:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#080810;--bg2:#0e0e1c;--bg3:#141428;--border:#252540;--accent:#00ffcc;--accent2:#ff2d78;--text:#e0e8ff;--text-dim:#5a6080;--glow:rgba(0,255,204,.22);--card-glow:rgba(0,255,204,.09);--header-overlay:rgba(8,8,16,.92);}
-body.theme-horror{--bg:#0a0000;--bg2:#160000;--bg3:#220000;--border:#440000;--accent:#cc0033;--accent2:#ff6600;--text:#ffdddd;--text-dim:#884444;--glow:rgba(200,0,50,.25);--card-glow:rgba(200,0,50,.1);}
-body.theme-summer{--bg:#020d1a;--bg2:#041525;--bg3:#061e30;--border:#0a3050;--accent:#00c8ff;--accent2:#ff9500;--text:#d8f4ff;--text-dim:#3a7090;--glow:rgba(0,200,255,.2);--card-glow:rgba(0,200,255,.08);}
-body.theme-xmas{--bg:#020c08;--bg2:#04120c;--bg3:#071a10;--border:#0f3a1a;--accent:#00e85a;--accent2:#ff3333;--text:#dfffec;--text-dim:#2a6a40;--glow:rgba(0,232,90,.2);--card-glow:rgba(0,232,90,.08);}
 body.theme-halloween{--bg:#060400;--bg2:#0d0800;--bg3:#140d00;--border:#3a2000;--accent:#ff8c00;--accent2:#9b00ff;--text:#ffe8cc;--text-dim:#7a5020;--glow:rgba(255,140,0,.25);--card-glow:rgba(255,140,0,.1);}
-body.theme-newyear{--bg:#0a0800;--bg2:#160e00;--bg3:#1e1600;--border:#443000;--accent:#ffd700;--accent2:#ff2020;--text:#fff8e0;--text-dim:#886620;--glow:rgba(255,215,0,.25);--card-glow:rgba(255,215,0,.1);}
-body.theme-yearend{--bg:#000814;--bg2:#001020;--bg3:#001830;--border:#003060;--accent:#ff6600;--accent2:#ffcc00;--text:#ffe8cc;--text-dim:#664420;--glow:rgba(255,102,0,.25);--card-glow:rgba(255,102,0,.1);}
-body.theme-golden{--bg:#0a0800;--bg2:#141000;--bg3:#1e1800;--border:#443800;--accent:#ffc600;--accent2:#00ccff;--text:#fff8cc;--text-dim:#886600;--glow:rgba(255,198,0,.25);--card-glow:rgba(255,198,0,.1);}
+body.theme-xmas{--bg:#020c08;--bg2:#04120c;--bg3:#071a10;--border:#0f3a1a;--accent:#00e85a;--accent2:#ff3333;--text:#dfffec;--text-dim:#2a6a40;}
+body.theme-golden{--bg:#0a0800;--bg2:#141000;--bg3:#1e1800;--border:#443800;--accent:#ffc600;--accent2:#00ccff;--text:#fff8cc;--text-dim:#886600;}
+body.theme-summer{--bg:#020d1a;--bg2:#041525;--bg3:#061e30;--border:#0a3050;--accent:#00c8ff;--accent2:#ff9500;--text:#d8f4ff;--text-dim:#3a7090;}
+body.theme-horror{--bg:#08020a;--bg2:#0d030f;--bg3:#140516;--border:#3a1040;--accent:#cc0033;--accent2:#ff6600;--text:#f0d0d0;--text-dim:#7a3040;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;min-height:100vh;background-image:radial-gradient(circle,var(--border) 1px,transparent 1px);background-size:18px 18px;background-attachment:fixed;}
-body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.08) 2px,rgba(0,0,0,.08) 4px);}
 body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at 50% 40%,transparent 35%,rgba(0,0,0,.65) 100%);}
-header{position:relative;z-index:10;padding:16px 40px;border-bottom:3px solid var(--accent);background:var(--header-overlay);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;}
+header{position:relative;z-index:10;padding:16px 40px;border-bottom:1px solid var(--border);background:var(--header-overlay);backdrop-filter:blur(12px);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;}
 .logo-area{display:flex;align-items:center;gap:14px;justify-content:center;grid-column:2;}
 .char-icon{width:52px;height:52px;border-radius:8px;border:2px solid var(--accent);box-shadow:0 0 16px var(--glow);overflow:hidden;position:relative;background:var(--bg3);flex-shrink:0;}
 .char-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
@@ -29,52 +26,54 @@ header{position:relative;z-index:10;padding:16px 40px;border-bottom:3px solid va
 .glasses{width:36px;height:10px;position:absolute;top:18px;z-index:3;display:flex;gap:2px;align-items:center;}
 .glass-lens{width:14px;height:10px;border:1.5px solid #555;border-radius:3px;background:rgba(120,180,255,.15);}
 .glass-bridge{width:4px;height:1.5px;background:#555;}
-.mouth{width:16px;height:12px;background:#8b0000;border-radius:0 0 8px 8px;position:absolute;top:30px;z-index:3;border:1px solid #600;}
+.mouth{width:16px;height:12px;background:#8b0000;border-radius:0 0 8px 8px;position:absolute;top:30px;z-index:3;}
 .mouth::before{content:'';position:absolute;width:4px;height:6px;background:#fff;left:50%;transform:translateX(-50%);top:1px;border-radius:1px;}
 .blood{width:8px;height:10px;background:var(--accent2);position:absolute;top:34px;left:14px;z-index:3;border-radius:0 0 4px 4px;clip-path:polygon(0 0,100% 0,80% 100%,20% 100%);}
 .logo-text{line-height:1;}
-.logo-main{font-family:'Yomogi',cursive;font-size:3.2rem;font-weight:400;color:var(--accent);text-shadow:0 0 24px var(--glow);letter-spacing:.06em;line-height:1;}
+.logo-main{font-family:'Yomogi',cursive;font-size:3.2rem;color:var(--accent);text-shadow:0 0 24px var(--glow);letter-spacing:.06em;line-height:1;}
 .logo-sub{font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--text-dim);letter-spacing:.16em;margin-top:4px;display:block;opacity:.6;}
 .header-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;grid-column:3;}
 .header-meta{font-size:.7rem;color:var(--text-dim);text-align:right;}
 .header-meta strong{color:var(--accent);display:block;font-size:.85rem;}
-.theme-badge{font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--accent);padding:3px 10px;border:1px solid var(--accent);border-radius:4px;background:rgba(0,255,204,.06);}
-.cat-tabs{position:relative;z-index:10;display:flex;border-bottom:3px solid var(--border);background:var(--bg2);overflow-x:auto;}
-.cat-tab{padding:12px 24px;border:none;border-right:2px solid var(--border);background:transparent;color:var(--text-dim);font-family:'Share Tech Mono',monospace;font-size:.78rem;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap;letter-spacing:.06em;}
-.cat-tab:hover{color:var(--accent);background:var(--bg3);}
-.cat-tab.active{color:var(--bg);background:var(--accent);}
-.cat-count{font-size:.62rem;margin-left:5px;opacity:.75;}
+.theme-badge{font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--accent);padding:3px 10px;border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);border-radius:4px;background:color-mix(in srgb,var(--accent) 6%,transparent);}
+.cat-tabs{position:relative;z-index:10;display:flex;border-bottom:1px solid var(--border);background:var(--bg2);overflow-x:auto;}
+.cat-tab{padding:14px 28px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--text-dim);font-family:'Noto Sans JP',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.cat-tab:hover{color:var(--accent);}
+.cat-tab.active{color:var(--accent);border-bottom-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,transparent);}
+.cat-count{font-family:'Share Tech Mono',monospace;font-size:.65rem;margin-left:6px;opacity:.6;}
 .filter-bar{position:relative;z-index:10;display:flex;gap:7px;padding:12px 40px;border-bottom:1px solid var(--border);flex-wrap:wrap;background:var(--bg);}
-.filter-btn{background:var(--bg3);border:2px solid var(--border);color:var(--text-dim);padding:4px 13px;border-radius:0;font-size:.7rem;cursor:pointer;font-family:'Share Tech Mono',monospace;letter-spacing:.04em;transition:all .15s;}
-.filter-btn:hover,.filter-btn.active{border-color:var(--accent);color:var(--bg);background:var(--accent);}
+.filter-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text-dim);padding:4px 13px;border-radius:20px;font-size:.7rem;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .2s;}
+.filter-btn:hover,.filter-btn.active{border-color:var(--accent);color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,transparent);}
 main{position:relative;z-index:10;max-width:1280px;margin:0 auto;padding:28px 40px;}
 .section-label{font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:var(--text-dim);margin-bottom:18px;display:flex;align-items:center;gap:10px;}
 .section-label::after{content:'';flex:1;height:1px;background:var(--border);}
-.theme-banner{border:1px solid var(--accent);padding:11px 16px;margin-bottom:20px;background:rgba(0,255,204,.05);font-size:.76rem;color:var(--text-dim);display:flex;align-items:center;gap:12px;}
-.theme-banner-icon{font-size:1.3rem;}
-.theme-banner-text strong{color:var(--accent);display:block;font-size:.8rem;margin-bottom:2px;}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:15px;margin-bottom:32px;}
-.card{background:var(--bg2);border:2px solid var(--border);border-radius:0;overflow:hidden;cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s;position:relative;}
-.card:hover{transform:translate(-2px,-4px);border-color:var(--accent);box-shadow:4px 4px 0 var(--accent);}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:9px;overflow:hidden;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;position:relative;}
+.card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 40%,transparent);box-shadow:0 10px 36px rgba(0,0,0,.5),0 0 22px var(--card-glow);}
 .card-image{width:100%;height:160px;object-fit:cover;display:block;background:var(--bg3);}
 .card-no-image{width:100%;height:160px;background:linear-gradient(135deg,var(--bg3),#1a1a2e);display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--text-dim);}
 .card-body{padding:13px 15px 15px;}
 .card-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;}
-.tag{font-size:.6rem;padding:2px 7px;border-radius:0;letter-spacing:.06em;font-weight:700;font-family:'Share Tech Mono',monospace;}
+.tag{font-size:.6rem;padding:2px 7px;border-radius:3px;letter-spacing:.06em;font-weight:700;font-family:'Share Tech Mono',monospace;}
 .tag-soul{background:rgba(255,56,96,.12);color:#ff6080;border:1px solid rgba(255,56,96,.28);}
 .tag-hack{background:rgba(255,107,43,.12);color:#ff8050;border:1px solid rgba(255,107,43,.28);}
-.tag-genre{background:rgba(0,255,204,.1);color:var(--accent);border:1px solid rgba(0,255,204,.25);}
-.tag-plat{background:rgba(0,255,204,.08);color:var(--accent);border:1px solid rgba(0,255,204,.2);}
+.tag-genre{background:rgba(124,106,255,.12);color:#a090ff;border:1px solid rgba(124,106,255,.25);}
+.tag-plat{background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);}
 .tag-hot{background:rgba(255,100,100,.1);color:#ff6464;border:1px solid rgba(255,100,100,.25);}
-.match-badge{display:inline-flex;align-items:center;gap:5px;font-size:.62rem;font-family:'Share Tech Mono',monospace;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:0;margin-bottom:8px;}
-.match-s{background:var(--accent2);color:#fff;}
-.match-a{background:transparent;color:var(--accent);border:2px solid var(--accent);}
-.match-b{background:transparent;color:#00ff44;border:2px solid #00ff44;}
-.match-c{background:transparent;color:var(--text-dim);border:2px solid var(--border);}
-.card-info-row{display:flex;gap:14px;flex-wrap:wrap;margin:7px 0;padding:7px 0;border-top:2px solid var(--border);border-bottom:2px solid var(--border);}
+.tag-sale{background:rgba(0,232,90,.15);color:#00e85a;border:1px solid rgba(0,232,90,.35);}
+.score-badge{display:inline-flex;align-items:center;gap:6px;font-size:.62rem;font-family:'Share Tech Mono',monospace;font-weight:700;padding:3px 9px;border-radius:4px;margin-bottom:8px;}
+.score-5{background:color-mix(in srgb,var(--accent2) 15%,transparent);color:var(--accent2);border:1px solid color-mix(in srgb,var(--accent2) 35%,transparent);}
+.score-4{background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);}
+.score-3{background:rgba(0,255,136,.07);color:#00e87a;border:1px solid rgba(0,255,136,.2);}
+.score-2,.score-1{background:rgba(107,122,153,.1);color:var(--text-dim);border:1px solid var(--border);}
+.card-info-row{display:flex;gap:10px;flex-wrap:wrap;margin:7px 0;padding:7px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
 .card-info-item{display:flex;flex-direction:column;gap:2px;}
 .card-info-key{font-family:'Share Tech Mono',monospace;font-size:.5rem;letter-spacing:.08em;color:var(--text-dim);text-transform:uppercase;}
 .card-info-val{font-family:'Share Tech Mono',monospace;font-size:.72rem;font-weight:700;color:var(--text);}
+.card-info-val.sale{color:#00e85a;}
+.card-info-val.green{color:#00c864;}
+.card-info-val.yellow{color:#ffa500;}
+.card-info-val.red{color:#ff5050;}
 .card-title{font-size:.9rem;font-weight:700;line-height:1.42;margin-bottom:6px;}
 .card-catch{font-size:.74rem;color:var(--text-dim);line-height:1.62;margin-bottom:10px;}
 .card-footer{display:flex;align-items:center;justify-content:space-between;}
@@ -85,37 +84,76 @@ main{position:relative;z-index:10;max-width:1280px;margin:0 auto;padding:28px 40
 .score-label{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--text-dim);margin-left:5px;}
 .card-detail-btn{font-size:.65rem;color:var(--accent);letter-spacing:.06em;font-family:'Share Tech Mono',monospace;opacity:.65;transition:opacity .2s;}
 .card:hover .card-detail-btn{opacity:1;}
-.hot-flag{position:absolute;top:0;right:0;background:var(--accent2);color:#fff;font-size:.6rem;font-family:'Share Tech Mono',monospace;font-weight:700;padding:3px 8px;}
-.pagination{display:flex;justify-content:center;gap:7px;margin-top:4px;}
-.page-btn{width:35px;height:35px;border-radius:0;border:2px solid var(--border);background:var(--bg2);color:var(--text-dim);font-family:'Share Tech Mono',monospace;font-size:.82rem;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;}
-.page-btn:hover,.page-btn.active{border-color:var(--accent);color:var(--bg);background:var(--accent);}
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:100;align-items:center;justify-content:center;padding:20px;}
+.hot-flag{position:absolute;top:9px;right:9px;background:var(--accent2);color:#fff;font-size:.6rem;font-family:'Share Tech Mono',monospace;font-weight:700;padding:3px 7px;border-radius:3px;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);z-index:100;align-items:center;justify-content:center;padding:20px;}
 .modal-overlay.open{display:flex;}
-.modal{background:var(--bg2);border:3px solid var(--accent);border-radius:0;max-width:740px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:6px 6px 0 var(--accent);animation:modalIn .15s ease;}
-@keyframes modalIn{from{transform:translateY(16px);opacity:0}to{transform:translateY(0);opacity:1}}
-.modal-image{width:100%;height:230px;object-fit:cover;}
+.modal{background:var(--bg2);border:1px solid color-mix(in srgb,var(--accent) 22%,transparent);border-radius:10px;max-width:740px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:0 0 70px var(--card-glow);animation:modalIn .2s ease;}
+@keyframes modalIn{from{transform:translateY(18px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-image{width:100%;height:230px;object-fit:cover;border-radius:10px 10px 0 0;}
 .modal-body{padding:24px 26px;}
 .modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
-.modal-title{font-size:1.2rem;font-weight:900;line-height:1.4;margin-bottom:12px;}
-.match-block{padding:14px 16px;margin-bottom:16px;border-left:4px solid var(--accent);background:rgba(0,0,0,.3);}
-.match-block-label{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.14em;color:var(--accent);margin-bottom:7px;font-weight:700;}
-.match-block-text{font-size:.82rem;line-height:1.8;color:var(--text);}
-.modal-section-title{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.18em;color:var(--text-dim);margin:18px 0 9px;padding-bottom:6px;border-bottom:2px solid var(--border);}
-.modal-desc{font-size:.82rem;line-height:1.85;color:var(--text);margin-bottom:8px;}
-.modal-highlight{background:rgba(0,0,0,.4);border:2px solid var(--accent);padding:12px 15px;margin:12px 0;font-size:.8rem;line-height:1.75;color:var(--text);font-style:italic;}
-.modal-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0;}
-.meta-item{background:var(--bg3);border:2px solid var(--border);padding:10px 13px;}
-.meta-key{font-size:.6rem;letter-spacing:.12em;color:var(--text-dim);font-family:'Share Tech Mono',monospace;margin-bottom:4px;}
-.meta-val{font-size:.82rem;font-weight:700;color:var(--text);}
-.source-box{background:var(--bg3);border:2px solid var(--border);padding:10px 14px;margin:12px 0;font-size:.75rem;color:var(--text-dim);line-height:1.7;}
-.source-box strong{color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.1em;display:block;margin-bottom:4px;}
-.modal-actions{display:flex;gap:8px;margin-top:18px;}
-.btn-primary{flex:1;padding:10px;background:var(--accent);border:2px solid var(--accent);color:var(--bg);font-family:'Share Tech Mono',monospace;font-size:.8rem;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;display:block;}
-.btn-primary:hover{background:transparent;color:var(--accent);}
-.btn-close{padding:10px 16px;background:transparent;border:2px solid var(--border);color:var(--text-dim);font-family:'Share Tech Mono',monospace;font-size:.8rem;font-weight:700;cursor:pointer;}
-.btn-close:hover{border-color:#ff2020;color:#ff2020;}
+.modal-title{font-size:1.2rem;font-weight:900;line-height:1.4;margin-bottom:16px;}
+.modal-section-title{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.18em;color:var(--text-dim);margin:20px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+.info-block{border-radius:8px;padding:14px 16px;margin-bottom:10px;}
+.block-overview{background:color-mix(in srgb,#6060ff 5%,transparent);border:1px solid color-mix(in srgb,#6060ff 20%,transparent);}
+.block-news{background:color-mix(in srgb,var(--accent) 5%,transparent);border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);}
+.block-pitch{background:color-mix(in srgb,var(--accent2) 5%,transparent);border:1px solid color-mix(in srgb,var(--accent2) 20%,transparent);}
+.block-warning{background:rgba(255,180,0,.05);border:1px solid rgba(255,180,0,.2);}
+.block-bestfor{background:rgba(0,200,100,.05);border:1px solid rgba(0,200,100,.2);}
+.block-label{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.14em;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.block-overview .block-label{color:#a0a0ff;}
+.block-news .block-label{color:var(--accent);}
+.block-pitch .block-label{color:var(--accent2);}
+.block-warning .block-label{color:#ffb400;}
+.block-bestfor .block-label{color:#00c864;}
+.block-text{font-size:.82rem;line-height:1.85;color:var(--text);}
+.difficulty-box{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin:14px 0;}
+.difficulty-title{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.14em;color:var(--text-dim);margin-bottom:10px;}
+.difficulty-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
+.clear-rate-bar-wrap{flex:1;}
+.clear-rate-label{font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--text-dim);margin-bottom:5px;}
+.clear-rate-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
+.clear-rate-fill{height:100%;border-radius:3px;}
+.fill-easy{background:#00c864;}
+.fill-normal{background:#ffa500;}
+.fill-hard{background:#ff6464;}
+.fill-extreme{background:var(--accent2);}
+.clear-rate-pct{font-family:'Share Tech Mono',monospace;font-size:1.1rem;font-weight:700;white-space:nowrap;}
+.pct-easy{color:#00c864;}
+.pct-normal{color:#ffa500;}
+.pct-hard{color:#ff6464;}
+.pct-extreme{color:var(--accent2);}
+.difficulty-reason{font-size:.78rem;line-height:1.75;color:var(--text-dim);margin-bottom:10px;}
+.difficulty-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.diff-tag{font-family:'Share Tech Mono',monospace;font-size:.58rem;padding:2px 8px;border-radius:3px;background:rgba(255,100,100,.1);color:#ff8080;border:1px solid rgba(255,100,100,.2);}
+.steam-detail-box{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px 18px;margin:14px 0;}
+.steam-detail-title{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.14em;color:#c6d4df;margin-bottom:12px;}
+.steam-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.steam-item{background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:9px 12px;}
+.steam-item-key{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.1em;color:var(--text-dim);margin-bottom:3px;}
+.steam-item-val{font-size:.8rem;font-weight:700;color:var(--text);}
+.steam-item-val.sale{color:#00e85a;}
+.steam-item-val.green{color:#00c864;}
+.steam-item-val.yellow{color:#ffa500;}
+.steam-item-val.red{color:#ff5050;}
+.steam-tags-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
+.steam-tag{font-family:'Share Tech Mono',monospace;font-size:.58rem;padding:2px 8px;border-radius:3px;background:color-mix(in srgb,var(--accent) 8%,transparent);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0;}
+.meta-item{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:9px 12px;}
+.meta-key{font-size:.55rem;letter-spacing:.1em;color:var(--text-dim);font-family:'Share Tech Mono',monospace;margin-bottom:4px;}
+.meta-val{font-size:.8rem;font-weight:700;color:var(--text);}
+.similar-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.similar-tag{font-family:'Share Tech Mono',monospace;font-size:.65rem;padding:3px 10px;border-radius:4px;background:rgba(124,106,255,.1);color:#a090ff;border:1px solid rgba(124,106,255,.25);}
+.timing-box{border-radius:8px;padding:12px 16px;margin:10px 0;background:color-mix(in srgb,#ffd700 5%,transparent);border:1px solid color-mix(in srgb,#ffd700 20%,transparent);font-size:.82rem;line-height:1.75;color:var(--text);}
+.timing-label{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.14em;color:#ffd700;margin-bottom:6px;font-weight:700;}
+.modal-actions{display:flex;gap:9px;margin-top:18px;}
+.btn-primary{flex:1;padding:10px;background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid var(--accent);color:var(--accent);border-radius:6px;font-family:'Share Tech Mono',monospace;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s;text-align:center;text-decoration:none;display:block;}
+.btn-primary:hover{background:color-mix(in srgb,var(--accent) 22%,transparent);}
+.btn-steam{background:linear-gradient(135deg,#1b2838,#2a475e);border:1px solid #c6d4df44;color:#c6d4df;}
+.btn-close{padding:10px 16px;background:var(--bg3);border:1px solid var(--border);color:var(--text-dim);border-radius:6px;font-family:'Share Tech Mono',monospace;font-size:.8rem;cursor:pointer;transition:all .2s;}
+.btn-close:hover{border-color:#ff4444;color:#ff4444;}
 ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
-@media(max-width:640px){header,.filter-bar,main{padding-left:14px;padding-right:14px;}.grid{grid-template-columns:1fr;}.modal-meta{grid-template-columns:1fr;}.logo-main{font-size:2.2rem;}}
+@media(max-width:640px){header,.filter-bar,main{padding-left:14px;padding-right:14px;}.grid{grid-template-columns:1fr;}.steam-grid,.meta-grid{grid-template-columns:1fr 1fr;}.logo-main{font-size:2.2rem;}}
 </style>
 </head>
 <body>
@@ -127,51 +165,78 @@ main{position:relative;z-index:10;max-width:1280px;margin:0 auto;padding:28px 40
   </div>
   <div class="header-right">
     <div class="theme-badge" id="theme-badge">🎮 DAILY</div>
-    <div class="header-meta"><strong id="today-date">2026年4月18日(土)</strong>23:53 配信</div>
+    <div class="header-meta"><strong id="today-date">2026年4月19日(日)</strong><span>00:02 配信</span></div>
   </div>
 </header>
 <div class="cat-tabs" id="cat-tabs"></div>
 <div class="filter-bar" id="filter-bar"></div>
 <main>
   <div class="section-label">TODAY'S PICKS — <span id="article-count"></span> ARTICLES</div>
-  <div class="theme-banner" id="theme-banner"><div class="theme-banner-icon" id="theme-icon">🎮</div><div class="theme-banner-text"><strong id="theme-name">DAILY EDITION</strong><span id="theme-desc">キンツヨ速報、本日も全力でお届けする。</span></div></div>
   <div class="grid" id="grid"></div>
   <div class="pagination" id="pagination"></div>
 </main>
 <div class="modal-overlay" id="modal" onclick="closeModal(event)"><div class="modal" id="modal-content"></div></div>
 <script>
-const ARTICLES=[{"title":"SCUM Steam正式リリース","genre":"Survival","platform":"Steam","mode":"Multi","catch":"過酷なサバイバルがSteamで正式配信開始","overview":"SCUMは超リアル志向のオープンワールドサバイバルゲームで、プレイヤーは囚人として孤島に送り込まれます。代謝システムや栄養管理、身体の各部位まで細かくシミュレートされた生存メカニクスが特徴です。戦闘だけでなく、体温管理や病気、怪我の治療など複雑な要素を管理する必要があります。マルチプレイヤー環境では他のプレイヤーとの協力や対立が生存の鍵となります。長期のアーリーアクセスを経て、ついに正式版としてリリースされました。","news":"SCUMがSteamで正式版としてリリースされました。長期間のアーリーアクセス期間を経て、多くのコンテンツと改善が加えられた状態での配信となります。正式リリースに伴い、ゲームシステムの最終調整やバランス改善が実施されています。サバイバルゲームファンの間で注目を集めており、Steam上で新たなプレイヤー層の獲得が期待されています。今週からプレイ可能となり、マルチプレイヤーサーバーも活況を呈しています。","pitch":"ソウルライクファンの皆さん、SCUMの過酷さは死にゲーに通じるものがあります。このゲームでは一つのミスが致命傷となり、準備不足は即座に死を意味します。戦闘は慎重な立ち回りと状況判断が求められ、ダークソウルのような緊張感があります。敵対プレイヤーやAI相手との戦いは、タイミングとリソース管理が生死を分ける高難度体験です。何度も死にながら学習し、徐々に生存スキルを磨いていく過程はまさに死にゲーの醍醐味そのものです。ハードコアなチャレンジを求めるプレイヤーには最適な選択肢でしょう。","warning":"このゲームはソウルライクやハックアンドスラッシュとは全く異なるジャンルです。アクション重視ではなく、サバイバルシミュレーション要素が中心となります。戦闘の爽快感よりも、地道な資源管理や体調管理が主な gameplay になります。マルチプレイヤー環境では理不尽なPK(プレイヤーキル)に遭遇する可能性が高く、ストレスを感じることもあるでしょう。学習曲線が非常に急で、システムの複雑さに圧倒される可能性があります。純粋なアクションゲームを求めている方には向いていません。","bestFor":"超リアル志向のハードコアサバイバル体験と、PvP要素を含む過酷な環境を楽しみたいプレイヤー向けです。","similarGames":["DayZ","Rust","Escape from Tarkov"],"timing":"正式リリース直後で新規プレイヤーが多く、コミュニティも活発なため今が始めるのに良いタイミングです。","difficultyReason":"SCUMの難易度は、複雑なサバイバルメカニクスに起因します。栄養バランス、代謝、体温、水分補給など複数の要素を常時管理する必要があり、一つでも疎かにすると死に直結します。戦闘システムも弾道計算や武器の反動、照準の揺れなどリアルに再現されており、簡単には敵を倒せません。他プレイヤーとの遭遇は常に緊張を強いられ、装備や準備が不十分だと一方的にやられます。マップは広大で、方向感覚を失いやすく、安全な場所を見つけるのも困難です。初心者が快適にプレイできるまでには相当な時間と忍耐が必要です。","difficultyTags":["超高難度","ハードコアサバイバル","理不尽系","上級者向け"],"hot":true,"score":3,"url":"https://store.steampowered.com/app/513710/","source":"Steam","image":"https://cdn.fastly.steamstatic.com/steam/apps/513710/header.jpg"},{"title":"Foundation 25%オフセール開始","genre":"City Builder","platform":"Steam","mode":"Single","catch":"中世都市建設ゲームが25%割引で配信","overview":"Foundationは中世ヨーロッパを舞台にした都市建設シミュレーションゲームです。グリッドベースではなく、有機的に成長する都市を作り上げることができます。住民たちは自律的に行動し、プレイヤーは大まかな方針を示すことで都市を導きます。美しいグラフィックスと、歴史的建造物の建設要素が特徴的です。資源管理や貿易、宗教や政治など多層的なゲームプレイが楽しめます。","news":"FoundationがSteamで25%オフのセールを開始しました。正式リリース後初の大型セールとなり、多くのプレイヤーが注目しています。都市建設ゲームファンの間で評価が高く、この機会に購入を検討する人が増えています。セール期間中は通常価格よりもお得に入手できるチャンスです。開発チームは継続的なアップデートを予定しており、コンテンツの拡充も期待されています。","pitch":"ソウルライクやハックアンドスラッシュファンの皆さんには正直に言って、このゲームは全く異なるジャンルです。アクション要素は皆無で、じっくりと都市を育てる戦略ゲームです。しかし、複雑なシステム管理と計画性が求められる点では、ソウルライクの戦略的思考と通じるものがあります。リソース配分のミスが都市の崩壊を招くという緊張感は、ある意味で高難度ゲームに通じます。息抜きとして全く違うジャンルに挑戦したい方には面白いかもしれません。ただし、アクション要素を期待している方には全くお勧めできません。","warning":"このゲームはアクションゲームではありません。ソウルライクやハックアンドスラッシュの要素は一切含まれていません。戦闘シーンもなく、スリリングな瞬間もほとんどありません。じっくりと時間をかけて都市を育てるスローペースなゲームプレイが中心です。即座の反応や素早い判断よりも、長期的な計画と忍耐が求められます。アクション好きのプレイヤーには退屈に感じる可能性が極めて高いです。全く異なるジャンルであることを理解した上で購入を検討してください。","bestFor":"中世ヨーロッパの雰囲気を楽しみながら、ゆったりと都市建設を楽しみたいストラテジーゲームファン向けです。","similarGames":["Banished","Anno 1800","Kingdoms and Castles"],"timing":"25%オフセール中の今が購入のベストタイミングで、割引価格で入手できるチャンスです。","difficultyReason":"Foundationの難易度は中程度です。都市建設ゲームとしては比較的緩やかな学習曲線を持っており、チュートリアルも充実しています。住民が自律的に行動するため、細かい管理は不要で、大まかな方針を示すだけで都市が発展します。資源管理は重要ですが、致命的な失敗に陥りにくい設計になっています。ただし、大規模な都市を効率的に運営するには経験と知識が必要です。初心者でも楽しめる一方、上級者向けの深い戦略性も持ち合わせています。全体的には初心者から中級者向けの難易度設定と言えるでしょう。","difficultyTags":["初心者歓迎","中程度","戦略重視"],"hot":false,"score":2,"url":"https://store.steampowered.com/app/690830/","source":"Steam","image":"https://cdn.fastly.steamstatic.com/steam/apps/690830/header.jpg"},{"title":"The Universim Steam正式リリース","genre":"God Simulation","platform":"Steam","mode":"Single","catch":"神の視点で文明を導く惑星シミュレーター","overview":"The Universimは、プレイヤーが神として文明の発展を見守り導く惑星規模のシミュレーションゲームです。石器時代から宇宙時代まで、文明の進化を体験できます。惑星全体がシームレスにつながっており、自然災害や異星人の侵略など様々なイベントが発生します。住民一人一人に個性があり、彼らの生活を観察することも楽しみの一つです。神の力を使って奇跡を起こしたり、災害を防いだりすることができます。","news":"The UniversimがSteamで正式版としてリリースされました。長期のアーリーアクセスを経て、多くの機能とコンテンツが追加された状態での配信です。正式リリースに伴い、ゲームバランスの調整や新しい時代の追加が行われています。シミュレーションゲームファンの間で話題となり、Steamでの評価も上昇しています。開発チームは今後も継続的なサポートとコンテンツ追加を予定しています。","pitch":"ソウルライクやハックアンドスラッシュのファンには、このゲームは完全に畑違いです。アクション要素は皆無で、戦闘システムもありません。ただし、文明が危機に瀕した時の緊張感や、重要な決断を迫られる瞬間は、ある種の高難度ゲームに通じるものがあります。戦略的思考と長期的な計画が必要な点では、ソウルライクの慎重なプレイスタイルと共通点があるかもしれません。しかし、基本的には全く異なるジャンルなので、アクションゲームの代替として購入することは絶対にお勧めしません。完全に気分転換として別ジャンルを試したい場合のみ検討してください。","warning":"このゲームにはアクション要素が一切ありません。ソウルライクやハックアンドスラッシュを期待している方には全く向いていません。戦闘シーンはほとんどなく、あってもプレイヤーが直接操作するものではありません。ゲームのペースは非常にゆっくりで、文明の発展を長時間かけて見守る必要があります。即座のフィードバックやアドレナリンが出るような体験は期待できません。シミュレーションゲームに興味がない方が購入すると、確実に後悔するでしょう。ジャンルの違いを十分に理解してから購入を検討してください。","bestFor":"神の視点から文明の発展を見守り、長期的な戦略を楽しみたいシミュレーションゲームファン向けです。","similarGames":["Black & White","Spore","Reus"],"timing":"正式リリース直後でコミュニティも活発なため、今から始めるのに適したタイミングです。","difficultyReason":"The Universimの難易度は中程度からやや高めです。文明管理には多くの要素が絡み合い、バランスを保つのが難しい場面があります。自然災害や資源枯渇など予期せぬ事態への対応が求められ、判断ミスが文明の衰退につながります。テクノロジーツリーや建物の配置など、効率的な発展には知識と経験が必要です。ただし、ゲームオーバーの概念は緩く、失敗しても再建のチャンスがあります。初心者にはやや敷居が高いものの、チュートリアルで基礎を学べば徐々に理解できるでしょう。全体的には中級者向けの難易度と言えます。","difficultyTags":["中級者向け","戦略重視","管理複雑"],"hot":false,"score":2,"url":"https://store.steampowered.com/app/352720/","source":"Steam","image":"https://cdn.cloudflare.steamstatic.com/steam/apps/352720/header.jpg"},{"title":"Quake Champions Steam配信開始","genre":"FPS","platform":"Steam","mode":"Multi","catch":"伝説のアリーナシューターが無料配信","overview":"Quake Championsは、伝説的なアリーナFPSシリーズの最新作です。超高速の動きとテクニカルな射撃が特徴で、プレイヤースキルが直接勝敗に影響します。各チャンピオンには固有のアビリティがあり、戦略性が増しています。クラシックなゲームモードに加え、新しいモードも追加されています。eスポーツシーンでも活躍しており、競技性の高いゲームプレイが魅力です。","news":"Quake ChampionsがSteamで配信開始されました。基本プレイ無料のモデルで提供され、誰でもアクセスできるようになっています。従来のBethesdaランチャーからSteamへの移行により、プレイヤーベースの拡大が期待されています。配信開始に伴い、新規プレイヤー向けのキャンペーンやイベントも実施されています。競技シーンでも注目を集めており、今後のアップデートやコンテンツ追加が予定されています。","pitch":"ソウルライクファンの皆さん、Quake Championsの高速戦闘は反射神経と正確な判断が求められる点で共通点があります。一瞬の判断ミスが即死につながる緊張感は、まさに死にゲーの感覚です。敵の動きを読み、完璧なタイミングで攻撃する必要があり、習熟には多くの死と学習が必要です。しかし、ハックアンドスラッシュのような爽快な連続攻撃とは異なり、一発一発が重い戦闘スタイルです。対人戦がメインなので、NPCを倒す楽しみを求める方には向いていません。PvPでの競技性を楽しめる方なら、新たな高難度体験として価値があるでしょう。","warning":"このゲームは対人戦専用のアリーナシューターです。ソウルライクのようなPvE体験や、ハックアンドスラッシュのような爽快な雑魚敵討伐はありません。ストーリーモードもなく、ひたすら他プレイヤーと撃ち合うゲームです。初心者は熟練プレイヤーに一方的に倒され続ける可能性が高く、非常にストレスフルな体験になるかもしれません。学習曲線が極めて急で、楽しめるようになるまで膨大な時間と忍耐が必要です。カジュアルなFPS体験を求めている方には全く向いていません。対人戦が苦手な方は購入を避けるべきです。","bestFor":"超高速のアリーナシューターで他プレイヤーと競い合い、自分のスキルを極限まで高めたい競技志向のFPSプレイヤー向けです。","similarGames":["Quake III Arena","Unreal Tournament","Diabotical"],"timing":"基本無料なので、興味があれば今すぐ試してみるのに金銭的リスクはありません。","difficultyReason":"Quake Championsは非常に高難度のゲームです。まず、ゲームスピードが極めて速く、瞬時の判断と反応が求められます。エイムの精度が直接勝敗に影響し、わずかなミスも許されません。ストレイフジャンプやロケットジャンプなど、高度なテクニックの習得が必須です。対戦相手は人間なので、AI相手とは比較にならない難しさがあります。マップ知識、武器のリスポーンタイミング、アイテムの位置など覚えることが膨大です。初心者が中級者レベルに到達するまでには数百時間のプレイが必要でしょう。対人戦特有の心理的プレッシャーも加わり、総合的に超高難度と言えます。","difficultyTags":["超高難度","対人戦専用","上級者向け","反射神経必須"],"hot":true,"score":3,"url":"https://store.steampowered.com/app/611500/","source":"Steam","image":"https://cdn.cloudflare.steamstatic.com/steam/apps/611500/header.jpg"},{"title":"Raft 15%オフセール実施中","genre":"Survival","platform":"Steam","mode":"Multi","catch":"海洋サバイバルが15%割引で購入可能","overview":"Raftは、広大な海を漂う小さな筏の上でサバイバルするゲームです。プレイヤーは海に漂う資源を回収し、筏を拡張していきます。飢えや渇き、サメの襲撃など様々な危険に対処しながら生き延びる必要があります。友人と協力してプレイすることも可能で、マルチプレイヤーモードが人気です。海底の探索や島の発見など、冒険要素も充実しています。","news":"RaftがSteamで15%オフのセールを実施しています。人気のサバイバルゲームがお得な価格で購入できるチャンスです。正式リリース後も継続的なアップデートが行われており、コンテンツが充実しています。セール期間中は新規プレイヤーの流入が見込まれ、マルチプレイヤーも活発になることが期待されます。サバイバルゲームファンの間で高い評価を得ており、この機会に購入を検討する価値があります。","pitch":"ソウルライクファンの皆さん、Raftのサバイバル要素には緊張感があります。資源管理を誤れば餓死や脱水で死亡し、サメの攻撃は常に脅威です。慎重な計画と準備が生存の鍵となり、無謀な行動は即座に罰せられます。ただし、戦闘要素は限定的で、ハックアンドスラッシュのような爽快感はありません。協力プレイが中心なので、ソロでの孤独な挑戦を好む方には物足りないかもしれません。難易度はそこまで高くなく、死にゲーのような過酷さは期待できません。リラックスしたサバイバル体験を求める方には良いですが、極限の挑戦を求める方には向いていないでしょう。","warning":"このゲームはハードコアな死にゲーではありません。ソウルライクのような高難度アクションや、深い戦闘システムは存在しません。基本的にはカジュアルなサバイバルゲームで、友人とわいわい楽しむタイプのゲームです。一人で黙々と高難度に挑戦したい方には向いていません。戦闘要素は最小限で、アクション性を求める方には退屈に感じるでしょう。筏の拡張や資源集めが主な作業となり、単調に感じる可能性があります。ハードコアなゲーマーには物足りない内容かもしれません。","bestFor":"友人と協力しながら、のんびりと海洋サバイバルを楽しみたいカジュアルゲーマー向けです。","similarGames":["Subnautica","Stranded Deep","The Forest"],"timing":"15%オフセール中の今が購入のお得なタイミングで、友人と一緒に始めるには良い機会です。","difficultyReason":"Raftの難易度は比較的低めに設定されています。基本的なサバイバルメカニクスは理解しやすく、チュートリアルも親切です。食料や水の確保は難しくなく、死亡してもペナルティは軽微です。サメの攻撃も対策が簡単で、慣れればほとんど脅威になりません。マルチプレイでは協力することでさらに難易度が下がります。ただし、効率的な筏の設計や高度な探索には若干の経験が必要です。全体的には初心者から中級者向けで、カジュアルに楽しめる難易度となっています。死にゲーのような厳しさはなく、リラックスしてプレイできるゲームです。","difficultyTags":["初心者向け","カジュアル","協力推奨"],"hot":false,"score":2,"url":"https://store.steampowered.com/app/648800/","source":"Steam","image":"https://cdn.cloudflare.steamstatic.com/steam/apps/648800/header.jpg"}];
-const THEMES={
-  halloween:{cls:'theme-halloween',icon:'🎃',name:'HALLOWEEN SPECIAL',desc:'闇夜に潜むゲームの恐怖。'},
-  xmas:{cls:'theme-xmas',icon:'🎄',name:'CHRISTMAS EDITION',desc:'聖なる夜の特別速報。'},
-  newyear:{cls:'theme-newyear',icon:'🎍',name:'NEW YEAR EDITION',desc:'新年あけましておめでとう。今年もキンツヨ速報をよろしく！'},
-  yearend:{cls:'theme-yearend',icon:'🎆',name:'YEAR END EDITION',desc:'今年もお疲れ様。大晦日の速報をお届け。'},
-  golden:{cls:'theme-golden',icon:'🌟',name:'GOLDEN WEEK',desc:'ゴールデンウィーク特別版。連休はゲーム三昧で行こう！'},
-  summer:{cls:'theme-summer',icon:'🌊',name:'SUMMER WAVE',desc:'灼熱の夏の速報。'},
-  horror:{cls:'theme-horror',icon:'🩸',name:'HORROR NIGHT',desc:'ホラーな夜の速報。'},
-  launch:{cls:'theme-launch',icon:'🚀',name:'LAUNCH WEEK',desc:'大型リリース週の速報。'},
-  default:{cls:'',icon:'🎮',name:'DAILY EDITION',desc:'キンツヨ速報、本日も全力でお届けする。'}
-};
-function detectTheme(){const n=new Date(),m=n.getMonth()+1,d=n.getDate(),dow=n.getDay();if(m===1&&d<=3)return'newyear';if(m===12&&d>=29)return'yearend';if(m===12&&d>=20&&d<=28)return'xmas';if(m===4&&d>=29||m===5&&d<=5)return'golden';if(m>=7&&m<=8)return'summer';if(m===10&&d>=20)return'halloween';if(dow===1)return'launch';if(dow===5&&n.getHours()>=22||dow===6&&n.getHours()<=4)return'horror';return'default';}
-const activeTheme=detectTheme();
-function applyTheme(k){const t=THEMES[k];Object.values(THEMES).forEach(({cls})=>{if(cls)document.body.classList.remove(cls);});if(t.cls)document.body.classList.add(t.cls);document.getElementById('theme-icon').textContent=t.icon;document.getElementById('theme-name').textContent=t.name;document.getElementById('theme-desc').textContent=t.desc;document.getElementById('theme-badge').textContent=t.icon+' '+t.name;}
-applyTheme(activeTheme);
-const CATS=[{key:'all',label:'🎮 全記事',filters:['all','ソウルライク','ハクスラ','Switch2','Steam','★S']},{key:'game',label:'🕹 ゲーム全般',filters:['all','ソウルライク','ハクスラ','★S']},{key:'steam',label:'🖥 Steam',filters:['all','★S']},{key:'nintendo',label:'🎮 Nintendo',filters:['all','★S']}];
-function categorize(a){const g=(a.genre||'').toLowerCase();const p=(a.platform||'').toLowerCase();if(p.includes('switch2')||p.includes('nintendo'))return'nintendo';if(p.includes('steam'))return'steam';return'game';}
+const ARTICLES=[{"title":"JSONパースエラー: Unexpected end of JSON input","genre":"debug","matchRank":"C","catch":"エラー","overview":"","news":"","pitch":"","score":1,"url":"#","source":"debug","image":null},{"title":"Windrose / ウィンドローズ","genre":"Steam","platform":"Steam","mode":"Single","catch":"Windrose / ウィンドローズ","overview":"Windrose / ウィンドローズ","news":"","pitch":"","warning":"","bestFor":"","similarGames":[],"timing":"","difficultyReason":"","difficultyTags":[],"hot":false,"score":3,"url":"https://store.steampowered.com/app/3041230/","source":"Steam","image":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3041230/7e838d87d787735d5d29d72777c5ee55653dfb2b/header.jpg?t=1776158614","steamInfo":{"price":"¥ 3,400","salePrice":"¥ 3,060","salePct":10,"reviewScore":"情報なし","reviewCount":"9,752+","developer":"Kraken Express","publisher":"Kraken Express, Pocketpair Publishing (Japan)","steamUrl":"https://store.steampowered.com/app/3041230/"}}];
+const THEMES={halloween:{cls:'theme-halloween',icon:'🎃',name:'HALLOWEEN'},xmas:{cls:'theme-xmas',icon:'🎄',name:'CHRISTMAS'},golden:{cls:'theme-golden',icon:'🌟',name:'GOLDEN WEEK'},summer:{cls:'theme-summer',icon:'🌊',name:'SUMMER WAVE'},horror:{cls:'theme-horror',icon:'🩸',name:'HORROR NIGHT'},default:{cls:'',icon:'🎮',name:'DAILY'}};
+function detectTheme(){const n=new Date(),m=n.getMonth()+1,d=n.getDate(),dow=n.getDay();if(m===1&&d<=3)return'golden';if(m===12&&d>=20&&d<=28)return'xmas';if(m===4&&d>=29||m===5&&d<=5)return'golden';if(m>=7&&m<=8)return'summer';if(m===10&&d>=20)return'halloween';if(dow===5&&n.getHours()>=22||dow===6&&n.getHours()<=4)return'horror';return'default';}
+function applyTheme(k){const t=THEMES[k];Object.values(THEMES).forEach(({cls})=>{if(cls)document.body.classList.remove(cls);});if(t.cls)document.body.classList.add(t.cls);document.getElementById('theme-badge').textContent=t.icon+' '+t.name;}
+applyTheme(detectTheme());
+const CATS=[{key:'all',label:'🎮 全記事',filters:['all','ソウルライク','ハクスラ','Steam','★5のみ']},{key:'steam',label:'🖥 Steam',filters:['all','★5のみ','セール中']},{key:'nintendo',label:'🎮 Nintendo',filters:['all']},{key:'game',label:'🕹 ゲーム全般',filters:['all']}];
+function categorize(a){const p=(a.platform||'').toLowerCase();const s=(a.source||'').toLowerCase();if(p.includes('switch')||p.includes('nintendo'))return'nintendo';if(p.includes('steam')||s.includes('steam'))return'steam';return'game';}
 let currentCat='all',currentFilter='all',currentPage=1;const PER_PAGE=30;
 function setCat(key){currentCat=key;currentFilter='all';currentPage=1;renderCatTabs();renderFilterBar();renderGrid();}
-function renderCatTabs(){document.getElementById('cat-tabs').innerHTML=CATS.map(c=>{const count=c.key==='all'?ARTICLES.length:ARTICLES.filter(a=>categorize(a)===c.key).length;return`<button class="cat-tab ${c.key===currentCat?'active':''}" onclick="setCat('${c.key}')">${c.label}<span class="cat-count">${count}</span></button>`;}).join('');}
-function renderFilterBar(){const cat=CATS.find(c=>c.key===currentCat);document.getElementById('filter-bar').innerHTML=cat.filters.map(f=>`<button class="filter-btn ${f===currentFilter?'active':''}" onclick="applyFilter('${f}',this)">${f==='all'?'ALL':f==='★S'?'★ Sランクのみ':f}</button>`).join('');}
-function getFiltered(){let list=currentCat==='all'?ARTICLES:ARTICLES.filter(a=>categorize(a)===currentCat);if(currentFilter==='★S')list=list.filter(a=>a.matchRank==='S');else if(currentFilter!=='all')list=list.filter(a=>(a.genre||'').toLowerCase().includes(currentFilter.toLowerCase())||(a.platform||'').toLowerCase().includes(currentFilter.toLowerCase()));return list;}
+function renderCatTabs(){document.getElementById('cat-tabs').innerHTML=CATS.map(c=>{const count=c.key==='all'?ARTICLES.length:ARTICLES.filter(a=>categorize(a)===c.key).length;return `<button class="cat-tab ${c.key===currentCat?'active':''}" onclick="setCat('${c.key}')">${c.label}<span class="cat-count">${count}</span></button>`;}).join('');}
+function renderFilterBar(){const cat=CATS.find(c=>c.key===currentCat);document.getElementById('filter-bar').innerHTML=cat.filters.map(f=>`<button class="filter-btn ${f===currentFilter?'active':''}" onclick="applyFilter('${f}',this)">${f==='all'?'ALL':f}</button>`).join('');}
+function getFiltered(){let list=currentCat==='all'?ARTICLES:ARTICLES.filter(a=>categorize(a)===currentCat);if(currentFilter==='★5のみ')list=list.filter(a=>a.score===5);else if(currentFilter==='セール中')list=list.filter(a=>a.steamInfo?.salePrice);else if(currentFilter!=='all')list=list.filter(a=>(a.genre||'').toLowerCase().includes(currentFilter.toLowerCase()));return list;}
 function applyFilter(key,btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=key;currentPage=1;renderGrid();}
 function stars(n,accent){return[...Array(5)].map((_,i)=>`<span class="star ${i<n?(accent?'accent':'on'):''}">★</span>`).join('');}
-function matchBadge(rank){const cfg={S:{cls:'match-s',lbl:'S MATCH'},A:{cls:'match-a',lbl:'A MATCH'},B:{cls:'match-b',lbl:'B MATCH'},C:{cls:'match-c',lbl:'C MATCH'}};const c=cfg[rank]||cfg.C;return`<div class="match-badge ${c.cls}">${c.lbl} — ${{S:'強くおすすめ',A:'かなりおすすめ',B:'参考程度に',C:'情報として'}[rank]}</div>`;}
+function scoreBadge(s){const cfg={5:{cls:'score-5',lbl:'⭐ 超おすすめ'},4:{cls:'score-4',lbl:'✅ おすすめ'},3:{cls:'score-3',lbl:'📌 参考に'},2:{cls:'score-2',lbl:'ℹ️ 情報'},1:{cls:'score-1',lbl:'ℹ️ 情報'}};const c=cfg[s]||cfg[3];return `<div class="score-badge ${c.cls}">${c.lbl}</div>`;}
 function tagCls(a){const g=(a.genre||'').toLowerCase();if(g.includes('soul')||g.includes('ソウルライク'))return'tag-soul';if(g.includes('hack')||g.includes('ハクスラ'))return'tag-hack';return'tag-genre';}
-function buildCard(a,idx){const isSoul=tagCls(a)!=='tag-genre';const img=a.image?`<img class="card-image" src="${a.image}" alt="${a.title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`:'';return`<div class="card" onclick="openModal(${idx})">${a.hot?'<div class="hot-flag">HOT</div>':''}${img}<div class="card-no-image" ${a.image?'style="display:none"':''}>NO IMAGE</div><div class="card-body"><div class="card-tags"><span class="tag ${tagCls(a)}">${a.genre||''}</span>${a.platform?`<span class="tag tag-plat">${a.platform}</span>`:''}${a.hot?'<span class="tag tag-hot">🔥 HOT</span>':''}</div>${matchBadge(a.matchRank)}<div class="card-title">${a.title}</div><div class="card-info-row"><div class="card-info-item"><span class="card-info-key">スコア</span><span class="card-info-val">${stars(a.score,isSoul)}</span></div>${a.platform?`<div class="card-info-item"><span class="card-info-key">Platform</span><span class="card-info-val">${a.platform}</span></div>`:''}${a.mode?`<div class="card-info-item"><span class="card-info-key">Mode</span><span class="card-info-val">${a.mode}</span></div>`:''}</div><div class="card-catch">${a.catch||''}</div><div class="card-footer"><div style="display:flex;align-items:center"><div class="score">${stars(a.score,isSoul)}</div><span class="score-label">${a.score}/5</span></div><span class="card-detail-btn">詳細を見る →</span></div></div></div>`;}
+function reviewCls(s){if(!s)return'';if(s.includes('圧倒的')||s.includes('非常に好評'))return'green';if(s.includes('好評'))return'green';if(s.includes('賛否'))return'yellow';return'red';}
+function clearRateCls(p){if(p>=70)return{bar:'fill-easy',pct:'pct-easy'};if(p>=40)return{bar:'fill-normal',pct:'pct-normal'};if(p>=20)return{bar:'fill-hard',pct:'pct-hard'};return{bar:'fill-extreme',pct:'pct-extreme'};}
+function buildCard(a,idx){
+  const isSoul=tagCls(a)!=='tag-genre';
+  const img=a.image?`<img class="card-image" src="${a.image}" alt="${a.title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`:'';
+  let infoRow='';
+  if(a.steamInfo){
+    const s=a.steamInfo;const rcls=reviewCls(s.reviewScore||'');
+    infoRow=`<div class="card-info-row">
+      <div class="card-info-item"><span class="card-info-key">価格</span><span class="card-info-val ${s.salePrice?'sale':''}">${s.salePrice||s.price||'—'}${s.salePct?` <span style="font-size:.58rem">-${s.salePct}%</span>`:''}</span></div>
+      <div class="card-info-item"><span class="card-info-key">レビュー</span><span class="card-info-val ${rcls}">${s.reviewScore||'—'}</span></div>
+    </div>`;
+  }else if(a.platform||a.mode){
+    infoRow=`<div class="card-info-row">${a.platform?`<div class="card-info-item"><span class="card-info-key">Platform</span><span class="card-info-val">${a.platform}</span></div>`:''}${a.mode?`<div class="card-info-item"><span class="card-info-key">Mode</span><span class="card-info-val">${a.mode}</span></div>`:''}</div>`;
+  }
+  return `<div class="card" onclick="openModal(${idx})">
+    ${a.hot?'<div class="hot-flag">HOT</div>':''}
+    ${img}<div class="card-no-image" ${a.image?'style="display:none"':''}>NO IMAGE</div>
+    <div class="card-body">
+      <div class="card-tags"><span class="tag ${tagCls(a)}">${a.genre||''}</span>${a.platform?`<span class="tag tag-plat">${a.platform}</span>`:''}${a.hot?'<span class="tag tag-hot">🔥 HOT</span>':''}${a.steamInfo?.salePrice?`<span class="tag tag-sale">SALE -${a.steamInfo.salePct}%</span>`:''}</div>
+      ${scoreBadge(a.score)}
+      <div class="card-title">${a.title}</div>
+      ${infoRow}
+      <div class="card-catch">${a.catch||''}</div>
+      <div class="card-footer"><div style="display:flex;align-items:center"><div class="score">${stars(a.score,isSoul)}</div><span class="score-label">${a.score}/5</span></div><span class="card-detail-btn">詳細を見る →</span></div>
+    </div>
+  </div>`;}
 function renderGrid(){const filtered=getFiltered();const slice=filtered.slice((currentPage-1)*PER_PAGE,currentPage*PER_PAGE);document.getElementById('grid').innerHTML=slice.map((a,i)=>buildCard(a,ARTICLES.indexOf(a))).join('');document.getElementById('article-count').textContent=filtered.length;renderPagination(filtered.length);}
 function renderPagination(total){const pages=Math.ceil(total/PER_PAGE);document.getElementById('pagination').innerHTML=pages<=1?'':[...Array(pages)].map((_,i)=>`<button class="page-btn ${i+1===currentPage?'active':''}" onclick="goPage(${i+1})">${i+1}</button>`).join('');}
 function goPage(n){currentPage=n;renderGrid();window.scrollTo({top:0,behavior:'smooth'});}
-function openModal(idx){const a=ARTICLES[idx];const isSoul=tagCls(a)!=='tag-genre';const img=a.image?`<img class="modal-image" src="${a.image}" alt="${a.title}" onerror="this.style.display='none'">`:'';document.getElementById('modal-content').innerHTML=`${img}<div class="modal-body"><div class="modal-tags"><span class="tag ${tagCls(a)}">${a.genre||''}</span>${a.platform?`<span class="tag tag-plat">${a.platform}</span>`:''}${a.hot?'<span class="tag tag-hot">🔥 HOT</span>':''}</div><div class="modal-title">${a.title}</div><div class="modal-section-title">YOUR MATCH ANALYSIS</div><div class="match-block"><div class="match-block-label">RANK ${a.matchRank} — ${{S:'あなたに強くおすすめ',A:'かなりおすすめ',B:'参考程度に',C:'情報として'}[a.matchRank]}</div><div class="match-block-text">${a.matchText||''}</div></div><div class="modal-section-title">DETAIL</div><div class="modal-desc">${a.desc||''}</div><div class="modal-highlight">${a.highlight||''}</div><div class="modal-meta"><div class="meta-item"><div class="meta-key">スコア</div><div class="meta-val">${stars(a.score,isSoul)} ${a.score}/5</div></div><div class="meta-item"><div class="meta-key">プラットフォーム</div><div class="meta-val">${a.platform||'—'}</div></div><div class="meta-item"><div class="meta-key">プレイスタイル</div><div class="meta-val">${a.mode||'—'}</div></div><div class="meta-item"><div class="meta-key">ジャンル</div><div class="meta-val">${a.genre||'—'}</div></div></div>${a.source?`<div class="source-box"><strong>参照元</strong>${a.source}</div>`:''}<div class="modal-actions"><a class="btn-primary" href="${a.url||'#'}" target="_blank">元記事を見る →</a><button class="btn-close" onclick="document.getElementById('modal').classList.remove('open')">閉じる</button></div></div>`;document.getElementById('modal').classList.add('open');}
+function openModal(idx){
+  const a=ARTICLES[idx];const isSoul=tagCls(a)!=='tag-genre';
+  const img=a.image?`<img class="modal-image" src="${a.image}" alt="${a.title}" onerror="this.style.display='none'">`:`<div style="height:120px;background:linear-gradient(135deg,var(--bg3),#1a1a2e);border-radius:10px 10px 0 0;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:.75rem;color:var(--text-dim)">NO IMAGE</div>`;
+  const cls=clearRateCls(a.clearRate??50);
+  const diffBox=a.clearRate!=null?`<div class="modal-section-title">DIFFICULTY</div><div class="difficulty-box"><div class="difficulty-title">クリア実績データ</div><div class="difficulty-header"><div class="clear-rate-pct ${cls.pct}">${a.clearRate}%</div><div class="clear-rate-bar-wrap"><div class="clear-rate-label">${a.clearRateLabel||'クリア率'}</div><div class="clear-rate-bar"><div class="clear-rate-fill ${cls.bar}" style="width:${a.clearRate}%"></div></div></div></div><div class="difficulty-reason">${a.difficultyReason||''}</div><div class="difficulty-tags">${(a.difficultyTags||[]).map(t=>`<span class="diff-tag">${t}</span>`).join('')}</div></div>`:'';
+  let steamDetail='';
+  if(a.steamInfo){const s=a.steamInfo;const rcls=reviewCls(s.reviewScore||'');const tagList=s.tags?s.tags.split(',').map(t=>`<span class="steam-tag">${t.trim()}</span>`).join(''):'';
+    steamDetail=`<div class="modal-section-title">STEAM INFO</div><div class="steam-detail-box"><div class="steam-detail-title">🖥 STEAM STORE DATA</div><div class="steam-grid"><div class="steam-item"><div class="steam-item-key">通常価格</div><div class="steam-item-val">${s.price||'—'}</div></div><div class="steam-item"><div class="steam-item-key">セール価格</div><div class="steam-item-val ${s.salePrice?'sale':''}">${s.salePrice?`${s.salePrice} (${s.salePct}% OFF)`:'セールなし'}</div></div><div class="steam-item"><div class="steam-item-key">レビュー評価</div><div class="steam-item-val ${rcls}">${s.reviewScore||'—'}</div></div><div class="steam-item"><div class="steam-item-key">レビュー数</div><div class="steam-item-val">${s.reviewCount||'—'}</div></div><div class="steam-item"><div class="steam-item-key">開発元</div><div class="steam-item-val" style="font-size:.72rem">${s.developer||'—'}</div></div><div class="steam-item"><div class="steam-item-key">パブリッシャー</div><div class="steam-item-val" style="font-size:.72rem">${s.publisher||'—'}</div></div><div class="steam-item"><div class="steam-item-key">リリース日</div><div class="steam-item-val">${s.releaseDate||'—'}</div></div><div class="steam-item"><div class="steam-item-key">実績数</div><div class="steam-item-val">${s.achievements||0}個</div></div><div class="steam-item"><div class="steam-item-key">対応言語</div><div class="steam-item-val ${s.languageText?.includes('✅')?'green':'red'}">${s.languageText||'—'}</div></div><div class="steam-item"><div class="steam-item-key">DLC数</div><div class="steam-item-val">${s.dlcCount||0}個</div></div></div>${tagList?`<div class="steam-tags-row">${tagList}</div>`:''}</div>`;}
+  const similarHtml=a.similarGames?.length?`<div class="modal-section-title">SIMILAR GAMES</div><div class="similar-row">${a.similarGames.map(g=>`<span class="similar-tag">🎮 ${g}</span>`).join('')}</div>`:'';
+  const timingHtml=a.timing?`<div class="timing-box"><div class="timing-label">⏱ 今買うべきか？</div>${a.timing}</div>`:'';
+  const metaHtml=`<div class="meta-grid"><div class="meta-item"><div class="meta-key">おすすめ度</div><div class="meta-val">${stars(a.score,isSoul)} ${a.score}/5</div></div><div class="meta-item"><div class="meta-key">プレイ時間目安</div><div class="meta-val">${a.playtime||'—'}</div></div><div class="meta-item"><div class="meta-key">プレイスタイル</div><div class="meta-val">${a.mode||'—'}</div></div></div>`;
+  const steamBtn=a.steamInfo?`<a class="btn-primary btn-steam" href="${a.steamInfo.steamUrl||a.url||'#'}" target="_blank">🖥 Steamで見る</a>`:`<a class="btn-primary" href="${a.url||'#'}" target="_blank">元記事を見る →</a>`;
+  document.getElementById('modal-content').innerHTML=`${img}<div class="modal-body"><div class="modal-tags"><span class="tag ${tagCls(a)}">${a.genre||''}</span>${a.platform?`<span class="tag tag-plat">${a.platform}</span>`:''}${a.hot?'<span class="tag tag-hot">🔥 HOT</span>':''}${a.steamInfo?.salePrice?`<span class="tag tag-sale">SALE -${a.steamInfo.salePct}%</span>`:''}</div><div class="modal-title">${a.title}</div><div class="modal-section-title">DETAIL</div><div class="info-block block-overview"><div class="block-label">📖 ゲーム概要</div><div class="block-text">${a.overview||''}</div></div><div class="info-block block-news"><div class="block-label">📰 今回のニュース</div><div class="block-text">${a.news||''}</div></div><div class="info-block block-pitch"><div class="block-label">🎯 あなたへのプレゼン</div><div class="block-text">${a.pitch||''}</div></div>${a.warning?`<div class="info-block block-warning"><div class="block-label">⚠️ 注意点・地雷情報</div><div class="block-text">${a.warning}</div></div>`:''}${a.bestFor?`<div class="info-block block-bestfor"><div class="block-label">🙋 こんな人におすすめ</div><div class="block-text">${a.bestFor}</div></div>`:''}${timingHtml}${diffBox}${steamDetail}${metaHtml}${similarHtml}${a.source?`<div style="font-size:.72rem;color:var(--text-dim);margin-top:10px;padding:8px 12px;background:var(--bg3);border-radius:6px;"><span style="font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--accent);display:block;margin-bottom:3px;">参照元</span>${a.source}</div>`:''}<div class="modal-actions">${steamBtn}<button class="btn-close" onclick="document.getElementById('modal').classList.remove('open')">閉じる</button></div></div>`;
+  document.getElementById('modal').classList.add('open');}
 function closeModal(e){if(e.target===document.getElementById('modal'))document.getElementById('modal').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('modal').classList.remove('open');});
 renderCatTabs();renderFilterBar();renderGrid();
