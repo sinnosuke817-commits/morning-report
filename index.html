@@ -1,245 +1,168 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
+<!DOCTYPE html><html lang="ja"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>キンツヨ速報</title>
-<link href="https://fonts.googleapis.com/css2?family=Yomogi&family=Noto+Sans+JP:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<title>朝のニュースレポート</title>
 <style>
-:root{--bg:#080810;--bg2:#0e0e1c;--bg3:#141428;--border:#252540;--accent:#00ffcc;--accent2:#ff2d78;--text:#e0e8ff;--text-dim:#5a6080;--glow:rgba(0,255,204,.22);--card-glow:rgba(0,255,204,.09);--header-overlay:rgba(8,8,16,.92);}
-body.theme-halloween{--bg:#060400;--bg2:#0d0800;--bg3:#140d00;--border:#3a2000;--accent:#ff8c00;--accent2:#9b00ff;--text:#ffe8cc;--text-dim:#7a5020;--glow:rgba(255,140,0,.25);--card-glow:rgba(255,140,0,.1);}
-body.theme-xmas{--bg:#020c08;--bg2:#04120c;--bg3:#071a10;--border:#0f3a1a;--accent:#00e85a;--accent2:#ff3333;--text:#dfffec;--text-dim:#2a6a40;}
-body.theme-golden{--bg:#0a0800;--bg2:#141000;--bg3:#1e1800;--border:#443800;--accent:#ffc600;--accent2:#00ccff;--text:#fff8cc;--text-dim:#886600;}
-body.theme-summer{--bg:#020d1a;--bg2:#041525;--bg3:#061e30;--border:#0a3050;--accent:#00c8ff;--accent2:#ff9500;--text:#d8f4ff;--text-dim:#3a7090;}
-body.theme-horror{--bg:#08020a;--bg2:#0d030f;--bg3:#140516;--border:#3a1040;--accent:#cc0033;--accent2:#ff6600;--text:#f0d0d0;--text-dim:#7a3040;}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;min-height:100vh;background-image:radial-gradient(circle,var(--border) 1px,transparent 1px);background-size:18px 18px;background-attachment:fixed;}
-body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at 50% 40%,transparent 35%,rgba(0,0,0,.65) 100%);}
-header{position:relative;z-index:10;padding:16px 40px;border-bottom:1px solid var(--border);background:var(--header-overlay);backdrop-filter:blur(12px);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;}
-.logo-area{display:flex;align-items:center;gap:14px;justify-content:center;grid-column:2;}
-.char-icon{width:52px;height:52px;border-radius:8px;border:2px solid var(--accent);box-shadow:0 0 16px var(--glow);overflow:hidden;position:relative;background:var(--bg3);flex-shrink:0;}
-.char-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.face-bg{width:38px;height:44px;background:linear-gradient(180deg,#f5c9a0,#e8a880);border-radius:50% 50% 45% 45%;position:absolute;top:4px;}
-.hair{width:42px;height:28px;background:#1a1a2e;border-radius:50% 50% 0 0;position:absolute;top:2px;z-index:2;}
-.hair::before{content:'';position:absolute;width:8px;height:32px;background:#1a1a2e;left:-4px;top:8px;border-radius:4px;}
-.hair::after{content:'';position:absolute;width:8px;height:32px;background:#1a1a2e;right:-4px;top:8px;border-radius:4px;}
-.glasses{width:36px;height:10px;position:absolute;top:18px;z-index:3;display:flex;gap:2px;align-items:center;}
-.glass-lens{width:14px;height:10px;border:1.5px solid #555;border-radius:3px;background:rgba(120,180,255,.15);}
-.glass-bridge{width:4px;height:1.5px;background:#555;}
-.mouth{width:16px;height:12px;background:#8b0000;border-radius:0 0 8px 8px;position:absolute;top:30px;z-index:3;}
-.mouth::before{content:'';position:absolute;width:4px;height:6px;background:#fff;left:50%;transform:translateX(-50%);top:1px;border-radius:1px;}
-.blood{width:8px;height:10px;background:var(--accent2);position:absolute;top:34px;left:14px;z-index:3;border-radius:0 0 4px 4px;clip-path:polygon(0 0,100% 0,80% 100%,20% 100%);}
-.logo-text{line-height:1;}
-.logo-main{font-family:'Yomogi',cursive;font-size:3.2rem;color:var(--accent);text-shadow:0 0 24px var(--glow);letter-spacing:.06em;line-height:1;}
-.logo-sub{font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--text-dim);letter-spacing:.16em;margin-top:4px;display:block;opacity:.6;}
-.header-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;grid-column:3;}
-.header-meta{font-size:.7rem;color:var(--text-dim);text-align:right;}
-.header-meta strong{color:var(--accent);display:block;font-size:.85rem;}
-.theme-badge{font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--accent);padding:3px 10px;border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);border-radius:4px;background:color-mix(in srgb,var(--accent) 6%,transparent);}
-.cat-tabs{position:relative;z-index:10;display:flex;border-bottom:1px solid var(--border);background:var(--bg2);overflow-x:auto;}
-.cat-tab{padding:14px 28px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--text-dim);font-family:'Noto Sans JP',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap;}
-.cat-tab:hover{color:var(--accent);}
-.cat-tab.active{color:var(--accent);border-bottom-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,transparent);}
-.cat-count{font-family:'Share Tech Mono',monospace;font-size:.65rem;margin-left:6px;opacity:.6;}
-.filter-bar{position:relative;z-index:10;display:flex;gap:7px;padding:12px 40px;border-bottom:1px solid var(--border);flex-wrap:wrap;background:var(--bg);}
-.filter-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text-dim);padding:4px 13px;border-radius:20px;font-size:.7rem;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .2s;}
-.filter-btn:hover,.filter-btn.active{border-color:var(--accent);color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,transparent);}
-main{position:relative;z-index:10;max-width:1280px;margin:0 auto;padding:28px 40px;}
-.section-label{font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:var(--text-dim);margin-bottom:18px;display:flex;align-items:center;gap:10px;}
-.section-label::after{content:'';flex:1;height:1px;background:var(--border);}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:15px;margin-bottom:32px;}
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:9px;overflow:hidden;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;position:relative;}
-.card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 40%,transparent);box-shadow:0 10px 36px rgba(0,0,0,.5),0 0 22px var(--card-glow);}
-.card-image{width:100%;height:160px;object-fit:cover;display:block;background:var(--bg3);}
-.card-no-image{width:100%;height:160px;background:linear-gradient(135deg,var(--bg3),#1a1a2e);display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--text-dim);}
-.card-body{padding:13px 15px 15px;}
-.card-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;}
-.tag{font-size:.6rem;padding:2px 7px;border-radius:3px;letter-spacing:.06em;font-weight:700;font-family:'Share Tech Mono',monospace;}
-.tag-soul{background:rgba(255,56,96,.12);color:#ff6080;border:1px solid rgba(255,56,96,.28);}
-.tag-hack{background:rgba(255,107,43,.12);color:#ff8050;border:1px solid rgba(255,107,43,.28);}
-.tag-genre{background:rgba(124,106,255,.12);color:#a090ff;border:1px solid rgba(124,106,255,.25);}
-.tag-plat{background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);}
-.tag-hot{background:rgba(255,100,100,.1);color:#ff6464;border:1px solid rgba(255,100,100,.25);}
-.tag-sale{background:rgba(0,232,90,.15);color:#00e85a;border:1px solid rgba(0,232,90,.35);}
-.score-badge{display:inline-flex;align-items:center;gap:6px;font-size:.62rem;font-family:'Share Tech Mono',monospace;font-weight:700;padding:3px 9px;border-radius:4px;margin-bottom:8px;}
-.score-5{background:color-mix(in srgb,var(--accent2) 15%,transparent);color:var(--accent2);border:1px solid color-mix(in srgb,var(--accent2) 35%,transparent);}
-.score-4{background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);}
-.score-3{background:rgba(0,255,136,.07);color:#00e87a;border:1px solid rgba(0,255,136,.2);}
-.score-2,.score-1{background:rgba(107,122,153,.1);color:var(--text-dim);border:1px solid var(--border);}
-.card-info-row{display:flex;gap:10px;flex-wrap:wrap;margin:7px 0;padding:7px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-.card-info-item{display:flex;flex-direction:column;gap:2px;}
-.card-info-key{font-family:'Share Tech Mono',monospace;font-size:.5rem;letter-spacing:.08em;color:var(--text-dim);text-transform:uppercase;}
-.card-info-val{font-family:'Share Tech Mono',monospace;font-size:.72rem;font-weight:700;color:var(--text);}
-.card-info-val.sale{color:#00e85a;}
-.card-info-val.green{color:#00c864;}
-.card-info-val.yellow{color:#ffa500;}
-.card-info-val.red{color:#ff5050;}
-.card-title{font-size:.9rem;font-weight:700;line-height:1.42;margin-bottom:6px;}
-.card-catch{font-size:.74rem;color:var(--text-dim);line-height:1.62;margin-bottom:10px;}
-.card-footer{display:flex;align-items:center;justify-content:space-between;}
-.score{display:flex;gap:2px;}
-.star{font-size:.8rem;color:var(--border);}
-.star.on{color:#ffd700;}
-.star.accent{color:var(--accent2);}
-.score-label{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--text-dim);margin-left:5px;}
-.card-detail-btn{font-size:.65rem;color:var(--accent);letter-spacing:.06em;font-family:'Share Tech Mono',monospace;opacity:.65;transition:opacity .2s;}
-.card:hover .card-detail-btn{opacity:1;}
-.hot-flag{position:absolute;top:9px;right:9px;background:var(--accent2);color:#fff;font-size:.6rem;font-family:'Share Tech Mono',monospace;font-weight:700;padding:3px 7px;border-radius:3px;}
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);z-index:100;align-items:center;justify-content:center;padding:20px;}
-.modal-overlay.open{display:flex;}
-.modal{background:var(--bg2);border:1px solid color-mix(in srgb,var(--accent) 22%,transparent);border-radius:10px;max-width:740px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:0 0 70px var(--card-glow);animation:modalIn .2s ease;}
-@keyframes modalIn{from{transform:translateY(18px);opacity:0}to{transform:translateY(0);opacity:1}}
-.modal-image{width:100%;height:230px;object-fit:cover;border-radius:10px 10px 0 0;}
-.modal-body{padding:24px 26px;}
-.modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
-.modal-title{font-size:1.2rem;font-weight:900;line-height:1.4;margin-bottom:16px;}
-.modal-section-title{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.18em;color:var(--text-dim);margin:20px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);}
-.info-block{border-radius:8px;padding:14px 16px;margin-bottom:10px;}
-.block-overview{background:color-mix(in srgb,#6060ff 5%,transparent);border:1px solid color-mix(in srgb,#6060ff 20%,transparent);}
-.block-news{background:color-mix(in srgb,var(--accent) 5%,transparent);border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);}
-.block-pitch{background:color-mix(in srgb,var(--accent2) 5%,transparent);border:1px solid color-mix(in srgb,var(--accent2) 20%,transparent);}
-.block-warning{background:rgba(255,180,0,.05);border:1px solid rgba(255,180,0,.2);}
-.block-bestfor{background:rgba(0,200,100,.05);border:1px solid rgba(0,200,100,.2);}
-.block-label{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.14em;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
-.block-overview .block-label{color:#a0a0ff;}
-.block-news .block-label{color:var(--accent);}
-.block-pitch .block-label{color:var(--accent2);}
-.block-warning .block-label{color:#ffb400;}
-.block-bestfor .block-label{color:#00c864;}
-.block-text{font-size:.82rem;line-height:1.85;color:var(--text);}
-.difficulty-box{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin:14px 0;}
-.difficulty-title{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.14em;color:var(--text-dim);margin-bottom:10px;}
-.difficulty-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
-.clear-rate-bar-wrap{flex:1;}
-.clear-rate-label{font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--text-dim);margin-bottom:5px;}
-.clear-rate-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
-.clear-rate-fill{height:100%;border-radius:3px;}
-.fill-easy{background:#00c864;}
-.fill-normal{background:#ffa500;}
-.fill-hard{background:#ff6464;}
-.fill-extreme{background:var(--accent2);}
-.clear-rate-pct{font-family:'Share Tech Mono',monospace;font-size:1.1rem;font-weight:700;white-space:nowrap;}
-.pct-easy{color:#00c864;}
-.pct-normal{color:#ffa500;}
-.pct-hard{color:#ff6464;}
-.pct-extreme{color:var(--accent2);}
-.difficulty-reason{font-size:.78rem;line-height:1.75;color:var(--text-dim);margin-bottom:10px;}
-.difficulty-tags{display:flex;flex-wrap:wrap;gap:5px;}
-.diff-tag{font-family:'Share Tech Mono',monospace;font-size:.58rem;padding:2px 8px;border-radius:3px;background:rgba(255,100,100,.1);color:#ff8080;border:1px solid rgba(255,100,100,.2);}
-.steam-detail-box{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px 18px;margin:14px 0;}
-.steam-detail-title{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.14em;color:#c6d4df;margin-bottom:12px;}
-.steam-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.steam-item{background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:9px 12px;}
-.steam-item-key{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.1em;color:var(--text-dim);margin-bottom:3px;}
-.steam-item-val{font-size:.8rem;font-weight:700;color:var(--text);}
-.steam-item-val.sale{color:#00e85a;}
-.steam-item-val.green{color:#00c864;}
-.steam-item-val.yellow{color:#ffa500;}
-.steam-item-val.red{color:#ff5050;}
-.steam-tags-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
-.steam-tag{font-family:'Share Tech Mono',monospace;font-size:.58rem;padding:2px 8px;border-radius:3px;background:color-mix(in srgb,var(--accent) 8%,transparent);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);}
-.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0;}
-.meta-item{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:9px 12px;}
-.meta-key{font-size:.55rem;letter-spacing:.1em;color:var(--text-dim);font-family:'Share Tech Mono',monospace;margin-bottom:4px;}
-.meta-val{font-size:.8rem;font-weight:700;color:var(--text);}
-.similar-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
-.similar-tag{font-family:'Share Tech Mono',monospace;font-size:.65rem;padding:3px 10px;border-radius:4px;background:rgba(124,106,255,.1);color:#a090ff;border:1px solid rgba(124,106,255,.25);}
-.timing-box{border-radius:8px;padding:12px 16px;margin:10px 0;background:color-mix(in srgb,#ffd700 5%,transparent);border:1px solid color-mix(in srgb,#ffd700 20%,transparent);font-size:.82rem;line-height:1.75;color:var(--text);}
-.timing-label{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.14em;color:#ffd700;margin-bottom:6px;font-weight:700;}
-.modal-actions{display:flex;gap:9px;margin-top:18px;}
-.btn-primary{flex:1;padding:10px;background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid var(--accent);color:var(--accent);border-radius:6px;font-family:'Share Tech Mono',monospace;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s;text-align:center;text-decoration:none;display:block;}
-.btn-primary:hover{background:color-mix(in srgb,var(--accent) 22%,transparent);}
-.btn-steam{background:linear-gradient(135deg,#1b2838,#2a475e);border:1px solid #c6d4df44;color:#c6d4df;}
-.btn-close{padding:10px 16px;background:var(--bg3);border:1px solid var(--border);color:var(--text-dim);border-radius:6px;font-family:'Share Tech Mono',monospace;font-size:.8rem;cursor:pointer;transition:all .2s;}
-.btn-close:hover{border-color:#ff4444;color:#ff4444;}
-::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
-@media(max-width:640px){header,.filter-bar,main{padding-left:14px;padding-right:14px;}.grid{grid-template-columns:1fr;}.steam-grid,.meta-grid{grid-template-columns:1fr 1fr;}.logo-main{font-size:2.2rem;}}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', 'Hiragino Kaku Gothic Pro', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; }
+.header { text-align: center; color: white; margin-bottom: 40px; }
+.header h1 { font-size: 2.5em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+.header p { font-size: 1.1em; opacity: 0.9; }
+.news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; }
+.card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.card:hover { transform: translateY(-8px); box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
+.card-image { width: 100%; height: 200px; object-fit: cover; display: block; }
+.card-content { padding: 20px; }
+.card-category { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold; margin-bottom: 12px; }
+.card-title { margin-bottom: 12px; }
+.card-title a { color: #333; text-decoration: none; font-size: 1.1em; font-weight: 600; line-height: 1.4; transition: color 0.3s ease; }
+.card-title a:hover { color: #667eea; }
+.card-description { color: #666; font-size: 0.95em; line-height: 1.6; margin-bottom: 15px; }
+.card-source { color: #999; font-size: 0.85em; border-top: 1px solid #eee; padding-top: 12px; }
+.source-badge { background: #f0f0f0; padding: 4px 8px; border-radius: 4px; display: inline-block; }
 </style>
 </head>
 <body>
-<header>
-  <div style="grid-column:1"></div>
-  <div class="logo-area">
-    <div class="char-icon"><div class="char-face"><div class="face-bg"></div><div class="hair"></div><div class="glasses"><div class="glass-lens"></div><div class="glass-bridge"></div><div class="glass-lens"></div></div><div class="mouth"></div><div class="blood"></div></div></div>
-    <div class="logo-text"><div class="logo-main">キンツヨ速報</div><div class="logo-sub">DAILY GAME &amp; TECH DIGEST</div></div>
-  </div>
-  <div class="header-right">
-    <div class="theme-badge" id="theme-badge">🎮 DAILY</div>
-    <div class="header-meta"><strong id="today-date">2026年4月19日(日)</strong><span>05:33 配信</span></div>
-  </div>
-</header>
-<div class="cat-tabs" id="cat-tabs"></div>
-<div class="filter-bar" id="filter-bar"></div>
-<main>
-  <div class="section-label">TODAY'S PICKS — <span id="article-count"></span> ARTICLES</div>
-  <div class="grid" id="grid"></div>
-  <div class="pagination" id="pagination"></div>
-</main>
-<div class="modal-overlay" id="modal" onclick="closeModal(event)"><div class="modal" id="modal-content"></div></div>
-<script>
-const ARTICLES=[{"title":"Dyson Sphere Program 多言語アップデート配信","genre":"Strategy/Simulation","platform":"Steam","mode":"Single","catch":"声優宇垣秀成さんのガイド音声実装","overview":"プレイヤーは銀河規模のエネルギー生産施設ダイソンスフィアを建設する壮大な工場自動化シミュレーションゲームです。惑星間を移動しながら資源を採掘し、生産ラインを構築していきます。複雑な物流システムと自動化が深い戦略性を生み出します。美しい宇宙空間を舞台に、巨大な建造物を完成させる達成感が魅力です。Factorioなどが好きなプレイヤーに特におすすめの作品となっています。","news":"本作が日本語を含む多言語対応のアップデートを実施しました。声優の宇垣秀成さんが担当するガイド音声が新たに実装されました。これにより日本のプレイヤーがより快適にプレイできる環境が整いました。既存プレイヤーも新鮮な体験ができるようになっています。今後さらに日本市場での展開が期待されます。","pitch":"工場建設ゲームの緻密な戦略性は、Soulslikeの試行錯誤に通じる面白さがあります。銀河規模のスケールで完璧な生産ラインを構築する過程は、強敵を倒すための準備に似た達成感を味わえます。日本語対応により、複雑なシステムもより理解しやすくなりました。","warning":"アクション要素は皆無で、戦闘を求めるプレイヤーには向きません。長時間の緻密な計画と管理が必要なため、即座の爽快感は得られません。","bestFor":"工場自動化と壮大なスケールの建設が好きな戦略ゲームファン","similarGames":["Factorio","Satisfactory"],"timing":"日本語対応された今が始めるベストタイミング","difficultyReason":"複雑な生産チェーンと物流システムの理解に時間がかかります。序盤は試行錯誤が必要ですが、慣れれば快適にプレイできます。","difficultyTags":["学習曲線が高い","戦略性重視","長時間プレイ推奨"],"hot":true,"score":4,"url":"https://www.4gamer.net/games/531/G053174/20260415040/","source":"4Gamer","image":null},{"title":"FFXIV パッチ7.5 彼方に至る路","genre":"MMORPG","platform":"Multi","mode":"Multi","catch":"魔獣使いの属性コンボシステム刷新","overview":"ファイナルファンタジーXIVは世界中で人気のMMORPGです。定期的な大型アップデートで新コンテンツが追加され続けています。豊富なジョブシステムと壮大なストーリーが魅力です。プレイヤーは冒険者となって広大な世界を探索します。エンドコンテンツでは高難度バトルが用意されています。","news":"パッチ7.5のタイトルが彼方に至る路と発表されました。第92回プロデューサーレターライブで詳細が公開されました。魔獣使いジョブに属性によるコンボと連携システムが実装されます。実機プレイを交えた紹介が行われました。新コンテンツの具体的な内容が明らかになっています。","pitch":"高難度レイドはSoulslikeと同等の緻密な立ち回りと戦略が求められます。魔獣使いの新システムはコンボを繋ぐHackSlash的な爽快感があります。パーティプレイでの連携は協力プレイの新たな楽しみを提供します。","warning":"MMORPGなので継続的な時間投資が必要です。月額課金制なので維持コストがかかります。","bestFor":"長期的にやり込めるMMORPGを求めるプレイヤー","similarGames":["World of Warcraft","Guild Wars 2","PSO2 NGS"],"timing":"パッチ7.5実装に向けて今から準備を始める時期","difficultyReason":"高難度コンテンツは綿密な戦略とパーティ連携が必須です。カジュアルコンテンツも充実しているため、自分のペースで楽しめます。","difficultyTags":["高難度レイド有","戦略重視","協力プレイ必須"],"hot":true,"score":4,"url":"https://www.4gamer.net/games/199/G019924/20260418007/","source":"4Gamer","image":null},{"title":"SCUM","genre":"Survival","platform":"Steam","mode":"Multi","catch":"超リアル志向のサバイバルシミュレーター","overview":"極限のリアリズムを追求したオープンワールドサバイバルゲームです。詳細な身体管理システムが特徴で、カロリーやビタミンまで管理が必要です。広大な島を舞台に、他プレイヤーやAIと戦いながら生き延びます。武器のカスタマイズや基地建設など、多彩な要素が用意されています。リアルさを極めたハードコアなサバイバル体験ができます。","news":"SCUMがSteamで正式リリースされました。長いアーリーアクセス期間を経ての正式版となります。多数のアップデートを経て完成度が高まっています。Steamストアで購入可能となりました。サバイバルゲームファンの間で注目を集めています。","pitch":"過酷なサバイバル環境はSoulslikeの高難度に匹敵する緊張感があります。戦闘は慎重な立ち回りと準備が必須で、死のペナルティも重いです。リアルな戦闘システムは正確な操作技術を要求します。","warning":"超リアル志向すぎて、細かい管理が煩わしく感じる可能性があります。マルチプレイ前提なので、ソロプレイには限界があります。","bestFor":"極限のリアリズムを求めるハードコアサバイバルファン","similarGames":["DayZ","Escape from Tarkov","Rust"],"timing":"正式リリースされた今が始める好機","difficultyReason":"複雑な身体管理システムと厳しい生存条件が高難度です。他プレイヤーとの戦闘も含め、初心者には非常に厳しい環境です。","difficultyTags":["超高難度","リアル志向","ハードコア"],"hot":true,"score":4,"url":"https://store.steampowered.com/app/513710/","source":"Steam","image":"https://cdn.fastly.steamstatic.com/steam/apps/513710/header.jpg"},{"title":"Foundation","genre":"City Builder","platform":"Steam","mode":"Single","catch":"中世ヨーロッパの有機的都市建設","overview":"中世ヨーロッパを舞台にした都市建設シミュレーションゲームです。グリッドレスの自由な建設システムが最大の特徴です。住民が有機的に道を作り、自然な街並みが形成されます。美しいグラフィックスと独特の芸術的なビジュアルスタイルが魅力です。宗教や貿易など、中世社会のシステムを再現しています。","news":"FoundationがSteamで正式リリースされ、25%オフのセールを実施中です。アーリーアクセスを経て完成版となりました。中世都市建設ファンから高い評価を得ています。セール期間中の購入がお得です。完成度の高い都市建設体験が可能になりました。","pitch":"都市の成長を見守る過程は、キャラクター育成に似た愛着が湧きます。資源管理と計画性は、Soulslikeの戦略的思考と共通します。美しい中世の街を作り上げる達成感は、困難なボスを倒した時に似ています。","warning":"アクション要素は皆無で、じっくり考えるタイプのゲームです。戦闘を求めるプレイヤーには全く向きません。","bestFor":"中世ヨーロッパの美しい都市を自由に建設したい人","similarGames":["Banished","Anno 1404","Kingdoms and Castles"],"timing":"25%オフセール中の今が購入の好機","difficultyReason":"都市建設の基本は分かりやすいですが、効率的な発展には経験が必要です。自由度が高い分、計画性が求められます。","difficultyTags":["戦略重視","じっくり型","学習曲線中程度"],"hot":true,"score":4,"url":"https://store.steampowered.com/app/690830/","source":"Steam","image":"https://cdn.fastly.steamstatic.com/steam/apps/690830/header.jpg"},{"title":"Quake Champions","genre":"FPS","platform":"Steam","mode":"Multi","catch":"伝説のアリーナFPSが基本無料で復活","overview":"Quakeシリーズの最新作となるアリーナFPSです。高速移動と正確なエイム技術が求められます。複数のチャンピオンから選択し、固有能力を活用します。クラシックなアリーナFPSの伝統を受け継いでいます。基本プレイ無料でアクセスしやすくなっています。","news":"Quake ChampionsがSteamで正式リリースされました。伝説のアリーナFPSシリーズの最新作です。基本プレイ無料で誰でもアクセス可能になりました。Steamストアでダウンロードできます。競技性の高いFPSとして注目されています。","pitch":"超高速の戦闘は反射神経と正確な操作が必須で、HackSlashに通じます。一瞬の判断ミスが命取りとなる緊張感はSoulslike的です。技術向上の過程は、ボスの動きを覚える学習と同じです。","warning":"非常に高い技術水準が求められ、初心者には厳しいです。競技性が高すぎて、カジュアルに楽しむのは困難です。","bestFor":"競技性の高いアリーナFPSを極めたい上級者","similarGames":["Unreal Tournament","Diabotical","Doom Eternal"],"timing":"基本無料なので今すぐ試せる","difficultyReason":"超高速の戦闘に対応する反射神経が必要です。上級者との実力差が大きく、初心者には非常に厳しい環境です。","difficultyTags":["超高難度","競技性重視","反射神経必須","上級者向け"],"hot":true,"score":4,"url":"https://store.steampowered.com/app/611500/","source":"Steam","image":"https://cdn.cloudflare.steamstatic.com/steam/apps/611500/header.jpg"},{"title":"Raft","genre":"Survival","platform":"Steam","mode":"Multi","catch":"海上漂流サバイバルアドベンチャー","overview":"筏の上でのサバイバルをテーマにした協力プレイ可能なゲームです。海を漂いながら資源を集めて筏を拡張していきます。サメなどの脅威から身を守りながら生き延びます。美しい海洋環境と島々を探索できます。友達との協力プレイが特に楽しい作品です。","news":"RaftがSteamで15%オフのセールを実施中です。海上サバイバルゲームとして高い人気を誇ります。協力プレイが特に評価されています。セール期間中の購入がお勧めです。サバイバルゲームファンの定番タイトルとなっています。","pitch":"限られた資源での生存戦略は、Soulslikeの緊張感に通じます。サメとの戦闘は正確なタイミングと立ち回りが必要です。筏の拡張と探索の達成感は、エリア攻略に似た満足感があります。","warning":"サバイバル要素が強く、地道な作業が多いです。ソロプレイよりマルチプレイ前提のバランスです。","bestFor":"友達と協力してサバイバルを楽しみたいプレイヤー","similarGames":["Valheim","The Forest","Subnautica"],"timing":"15%オフセール中で友達を誘いやすい価格","difficultyReason":"資源管理と脅威への対応が常に求められます。協力プレイ前提のバランスで、ソロは難易度が高いです。","difficultyTags":["サバイバル","協力推奨","資源管理"],"hot":true,"score":4,"url":"https://store.steampowered.com/app/648800/","source":"Steam","image":"https://cdn.cloudflare.steamstatic.com/steam/apps/648800/header.jpg"},{"title":"Ruined King: A League of Legends Story","genre":"RPG","platform":"Steam","mode":"Single","catch":"LoL世界観のターン制RPG","overview":"League of Legendsの世界を舞台にしたシングルプレイRPGです。ターン制戦闘システムを採用しています。ビルジウォーターとシャドウアイルを探索します。おなじみのチャンピオンたちが登場します。LoLの世界観を深く掘り下げたストーリーが魅力です。","news":"Ruined King: A League of Legends StoryがSteamでリリースされました。LoL世界観を舞台にしたターン制RPGです。人気MOBAのキャラクターが登場します。Steamストアで購入可能になりました。LoLファンとRPGファン両方から注目されています。","pitch":"戦略的なターン制バトルは、Soulslikeの慎重な戦闘に通じます。キャラクタービルドの深さは、装備構成の試行錯誤と同じ楽しさです。探索とボス戦の構成はソウルライクRPGに近い設計です。","warning":"LoLの知識がないとストーリーを十分楽しめない可能性があります。ターン制なので、アクション性は控えめです。","bestFor":"LoL世界観が好きで、ターン制RPGを楽しみたい人","similarGames":["Darkest Dungeon","Battle Chasers: Nightwar","Persona 5"],"timing":"LoLファンなら今すぐプレイする価値あり","difficultyReason":"戦略的なターン制バトルには戦術理解が必要です。キャラクター育成とビルド構築の奥深さが難易度を高めます。","difficultyTags":["ターン制戦闘","戦略重視","ビルド構築"],"hot":true,"score":4,"url":"https://store.steampowered.com/app/1276790/","source":"Steam","image":"https://cdn.cloudflare.steamstatic.com/steam/apps/1276790/header.jpg"},{"title":"Killsquad","genre":"Action RPG/HackSlash","platform":"Steam","mode":"Multi","catch":"SFハクスラ協力アクションRPG","overview":"SF世界を舞台にした協力型ハクスラアクションRPGです。最大4人での協力プレイが可能です。多彩なキャラクターと武器、スキルのカスタマイズが楽しめます。ランダム生成されるミッションで繰り返しプレイできます。爽快な戦闘とルート収集の快感が魅力です。","news":"KillsquadがSteamで20%オフのセールを実施中です。SF世界のハクスラアクションRPGです。協力プレイでの爽快な戦闘が特徴です。セール期間中の購入がお得になっています。ハクスラファンから支持を集めています。","pitch":"HackSlashファンには最適な爽快アクションです。ビルド構築の自由度が高く、試行錯誤が楽しめます。協力プレイでの連携は、高難度ボス戦のような興奮があります。","warning":"ストーリーは薄く、繰り返しプレイが中心です。ソロプレイより協力プレイ前提のバランスです。","bestFor":"SF世界で爽快なハクスラアクションを友達と楽しみたい人","similarGames":["Warhammer 40000: Inquisitor","Diablo 3","Warframe"],"timing":"20%オフセール中で友達と始めやすい","difficultyReason":"高難度ミッションは正確な操作と連携が必須です。ビルド構築の深さが難易度に直結します。","difficultyTags":["ハクスラ","協力推奨","ビルド重要","高難度有"],"hot":true,"score":4,"url":"https://store.steampowered.com/app/910490/","source":"Steam","image":"https://cdn.cloudflare.steamstatic.com/steam/apps/910490/header.jpg"},{"title":"コルセア・コーヴ","genre":"Strategy/City Builder","platform":"PC","mode":"Single","catch":"海賊と都市建設の融合シミュレーション","overview":"海賊をテーマにした都市建設と自動化、探索を組み合わせた新作ゲームです。プレイヤーは海賊の黄金時代を取り戻すために様々な手段を駆使します。都市を発展させながら海洋探索も楽しめます。自動化システムで効率的な生産体制を構築できます。海賊という独特のテーマが他の都市建設ゲームとの差別化要素です。","news":"新作都市建設ゲーム コルセア・コーヴ が正式に発表されました。海賊、都市建設、自動化、探索の4要素を融合した作品です。プレイヤーはあの手この手で海賊の黄金時代を復活させます。詳細な情報が4Gamerで公開されています。今後の続報が期待される注目タイトルです。","pitch":"探索と資源管理のバランスは、Soulslikeの慎重な進行に似た緊張感があります。海賊との戦闘要素も含まれ、アクション好きも楽しめます。都市建設の戦略性とアクションの融合は新鮮な体験を提供します。","warning":"発表されたばかりで実際のゲームプレイの評価は未知数です。都市建設メインなのでアクション要素は限定的かもしれません。","bestFor":"海賊テーマの都市建設と探索を両方楽しみたいプレイヤー","similarGames":["Anno 1800","Port Royale 4"],"timing":"発表されたばかりなので、発売情報を待つ段階","difficultyReason":"都市建設と自動化の複雑さから学習曲線は高めと予想されます。海賊テーマなので戦闘要素の難易度も気になるところです。","difficultyTags":["都市建設","自動化システム","探索要素"],"hot":true,"score":3,"url":"https://www.4gamer.net/games/000/G100030/20260418004/","source":"4Gamer","image":null},{"title":"Game Pass ファーストパーティ限定新プラン","genre":"Service","platform":"Xbox","mode":"Multi","catch":"ファーストパーティタイトル限定プラン検討中","overview":"Microsoftが提供するゲームサブスクリプションサービスGame Passの新プラン情報です。Xbox新トップが検討中と報じられています。ファーストパーティタイトルに限定した新しいプランが浮上しています。既存のプラン体系に新たな選択肢が加わる可能性があります。サブスクリプションモデルの多様化が進んでいます。","news":"Game Passにファーストパーティタイトル限定の新プランが検討されていると報じられました。Xbox新トップが検討中であることが明らかになりました。既存のプラン体系を補完する形での導入が予想されます。価格や詳細はまだ発表されていません。今後の正式発表が待たれる状況です。","pitch":"Soulslike系のファーストパーティタイトルを定額で楽しめる可能性があります。新プランにより、コストを抑えて多様なゲームに触れられます。サブスクは試行錯誤を繰り返すSoulslikeファンに最適なサービス形態です。","warning":"まだ検討段階であり、実現するか不明です。ファーストパーティ限定なので、プレイできるタイトルが制限されます。","bestFor":"Xboxファーストパーティタイトルを中心にプレイしたい人","similarGames":["PlayStation Plus","Nintendo Switch Online"],"timing":"正式発表を待ってから判断すべき段階","difficultyReason":"サービス内容なので難易度は関係ありません。プラン選択の複雑さが増す可能性はあります。","difficultyTags":["サービス情報","難易度なし"],"hot":true,"score":3,"url":"https://jp.ign.com/xbox-series-x/83184/game-pass-xbox","source":"IGN Japan","image":"https://sm.ign.com/t/ign_jp/news/g/game-pass-/game-pass-rumor-details_qgvz.640.jpg"},{"title":"Road to Vostok","genre":"Steam","platform":"Steam","mode":"Single","catch":"Road to Vostok","overview":"Road to Vostok","news":"","pitch":"","warning":"","bestFor":"","similarGames":[],"timing":"","difficultyReason":"","difficultyTags":[],"hot":true,"score":3,"url":"https://store.steampowered.com/app/1963610/","source":"Steam","image":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1963610/header.jpg?t=1775573759","steamInfo":{"price":"¥ 2,300","salePrice":"¥ 1,725","salePct":25,"reviewScore":"情報なし","reviewCount":"5,017+","genres":"アクション, 早期アクセス","tags":"シングルプレイヤー, ファミリーシェアリング","releaseDate":"2026年4月7日","achievements":0,"languageText":"日本語非対応","dlcCount":0,"developer":"Road to Vostok Ltd.","publisher":"Road to Vostok Ltd.","steamUrl":"https://store.steampowered.com/app/1963610/"}},{"title":"No Man's Sky","genre":"Steam","platform":"Steam","mode":"Single","catch":"No Man's Sky","overview":"No Man's Sky","news":"","pitch":"","warning":"","bestFor":"","similarGames":[],"timing":"","difficultyReason":"","difficultyTags":[],"hot":true,"score":3,"url":"https://store.steampowered.com/app/275850/","source":"Steam","image":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/275850/0daeafb115c92d9afd4c7a670384688adbde91e0/header_alt_assets_25.jpg?t=1775653502","steamInfo":{"price":"¥ 6,500","salePrice":"¥ 2,600","salePct":60,"reviewScore":"情報なし","reviewCount":"304,366+","genres":"アクション, アドベンチャー","tags":"シングルプレイヤー, マルチプレイヤー, PvP, オンラインPvP, 協力プレイ","releaseDate":"2016年8月12日","achievements":27,"languageText":"日本語対応✅","dlcCount":1,"developer":"Hello Games","publisher":"Hello Games","steamUrl":"https://store.steampowered.com/app/275850/"}},{"title":"Arma Reforger","genre":"Steam","platform":"Steam","mode":"Single","catch":"Arma Reforger","overview":"Arma Reforger","news":"","pitch":"","warning":"","bestFor":"","similarGames":[],"timing":"","difficultyReason":"","difficultyTags":[],"hot":true,"score":3,"url":"https://store.steampowered.com/app/1874880/","source":"Steam","image":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1874880/header.jpg?t=1773999249","steamInfo":{"price":"¥ 4,900","salePrice":"¥ 3,430","salePct":30,"reviewScore":"情報なし","reviewCount":"43,799+","genres":"アクション, シミュレーション, ストラテジー","tags":"シングルプレイヤー, マルチプレイヤー, PvP, オンラインPvP, 協力プレイ","releaseDate":"2023年11月16日","achievements":24,"languageText":"日本語対応✅","dlcCount":2,"developer":"Bohemia Interactive","publisher":"Bohemia Interactive","steamUrl":"https://store.steampowered.com/app/1874880/"}},{"title":"週刊Steam広場 第149号","genre":"News","platform":"Steam","mode":"Multi","catch":"海賊サバイバルとFPS新作情報","overview":"4Gamerの週刊Steam情報コーナーで、最新のSteam配信タイトルを紹介する記事です。今週は海賊サバイバルゲームWindoroseが取り上げられています。またラバーホースアニメ風FPSのMOUSE: P.I. For Hireも紹介されています。毎週様々なジャンルの新作情報をチェックできる便利なコーナーです。Steamユーザーにとって見逃せない情報源となっています。","news":"今週の週刊Steam広場では海賊サバイバルゲームWindoroseが発売されました。ラバーホースアニメ風のFPS作品MOUSE: P.I. For Hireもリリースされています。両作品とも独特な世界観とゲームプレイが特徴です。Steam上で注目を集めている新作タイトルとなっています。詳細な情報は4Gamerの記事で確認できます。","pitch":"海賊サバイバルは探索と戦闘のバランスがSoulslikeに近い緊張感を提供します。新作FPSは独特のアートスタイルで差別化されており、新鮮な体験ができます。週刊でチェックすることで、隠れた名作を見逃さずに済みます。","warning":"ニュース記事なので直接プレイできるコンテンツではありません。紹介されているゲームが必ずしも高品質とは限りません。","bestFor":"Steamの新作情報を定期的にチェックしたいゲーマー","similarGames":["Steam新作情報","週刊ゲームニュース"],"timing":"毎週定期的にチェックすることで最新情報を入手可能","difficultyReason":"記事を読むだけなので難易度は特にありません。紹介されるゲームの難易度は個別に異なります。","difficultyTags":["情報記事","難易度なし"],"hot":false,"score":3,"url":"https://www.4gamer.net/games/038/G003821/20260418003/","source":"4Gamer","image":null},{"title":"Shadowverse: Worlds Beyond アップデート情報","genre":"Card Game","platform":"Multi","mode":"Multi","catch":"新カードパック情報公開番組予告","overview":"Shadowverseシリーズの最新作であるデジタルカードゲームです。戦略的なカードバトルが楽しめる作品となっています。定期的な新カードパックの追加でメタゲームが変化し続けます。美麗なイラストと多彩なキャラクターが魅力です。eスポーツシーンでも盛り上がりを見せています。","news":"4月24日に新カードパックとアップデート情報を発表する公式番組が実施されます。Shadowverse: Worlds Beyondの最新情報が公開される予定です。新カードの詳細やバランス調整が発表されると予想されます。プレイヤーにとって重要な情報が含まれる見込みです。公式番組での詳細発表が待たれています。","pitch":"カードゲームの戦略性は、Soulslikeの敵分析と戦術構築に似た思考が求められます。デッキ構築の試行錯誤はビルド研究と同じ楽しさがあります。対人戦での読み合いは緊張感のある戦闘体験を提供します。","warning":"カードゲームなのでアクション要素は一切ありません。課金要素が強いため、競技レベルを目指すとコストがかかります。","bestFor":"戦略的なカードゲームとデッキ構築が好きなプレイヤー","similarGames":["Hearthstone","Magic: The Gathering Arena","遊戯王マスターデュエル"],"timing":"4月24日の公式番組前にゲームを始めておくと良い","difficultyReason":"カードゲームの基本ルールとメタゲーム理解が必要です。上位ランクを目指すには深い戦略知識が求められます。","difficultyTags":["戦略重視","メタゲーム理解","デッキ構築"],"hot":false,"score":3,"url":"https://www.4gamer.net/games/760/G076035/20260417042/","source":"4Gamer","image":null},{"title":"The Universim","genre":"God Game/Strategy","platform":"Steam","mode":"Single","catch":"惑星規模の神ゲーシミュレーション","overview":"プレイヤーが神となって文明を導く壮大なスケールの神ゲーです。石器時代から宇宙時代まで、文明の発展を見守ります。自然災害や他惑星への進出など、多彩なイベントが発生します。住民一人一人にAIが設定され、リアルな社会が形成されます。惑星規模での文明シミュレーションが楽しめます。","news":"The UniversimがSteamで正式リリースされました。長期のアーリーアクセスを経ての完成版です。惑星規模の壮大な神ゲー体験が可能になりました。Steamストアで購入できるようになっています。完成度の高い文明シミュレーションとして注目されています。","pitch":"文明の生存をかけた戦略は、Soulslikeの試行錯誤に似た緊張感があります。自然災害への対応は、強敵との戦いのような判断力が求められます。長期的な計画と即座の対応のバランスが重要です。","warning":"神ゲージャンルなので直接的な戦闘アクションはありません。文明育成がメインで、爽快感を求める人には向きません。","bestFor":"壮大なスケールの文明シミュレーションを楽しみたい人","similarGames":["Black & White","Populous","Reus"],"timing":"正式リリースされた今が始める最適な時期","difficultyReason":"文明管理の複雑さと予測不能なイベントが難易度を高めます。長期的視点と即座の対応の両方が求められます。","difficultyTags":["戦略重視","文明管理","長期プレイ向け"],"hot":false,"score":3,"url":"https://store.steampowered.com/app/352720/","source":"Steam","image":"https://cdn.cloudflare.steamstatic.com/steam/apps/352720/header.jpg"},{"title":"RAILGRADE","genre":"Strategy/Puzzle","platform":"Steam","mode":"Single","catch":"鉄道物流パズルストラテジー","overview":"惑星開発を舞台にした鉄道物流管理ゲームです。効率的な鉄道網を構築して資源を輸送します。パズル要素と戦略性が融合した独特のゲームプレイです。美しいローポリグラフィックスが特徴的です。限られた資源で最適な路線を設計する頭脳戦が楽しめます。","news":"RAILGRADEがSteamで25%オフのセールを実施中です。鉄道物流パズルとして高い評価を得ています。戦略性の高いゲームプレイが魅力です。セール期間中の購入がお得になっています。パズルゲーム好きから注目を集めています。","pitch":"最適解を見つける試行錯誤は、Soulslikeのビルド研究に似ています。限られた資源での効率化は、戦略的思考を鍛えます。複雑な路線を完成させた時の達成感は格別です。","warning":"アクション要素は一切なく、パズル思考が必要です。鉄道や物流に興味がないと楽しめません。","bestFor":"パズルと戦略、鉄道が好きな論理的思考派","similarGames":["Factorio","OpenTTD","Mini Metro"],"timing":"25%オフセール中の今が購入のチャンス","difficultyReason":"効率的な路線設計には論理的思考が必要です。後半ステージは複雑さが増し、高難度になります。","difficultyTags":["パズル要素","戦略重視","論理的思考"],"hot":false,"score":3,"url":"https://store.steampowered.com/app/1355090/","source":"Steam","image":"https://cdn.akamai.steamstatic.com/steam/apps/1355090/header.jpg"},{"title":"Kynseed","genre":"RPG/Life Sim","platform":"Steam","mode":"Single","catch":"世代を超えて紡ぐ人生RPG","overview":"世代を超えて家系を紡いでいく独特のライフシミュレーションRPGです。キャラクターは老いて死に、子孫が冒険を引き継ぎます。農業、商売、冒険など多彩な要素が楽しめます。手描き風のアートスタイルが温かみを感じさせます。時間の流れと世代交代がゲームの核心です。","news":"KynseedがSteamで10%オフのセールを実施中です。世代を超えた人生シミュレーションが特徴の作品です。ユニークなゲームシステムが評価されています。セール期間中の購入がお勧めです。ライフシミュレーションファンから支持されています。","pitch":"キャラクターの成長と死は、Soulslikeの試行錯誤に似た重みがあります。世代を超えた戦略は長期的視点を養います。RPG要素もあり、戦闘も楽しめます。","warning":"アクション要素は控えめで、ライフシミュレーションが中心です。ゆったりしたペースなので、爽快感を求める人には向きません。","bestFor":"世代を超えた長期的な物語を楽しみたいRPGファン","similarGames":["Stardew Valley","Rune Factory","My Time at Portia"],"timing":"10%オフセール中の今が購入の好機","difficultyReason":"多彩なシステムの理解に時間がかかります。世代交代を考慮した長期戦略が求められます。","difficultyTags":["戦略重視","長期プレイ","多要素管理"],"hot":false,"score":3,"url":"https://store.steampowered.com/app/758870/","source":"Steam","image":"https://cdn.cloudflare.steamstatic.com/steam/apps/758870/header.jpg"},{"title":"Good Company","genre":"Management/Tycoon","platform":"Steam","mode":"Single","catch":"ロボット工場経営シミュレーション","overview":"ハイテク企業の経営をテーマにした経営シミュレーションゲームです。製品の設計から製造、販売までを管理します。工場レイアウトの最適化が重要な戦略要素です。従業員の管理や研究開発も行います。効率的な生産ラインを構築する楽しさが魅力です。","news":"Good CompanyがSteamで20%オフのセールを実施中です。ハイテク企業経営シミュレーションとして人気です。工場経営の戦略性が高く評価されています。セール期間中がお得な購入タイミングです。経営シミュレーションファンから支持されています。","pitch":"効率的な工場設計は、Soulslikeのビルド最適化に似た思考です。資源管理と戦略は、戦闘準備と同じ計画性が求められます。企業成長の達成感は、レベルアップに似た満足感があります。","warning":"経営シミュレーションなのでアクション要素はゼロです。数字や効率化に興味がないと楽しめません。","bestFor":"工場経営と効率化が好きな戦略ゲームファン","similarGames":["Factorio","Production Line","Big Pharma"],"timing":"20%オフセール中の今が購入の好機","difficultyReason":"複雑な生産ラインの最適化には試行錯誤が必要です。経営要素も加わり、多角的な判断が求められます。","difficultyTags":["経営戦略","効率化","学習曲線高め"],"hot":false,"score":3,"url":"https://store.steampowered.com/app/911430/","source":"Steam","image":"https://cdn.akamai.steamstatic.com/steam/apps/911430/header.jpg"},{"title":"Factory Town","genre":"Strategy/Automation","platform":"Steam","mode":"Single","catch":"自動化と物流の究極パズル","overview":"工場自動化と物流管理に特化した戦略パズルゲームです。効率的な生産チェーンと輸送システムを構築します。3D空間を活用した立体的な工場設計が可能です。様々な輸送手段を組み合わせて最適化を目指します。自動化の快感を追求した作品です。","news":"Factory TownがSteamで正式リリースされました。自動化と物流管理に特化したゲームです。効率的な工場建設パズルとして評価されています。Steamストアで購入可能になりました。自動化ゲームファンから高い支持を得ています。","pitch":"完璧な自動化システムの構築は、Soulslikeのビルド完成に似た達成感です。複雑なパズルを解く論理的思考は、敵パターン分析と共通します。効率化の追求は終わりなきやり込み要素を提供します。","warning":"アクション要素は皆無で、パズル思考が必須です。自動化や物流に興味がないと退屈に感じます。","bestFor":"自動化と物流パズルを極めたい戦略ゲーマー","similarGames":["Factorio","Satisfactory","Automation Empire"],"timing":"正式リリースされた今が始める好機","difficultyReason":"複雑な物流システムの理解に時間がかかります。最適化を追求すると難易度が跳ね上がります。","difficultyTags":["自動化","物流パズル","最適化追求"],"hot":false,"score":3,"url":"https://store.steampowered.com/app/860890/","source":"Steam","image":"https://cdn.akamai.steamstatic.com/steam/apps/860890/header.jpg"},{"title":"Legion TD 2","genre":"Tower Defense/Strategy","platform":"Steam","mode":"Multi","catch":"対戦型タワーディフェンス","overview":"対人戦をメインとした競技性の高いタワーディフェンスゲームです。相手より効率的な防衛を構築して勝利を目指します。多彩なユニットと戦略の組み合わせが楽しめます。チーム戦も可能で、協力と競争が融合しています。戦略的思考が勝敗を分ける深いゲーム性です。","news":"Legion TD 2がSteamで正式リリースされました。対戦型タワーディフェンスとして人気です。競技性の高い戦略ゲームとして評価されています。Steamストアで購入可能になりました。eスポーツシーンでも注目されています。","pitch":"戦略の読み合いは、Soulslike対人戦の緊張感に似ています。ビルド構築の最適化は、装備選択と同じ思考を要求します。勝利の達成感は、強敵を倒した時と同等です。","warning":"対人戦メインなので、負けが続くとストレスになります。タワーディフェンスに興味がないと楽しめません。","bestFor":"競技性の高い対戦型タワーディフェンスを求める人","similarGames":["Bloons TD Battles","Element TD 2"],"timing":"正式リリースされた今が始めるチャンス","difficultyReason":"相手との戦略の読み合いが高難度です。多彩なユニットと戦略の理解に時間がかかります。","difficultyTags":["対人戦","戦略重視","競技性高","学習必須"],"hot":false,"score":3,"url":"https://store.steampowered.com/app/469600/","source":"Steam","image":"https://cdn.cloudflare.steamstatic.com/steam/apps/469600/header.jpg"},{"title":"Windrose / ウィンドローズ","genre":"Steam","platform":"Steam","mode":"Single","catch":"Windrose / ウィンドローズ","overview":"Windrose / ウィンドローズ","news":"","pitch":"","warning":"","bestFor":"","similarGames":[],"timing":"","difficultyReason":"","difficultyTags":[],"hot":false,"score":3,"url":"https://store.steampowered.com/app/3041230/","source":"Steam","image":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3041230/7e838d87d787735d5d29d72777c5ee55653dfb2b/header.jpg?t=1776158614","steamInfo":{"price":"¥ 3,400","salePrice":"¥ 3,060","salePct":10,"reviewScore":"情報なし","reviewCount":"10,347+","genres":"アクション, アドベンチャー, RPG, 早期アクセス","tags":"シングルプレイヤー, マルチプレイヤー, 協力プレイ, オンライン協力プレイ, フルコントローラサポート","releaseDate":"2026年4月14日","achievements":0,"languageText":"日本語対応✅","dlcCount":1,"developer":"Kraken Express","publisher":"Kraken Express, Pocketpair Publishing (Japan)","steamUrl":"https://store.steampowered.com/app/3041230/"}},{"title":"バニーガーデン2","genre":"Steam","platform":"Steam","mode":"Single","catch":"バニーガーデン2","overview":"バニーガーデン2","news":"","pitch":"","warning":"","bestFor":"","similarGames":[],"timing":"","difficultyReason":"","difficultyTags":[],"hot":false,"score":3,"url":"https://store.steampowered.com/app/3443820/","source":"Steam","image":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3443820/d4bb0ac40f1aed1b7095f431d1f27759b200627a/header_japanese.jpg?t=1776265233","steamInfo":{"price":"¥ 3,480","salePrice":"¥ 3,132","salePct":10,"reviewScore":"情報なし","reviewCount":"130+","genres":"アドベンチャー, カジュアル, インディー","tags":"シングルプレイヤー, Steam実績, フルコントローラサポート, カスタム音量調整, 時間制限付き入力なしでプレイ可能","releaseDate":"2026年4月15日","achievements":53,"languageText":"日本語対応✅","dlcCount":0,"developer":"qureate","publisher":"qureate","steamUrl":"https://store.steampowered.com/app/3443820/"}},{"title":"PRAGMATA","genre":"Steam","platform":"Steam","mode":"Single","catch":"PRAGMATA","overview":"PRAGMATA","news":"","pitch":"","warning":"","bestFor":"","similarGames":[],"timing":"","difficultyReason":"","difficultyTags":[],"hot":false,"score":3,"url":"https://store.steampowered.com/app/3357650/","source":"Steam","image":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3357650/e32e168b25ed68a0cf6264c220c07e96c2abfb56/header.jpg?t=1776398844","steamInfo":{"price":"情報なし","salePrice":null,"salePct":null,"reviewScore":"情報なし","reviewCount":"5,548+","genres":"アクション, アドベンチャー","tags":"シングルプレイヤー, Steam実績, フルコントローラサポート, Steamトレーディングカード, キャプション使用可能","releaseDate":"2026年4月16日","achievements":35,"languageText":"日本語対応✅","dlcCount":1,"developer":"CAPCOM Co., Ltd.","publisher":"CAPCOM Co., Ltd.","steamUrl":"https://store.steampowered.com/app/3357650/"}},{"title":"Slay the Spire 2","genre":"Steam","platform":"Steam","mode":"Single","catch":"Slay the Spire 2","overview":"Slay the Spire 2","news":"","pitch":"","warning":"","bestFor":"","similarGames":[],"timing":"","difficultyReason":"","difficultyTags":[],"hot":false,"score":3,"url":"https://store.steampowered.com/app/2868840/","source":"Steam","image":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2868840/b0958d387dc366211e0f353443710cfcf9fdb020/header.jpg?t=1773851542","steamInfo":{"price":"情報なし","salePrice":null,"salePct":null,"reviewScore":"情報なし","reviewCount":"119,573+","genres":"インディー, ストラテジー, 早期アクセス","tags":"シングルプレイヤー, マルチプレイヤー, 協力プレイ, オンライン協力プレイ, フルコントローラサポート","releaseDate":"2026年3月5日","achievements":0,"languageText":"日本語対応✅","dlcCount":0,"developer":"Mega Crit","publisher":"Mega Crit","steamUrl":"https://store.steampowered.com/app/2868840/"}},{"title":"Construction Simulator: Evolution","genre":"Simulation","platform":"PC","mode":"Single","catch":"建機180種類以上の最大規模シミュレータ","overview":"建設機械を操作するシミュレーションゲームのシリーズ最新作です。180種類以上の建設機械が登場する大規模な作品となっています。ファン待望の解体要素が新たに導入されました。リアルな建設作業を体験できるのが魅力です。シリーズ最大の進化を遂げた意欲作となっています。","news":"Construction Simulator: Evolutionが正式に発表されました。シリーズ最大規模となる180種類以上の建機が登場します。ファンから要望の多かった解体要素が遂に実装されます。シリーズ最大の進化を遂げた作品として期待されています。詳細な情報が4Gamerで公開されました。","pitch":"精密な機械操作はSoulslikeの正確な入力要求に通じる集中力が必要です。解体要素の追加で破壊の爽快感も味わえます。大規模プロジェクトの完遂はボス攻略に似た達成感を提供します。","warning":"純粋なシミュレーションなのでアクション要素はありません。建設機械に興味がないと楽しめない可能性が高いです。","bestFor":"リアルな建設機械操作を極めたいシミュレーションファン","similarGames":["Farming Simulator","Euro Truck Simulator 2"],"timing":"発表されたばかりで、発売日情報待ちの段階","difficultyReason":"複雑な建設機械の操作には慣れが必要です。解体要素の追加で新たな技術習得が求められます。","difficultyTags":["リアル操作","精密作業","学習要素多"],"hot":false,"score":2,"url":"https://www.4gamer.net/games/000/G100027/20260418002/","source":"4Gamer","image":null},{"title":"Cowbots and Aliens","genre":"Action/Tower Defense","platform":"Steam","mode":"Single","catch":"ロボットカウボーイのタワーディフェンス","overview":"西部劇とSF、タワーディフェンスを融合したユニークなアクションゲームです。ロボットカウボーイとなってエイリアンの侵略から街を守ります。タワー設置と直接戦闘の両方が楽しめます。独特の世界観とユーモラスなキャラクターが特徴です。戦略性とアクション性のバランスが取れた作品です。","news":"Cowbots and AliensがSteamで正式リリースされました。西部劇とSFを組み合わせた独特の世界観が話題です。タワーディフェンスとアクションの融合が新鮮な体験を提供します。Steamストアで購入可能となりました。インディーゲームとして注目を集めています。","pitch":"タワー配置の戦略性とアクション戦闘の融合はHackSlashファン向けです。エイリアンとの戦闘は素早い判断と正確な操作が求められます。波状攻撃を耐え抜く緊張感はボス戦に似た達成感があります。","warning":"インディー作品なので、AAA級の品質は期待できません。ボリュームが少なく、すぐにクリアできる可能性があります。","bestFor":"西部劇とSFの融合に興味があるアクションファン","similarGames":["Orcs Must Die!","Sanctum 2"],"timing":"インディー作品を応援したい人は今すぐプレイ可能","difficultyReason":"タワー配置の戦略と直接戦闘の技術の両方が必要です。波が進むごとに難易度が上昇していきます。","difficultyTags":["アクション要素","戦略要素","中程度難易度"],"hot":false,"score":2,"url":"https://store.steampowered.com/app/517670/","source":"Steam","image":"https://cdn.akamai.steamstatic.com/steam/apps/517670/header.jpg"},{"title":"Kodon","genre":"Creative Tool","platform":"Steam","mode":"Single","catch":"VR対応3Dモデリングツール","overview":"VR空間で直感的に3Dモデリングができるクリエイティブツールです。ゲームではなく、アート制作やモデリングのためのソフトウェアです。VRコントローラーを使って彫刻するように造形できます。作成したモデルは他のソフトウェアにエクスポート可能です。クリエイター向けの専門的なツールとなっています。","news":"KodonがSteamでリリースされました。VR対応の3Dモデリングツールです。直感的な操作で3Dアート制作が可能になります。Steamストアで購入できるようになりました。クリエイター向けのツールとして注目されています。","pitch":"Soulslikeの武器や防具のデザインを自分で作成できます。ゲーム制作に興味があるなら、モデリング技術は必須です。創造的な活動は、ゲームプレイとは異なる達成感を提供します。","warning":"ゲームではなくツールなので、娯楽性は低いです。VR機器が必須で、初期投資が高額になります。","bestFor":"3Dモデリングに興味があるクリエイター志望者","similarGames":["Blender","ZBrush","Medium"],"timing":"VR機器を持っている人は試してみる価値あり","difficultyReason":"3Dモデリングの基礎知識が必要です。VR操作に慣れるまで時間がかかります。","difficultyTags":["専門ツール","学習必須","VR必須"],"hot":false,"score":2,"url":"https://store.steampowered.com/app/479010/","source":"Steam","image":"https://cdn.cloudflare.steamstatic.com/steam/apps/479010/header.jpg"},{"title":"Rec Room","genre":"Social VR","platform":"Steam","mode":"Multi","catch":"基本無料のソーシャルVRプラットフォーム","overview":"VR空間で様々なアクティビティを楽しめるソーシャルプラットフォームです。ミニゲームから本格的なゲームモードまで多彩です。ユーザー生成コンテンツで無限の可能性があります。基本プレイ無料でアクセスしやすいです。VRだけでなく通常モードでもプレイ可能です。","news":"Rec RoomがSteamで正式リリースされました。基本無料のソーシャルVRプラットフォームです。多彩なゲームモードとユーザー生成コンテンツが特徴です。Steamストアで無料ダウンロード可能です。VRソーシャルプラットフォームとして人気です。","pitch":"VR空間でのマルチプレイは新しい協力体験を提供します。ミニゲームの中には反射神経を試すものもあります。ソーシャル要素は、協力プレイの新たな形です。","warning":"ゲームというよりソーシャルプラットフォームです。Soulslike的な高難度コンテンツは期待できません。","bestFor":"VR空間でソーシャル交流を楽しみたい人","similarGames":["VRChat","Horizon Worlds"],"timing":"基本無料なので今すぐ試せる","difficultyReason":"ソーシャルプラットフォームなので難易度は低いです。個別のゲームモードによって難易度は異なります。","difficultyTags":["カジュアル","ソーシャル","低難度"],"hot":false,"score":2,"url":"https://store.steampowered.com/app/471710/","source":"Steam","image":"https://cdn.cloudflare.steamstatic.com/steam/apps/471710/header.jpg"}];
-const THEMES={halloween:{cls:'theme-halloween',icon:'🎃',name:'HALLOWEEN'},xmas:{cls:'theme-xmas',icon:'🎄',name:'CHRISTMAS'},golden:{cls:'theme-golden',icon:'🌟',name:'GOLDEN WEEK'},summer:{cls:'theme-summer',icon:'🌊',name:'SUMMER WAVE'},horror:{cls:'theme-horror',icon:'🩸',name:'HORROR NIGHT'},default:{cls:'',icon:'🎮',name:'DAILY'}};
-function detectTheme(){const n=new Date(),m=n.getMonth()+1,d=n.getDate(),dow=n.getDay();if(m===1&&d<=3)return'golden';if(m===12&&d>=20&&d<=28)return'xmas';if(m===4&&d>=29||m===5&&d<=5)return'golden';if(m>=7&&m<=8)return'summer';if(m===10&&d>=20)return'halloween';if(dow===5&&n.getHours()>=22||dow===6&&n.getHours()<=4)return'horror';return'default';}
-function applyTheme(k){const t=THEMES[k];Object.values(THEMES).forEach(({cls})=>{if(cls)document.body.classList.remove(cls);});if(t.cls)document.body.classList.add(t.cls);document.getElementById('theme-badge').textContent=t.icon+' '+t.name;}
-applyTheme(detectTheme());
-const CATS=[{key:'all',label:'🎮 全記事',filters:['all','ソウルライク','ハクスラ','Steam','★5のみ']},{key:'steam',label:'🖥 Steam',filters:['all','★5のみ','セール中']},{key:'nintendo',label:'🎮 Nintendo',filters:['all']},{key:'game',label:'🕹 ゲーム全般',filters:['all']}];
-function categorize(a){const p=(a.platform||'').toLowerCase();const s=(a.source||'').toLowerCase();if(p.includes('switch')||p.includes('nintendo'))return'nintendo';if(p.includes('steam')||s.includes('steam'))return'steam';return'game';}
-let currentCat='all',currentFilter='all',currentPage=1;const PER_PAGE=30;
-function setCat(key){currentCat=key;currentFilter='all';currentPage=1;renderCatTabs();renderFilterBar();renderGrid();}
-function renderCatTabs(){document.getElementById('cat-tabs').innerHTML=CATS.map(c=>{const count=c.key==='all'?ARTICLES.length:ARTICLES.filter(a=>categorize(a)===c.key).length;return `<button class="cat-tab ${c.key===currentCat?'active':''}" onclick="setCat('${c.key}')">${c.label}<span class="cat-count">${count}</span></button>`;}).join('');}
-function renderFilterBar(){const cat=CATS.find(c=>c.key===currentCat);document.getElementById('filter-bar').innerHTML=cat.filters.map(f=>`<button class="filter-btn ${f===currentFilter?'active':''}" onclick="applyFilter('${f}',this)">${f==='all'?'ALL':f}</button>`).join('');}
-function getFiltered(){let list=currentCat==='all'?ARTICLES:ARTICLES.filter(a=>categorize(a)===currentCat);if(currentFilter==='★5のみ')list=list.filter(a=>a.score===5);else if(currentFilter==='セール中')list=list.filter(a=>a.steamInfo?.salePrice);else if(currentFilter!=='all')list=list.filter(a=>(a.genre||'').toLowerCase().includes(currentFilter.toLowerCase()));return list;}
-function applyFilter(key,btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=key;currentPage=1;renderGrid();}
-function stars(n,accent){return[...Array(5)].map((_,i)=>`<span class="star ${i<n?(accent?'accent':'on'):''}">★</span>`).join('');}
-function scoreBadge(s){const cfg={5:{cls:'score-5',lbl:'⭐ 超おすすめ'},4:{cls:'score-4',lbl:'✅ おすすめ'},3:{cls:'score-3',lbl:'📌 参考に'},2:{cls:'score-2',lbl:'ℹ️ 情報'},1:{cls:'score-1',lbl:'ℹ️ 情報'}};const c=cfg[s]||cfg[3];return `<div class="score-badge ${c.cls}">${c.lbl}</div>`;}
-function tagCls(a){const g=(a.genre||'').toLowerCase();if(g.includes('soul')||g.includes('ソウルライク'))return'tag-soul';if(g.includes('hack')||g.includes('ハクスラ'))return'tag-hack';return'tag-genre';}
-function reviewCls(s){if(!s)return'';if(s.includes('圧倒的')||s.includes('非常に好評'))return'green';if(s.includes('好評'))return'green';if(s.includes('賛否'))return'yellow';return'red';}
-function clearRateCls(p){if(p>=70)return{bar:'fill-easy',pct:'pct-easy'};if(p>=40)return{bar:'fill-normal',pct:'pct-normal'};if(p>=20)return{bar:'fill-hard',pct:'pct-hard'};return{bar:'fill-extreme',pct:'pct-extreme'};}
-function buildCard(a,idx){
-  const isSoul=tagCls(a)!=='tag-genre';
-  const img=a.image?`<img class="card-image" src="${a.image}" alt="${a.title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`:'';
-  let infoRow='';
-  if(a.steamInfo){
-    const s=a.steamInfo;const rcls=reviewCls(s.reviewScore||'');
-    infoRow=`<div class="card-info-row">
-      <div class="card-info-item"><span class="card-info-key">価格</span><span class="card-info-val ${s.salePrice?'sale':''}">${s.salePrice||s.price||'—'}${s.salePct?` <span style="font-size:.58rem">-${s.salePct}%</span>`:''}</span></div>
-      <div class="card-info-item"><span class="card-info-key">レビュー</span><span class="card-info-val ${rcls}">${s.reviewScore||'—'}</span></div>
-    </div>`;
-  }else if(a.platform||a.mode){
-    infoRow=`<div class="card-info-row">${a.platform?`<div class="card-info-item"><span class="card-info-key">Platform</span><span class="card-info-val">${a.platform}</span></div>`:''}${a.mode?`<div class="card-info-item"><span class="card-info-key">Mode</span><span class="card-info-val">${a.mode}</span></div>`:''}</div>`;
-  }
-  return `<div class="card" onclick="openModal(${idx})">
-    ${a.hot?'<div class="hot-flag">HOT</div>':''}
-    ${img}<div class="card-no-image" ${a.image?'style="display:none"':''}>NO IMAGE</div>
-    <div class="card-body">
-      <div class="card-tags"><span class="tag ${tagCls(a)}">${a.genre||''}</span>${a.platform?`<span class="tag tag-plat">${a.platform}</span>`:''}${a.hot?'<span class="tag tag-hot">🔥 HOT</span>':''}${a.steamInfo?.salePrice?`<span class="tag tag-sale">SALE -${a.steamInfo.salePct}%</span>`:''}</div>
-      ${scoreBadge(a.score)}
-      <div class="card-title">${a.title}</div>
-      ${infoRow}
-      <div class="card-catch">${a.catch||''}</div>
-      <div class="card-footer"><div style="display:flex;align-items:center"><div class="score">${stars(a.score,isSoul)}</div><span class="score-label">${a.score}/5</span></div><span class="card-detail-btn">詳細を見る →</span></div>
-    </div>
-  </div>`;}
-function renderGrid(){const filtered=getFiltered();const slice=filtered.slice((currentPage-1)*PER_PAGE,currentPage*PER_PAGE);document.getElementById('grid').innerHTML=slice.map((a,i)=>buildCard(a,ARTICLES.indexOf(a))).join('');document.getElementById('article-count').textContent=filtered.length;renderPagination(filtered.length);}
-function renderPagination(total){const pages=Math.ceil(total/PER_PAGE);document.getElementById('pagination').innerHTML=pages<=1?'':[...Array(pages)].map((_,i)=>`<button class="page-btn ${i+1===currentPage?'active':''}" onclick="goPage(${i+1})">${i+1}</button>`).join('');}
-function goPage(n){currentPage=n;renderGrid();window.scrollTo({top:0,behavior:'smooth'});}
-function openModal(idx){
-  const a=ARTICLES[idx];const isSoul=tagCls(a)!=='tag-genre';
-  const img=a.image?`<img class="modal-image" src="${a.image}" alt="${a.title}" onerror="this.style.display='none'">`:`<div style="height:120px;background:linear-gradient(135deg,var(--bg3),#1a1a2e);border-radius:10px 10px 0 0;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:.75rem;color:var(--text-dim)">NO IMAGE</div>`;
-  const cls=clearRateCls(a.clearRate??50);
-  const diffBox=a.clearRate!=null?`<div class="modal-section-title">DIFFICULTY</div><div class="difficulty-box"><div class="difficulty-title">クリア実績データ</div><div class="difficulty-header"><div class="clear-rate-pct ${cls.pct}">${a.clearRate}%</div><div class="clear-rate-bar-wrap"><div class="clear-rate-label">${a.clearRateLabel||'クリア率'}</div><div class="clear-rate-bar"><div class="clear-rate-fill ${cls.bar}" style="width:${a.clearRate}%"></div></div></div></div><div class="difficulty-reason">${a.difficultyReason||''}</div><div class="difficulty-tags">${(a.difficultyTags||[]).map(t=>`<span class="diff-tag">${t}</span>`).join('')}</div></div>`:'';
-  let steamDetail='';
-  if(a.steamInfo){const s=a.steamInfo;const rcls=reviewCls(s.reviewScore||'');const tagList=s.tags?s.tags.split(',').map(t=>`<span class="steam-tag">${t.trim()}</span>`).join(''):'';
-    steamDetail=`<div class="modal-section-title">STEAM INFO</div><div class="steam-detail-box"><div class="steam-detail-title">🖥 STEAM STORE DATA</div><div class="steam-grid"><div class="steam-item"><div class="steam-item-key">通常価格</div><div class="steam-item-val">${s.price||'—'}</div></div><div class="steam-item"><div class="steam-item-key">セール価格</div><div class="steam-item-val ${s.salePrice?'sale':''}">${s.salePrice?`${s.salePrice} (${s.salePct}% OFF)`:'セールなし'}</div></div><div class="steam-item"><div class="steam-item-key">レビュー評価</div><div class="steam-item-val ${rcls}">${s.reviewScore||'—'}</div></div><div class="steam-item"><div class="steam-item-key">レビュー数</div><div class="steam-item-val">${s.reviewCount||'—'}</div></div><div class="steam-item"><div class="steam-item-key">開発元</div><div class="steam-item-val" style="font-size:.72rem">${s.developer||'—'}</div></div><div class="steam-item"><div class="steam-item-key">パブリッシャー</div><div class="steam-item-val" style="font-size:.72rem">${s.publisher||'—'}</div></div><div class="steam-item"><div class="steam-item-key">リリース日</div><div class="steam-item-val">${s.releaseDate||'—'}</div></div><div class="steam-item"><div class="steam-item-key">実績数</div><div class="steam-item-val">${s.achievements||0}個</div></div><div class="steam-item"><div class="steam-item-key">対応言語</div><div class="steam-item-val ${s.languageText?.includes('✅')?'green':'red'}">${s.languageText||'—'}</div></div><div class="steam-item"><div class="steam-item-key">DLC数</div><div class="steam-item-val">${s.dlcCount||0}個</div></div></div>${tagList?`<div class="steam-tags-row">${tagList}</div>`:''}</div>`;}
-  const similarHtml=a.similarGames?.length?`<div class="modal-section-title">SIMILAR GAMES</div><div class="similar-row">${a.similarGames.map(g=>`<span class="similar-tag">🎮 ${g}</span>`).join('')}</div>`:'';
-  const timingHtml=a.timing?`<div class="timing-box"><div class="timing-label">⏱ 今買うべきか？</div>${a.timing}</div>`:'';
-  const metaHtml=`<div class="meta-grid"><div class="meta-item"><div class="meta-key">おすすめ度</div><div class="meta-val">${stars(a.score,isSoul)} ${a.score}/5</div></div><div class="meta-item"><div class="meta-key">プレイ時間目安</div><div class="meta-val">${a.playtime||'—'}</div></div><div class="meta-item"><div class="meta-key">プレイスタイル</div><div class="meta-val">${a.mode||'—'}</div></div></div>`;
-  const steamBtn=a.steamInfo?`<a class="btn-primary btn-steam" href="${a.steamInfo.steamUrl||a.url||'#'}" target="_blank">🖥 Steamで見る</a>`:`<a class="btn-primary" href="${a.url||'#'}" target="_blank">元記事を見る →</a>`;
-  document.getElementById('modal-content').innerHTML=`${img}<div class="modal-body"><div class="modal-tags"><span class="tag ${tagCls(a)}">${a.genre||''}</span>${a.platform?`<span class="tag tag-plat">${a.platform}</span>`:''}${a.hot?'<span class="tag tag-hot">🔥 HOT</span>':''}${a.steamInfo?.salePrice?`<span class="tag tag-sale">SALE -${a.steamInfo.salePct}%</span>`:''}</div><div class="modal-title">${a.title}</div><div class="modal-section-title">DETAIL</div><div class="info-block block-overview"><div class="block-label">📖 ゲーム概要</div><div class="block-text">${a.overview||''}</div></div><div class="info-block block-news"><div class="block-label">📰 今回のニュース</div><div class="block-text">${a.news||''}</div></div><div class="info-block block-pitch"><div class="block-label">🎯 あなたへのプレゼン</div><div class="block-text">${a.pitch||''}</div></div>${a.warning?`<div class="info-block block-warning"><div class="block-label">⚠️ 注意点・地雷情報</div><div class="block-text">${a.warning}</div></div>`:''}${a.bestFor?`<div class="info-block block-bestfor"><div class="block-label">🙋 こんな人におすすめ</div><div class="block-text">${a.bestFor}</div></div>`:''}${timingHtml}${diffBox}${steamDetail}${metaHtml}${similarHtml}${a.source?`<div style="font-size:.72rem;color:var(--text-dim);margin-top:10px;padding:8px 12px;background:var(--bg3);border-radius:6px;"><span style="font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--accent);display:block;margin-bottom:3px;">参照元</span>${a.source}</div>`:''}<div class="modal-actions">${steamBtn}<button class="btn-close" onclick="document.getElementById('modal').classList.remove('open')">閉じる</button></div></div>`;
-  document.getElementById('modal').classList.add('open');}
-function closeModal(e){if(e.target===document.getElementById('modal'))document.getElementById('modal').classList.remove('open');}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('modal').classList.remove('open');});
-renderCatTabs();renderFilterBar();renderGrid();
-</script>
-</body>
-</html>
+<div class="container">
+<div class="header">
+<h1>🎮 朝のゲームニュースレポート</h1>
+<p>2026年4月18日 版</p>
+</div>
+
+<div class="news-grid">
+
+<div class="card">
+<img src="https://picsum.photos/seed/1776555040590/400/200" alt="NEOGEO AES+">
+<div class="card-content">
+<span class="card-category">ゲーム機</span>
+<div class="card-title"><a href="#">SNKとPLAIONが「NEOGEO AES+」を発表＆予約開始。発売は11月12日</a></div>
+<p class="card-description">懐かしのNEOGEO AESが新機能を備えて復刻されます。11月12日の発売予定で、現在予約受付中です。互換性を維持しながら、モダンな機能が追加されるとのことです。</p>
+<div class="card-source"><span class="source-badge">GAME Watch</span></div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/seed/1776555040591/400/200" alt="Crown & Coin">
+<div class="card-content">
+<span class="card-category">RPG</span>
+<div class="card-title"><a href="#">圧倒的自由度『太閤立志伝』ライクな百年戦争舞台の中世歴史サンドボックスRPG『Crown & Coin』デモ版公開</a></div>
+<p class="card-description">約1,000名の史実キャラがすべてプレイ可能な中世歴史サンドボックスRPGがデモ版で公開されました。太閤立志伝のような自由度の高いゲームプレイが特徴です。百年戦争を舞台にした壮大な物語が展開します。</p>
+<div class="card-source"><span class="source-badge">GameBiz</span></div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/seed/1776555040592/400/200" alt="SHADOWVERSE TCG">
+<div class="card-content">
+<span class="card-category">TCG・eスポーツ</span>
+<div class="card-title"><a href="#">TCG部門 SHADOWVERSE – へイム, TBT加入のお知らせ</a></div>
+<p class="card-description">ZETA DIVISIONのTCG部門にて、SHADOWVERSEプレイヤーの新たなチーム加入が発表されました。へイムとTBTがチームに加わります。eスポーツシーンの拡大を示す重要な発表です。</p>
+<div class="card-source"><span class="source-badge">ZETA DIVISION</span></div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/seed/1776555040593/400/200" alt="Limerence">
+<div class="card-content">
+<span class="card-category">ナラティブゲーム</span>
+<div class="card-title"><a href="#">本物の人間関係とAIによる疑似的な交友関係の危うい境界線を探求する『Limerence』発表</a></div>
+<p class="card-description">Salix Gamesが、現実とAIの違いを探求する親密なナラティブタイトル『Limerence』を発表しました。人間関係とAI交友の危険な境界線を題材にした作品です。</p>
+<div class="card-source"><span class="source-badge">GameBiz</span></div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/seed/1776555040594/400/200" alt="Dyson Sphere Program">
+<div class="card-content">
+<span class="card-category">シミュレーション</span>
+<div class="card-title"><a href="#">宇宙自動化SLG『Dyson Sphere Program』吹替含む日本語が本日実装</a></div>
+<p class="card-description">『Dyson Sphere Program』に日本語対応が実装されました。ガイド音声を真島吾朗などで知られる宇垣秀成さんが担当します。宇宙での巨大建築を楽しむSLGの完成度が高まります。</p>
+<div class="card-source"><span class="source-badge">Game Spark</span></div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/seed/1776555040595/400/200" alt="Funnel Runners">
+<div class="card-content">
+<span class="card-category">サバイバル</span>
+<div class="card-title"><a href="#">超巨大竜巻迫る街から脱出する協力サバイバルゲーム『Funnel Runners』が大注目</a></div>
+<p class="card-description">ウィッシュリスト数100,000人を突破した協力サバイバルゲーム『Funnel Runners』。超巨大竜巻から街を脱出するスリルあるゲームプレイが注目を集めています。26年3月後半にリリース予定です。</p>
+<div class="card-source"><span class="source-badge">Game Spark</span></div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/seed/1776555040596/400/200" alt="Desynced">
+<div class="card-content">
+<span class="card-category">ストラテジー</span>
+<div class="card-title"><a href="#">「プログラミング的な手法で問題を解決する楽しさは、Zachtronicsのゲームから着想」SFサバイバルストラテジー『Desynced』</a></div>
+<p class="card-description">SFサバイバルストラテジー『Desynced』の開発者インタビューが公開されました。Zachtronicsのゲームに着想を得たプログラミング的な問題解決方法が特徴です。</p>
+<div class="card-source"><span class="source-badge">Game Spark</span></div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/seed/1776555040597/400/200" alt="キタリア物語2">
+<div class="card-content">
+<span class="card-category">ARPG</span>
+<div class="card-title"><a href="#">農業、クラフトも楽しめるCo-op対応ケモノかわいいARPG『キタリア物語2』発表</a></div>
+<p class="card-description">『ニャンザの冒険』の続編『キタリア物語2』が発表されました。ケモノキャラのかわいらしさを保ちながら、農業やクラフト要素も楽しめるCo-op対応のARPGです。</p>
+<div class="card-source"><span class="source-badge">Game Spark</span></div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/seed/1776555040598/400/200" alt="Steam注目ゲーム">
+<div class="card-content">
+<span class="card-category">インディーゲーム</span>
+<div class="card-title"><a href="#">カートゥーン調のおふざけ要素満載なローグライクACTが正式リリース</a></div>
+<p class="card-description">バナナの皮で滑るなどのシュールなギミックが満載のローグライクアクションゲームが正式リリースされました。カートゥーン調のビジュアルと遊び心あふれるゲームデザインが特徴です。</p>
+<div class="card-source"><span class="source-badge">Game Spark</span></div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/seed/1776555040599/400/200" alt="Yerba Buena">
+<div class="card-content">
+<span class="card-category">パズルADV</span>
+<div class="card-title"><a href="#">期待のパズルアクションADV『Yerba Buena』Steam体験版配信</a></div>
+<p class="card-description">『Yerba Buena』のSteam体験版が配信開始されました。移動や回転、弾性などの「物理的特性」をコピペしながら、ゲーム世界を救うユニークなパズルアクションADVです。</p>
+<div class="card-source"><span class="source-badge">Game Spark</span></div>
+</div>
+</class>
+
+<div class="card">
+<img src="https://picsum.photos/seed/1776555040600/400/200" alt="CLAIR OBSCUR">
+<div class="card-content">
+<span class="card-category">アドベンチャー</span>
+<div class="card-title"><a href="#">『Clair Obscur: Expedition 33』がベストゲームに選出！BAFTA Games Awards 2026</a></div>
+<p class="card-description">『Clair Obscur: Expedition 33』が英国アカデミー賞ゲーム部門「BAFTA Games Awards 2026」でベストゲームに選出されました。高い評価を受けた傑作ゲームです。</p>
+<div class="card-source"><span class="source-badge">Game Spark</span></div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/seed/1776555040601/400/200" alt="Game Pass">
+<div class="card-content">
+<span class="card-category">ゲーム配信</span>
+<div class="card-title"><a href="#">Game Passに"ファーストパーティタイトル限定"の新プラン浮上か Xbox新トップが検討中</a></div>
+<p class="card-description">Xbox新トップがゲームパスのファーストパーティ限定プランの検討を進めているとの報道がされました。サービスの多様化を示唆する重要なニュースです。</p>
+<div class="card-source"><span class="source-badge">IGN Japan</span></div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/seed/1776555040602/400/200" alt="NVIDIA Game Ready">
+<div class="card-content">
+<span class="card-category">ゲーミング</span>
+<div class="card-title"><a href="#">『プラグマタ』『Windrose』にも対応のNVIDIA最新Game Readyドライバー配信</a></div>
+<p class="card-description">NVIDIA最新Game Readyドライバーが配信されました。『プラグマタ』や『Windrose』に対応し、ゲーミング体験を最適化します。一部ユーザーからのブルースクリーン報告があるため注意が必要です。</p>
+<div class="card-source"><span class="source-badge">Game Spark</span></div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/seed/1776555040603/400/200" alt="メトロ 2039">
+<div class="card-content">
+<span class="card-category">FPS
