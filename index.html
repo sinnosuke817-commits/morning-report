@@ -154,6 +154,8 @@ main{position:relative;z-index:10;max-width:1280px;margin:0 auto;padding:28px 40
 .btn-close:hover{border-color:#ff4444;color:#ff4444;}
 ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
 @media(max-width:640px){header,.filter-bar,main{padding-left:14px;padding-right:14px;}.grid{grid-template-columns:1fr;}.steam-grid,.meta-grid{grid-template-columns:1fr 1fr;}.logo-main{font-size:2.2rem;}}
+.twitch-viewers{display:inline-flex;align-items:center;gap:5px;font-family:'Share Tech Mono',monospace;font-size:.65rem;color:#9147ff;margin-top:4px;}
+.twitch-viewers::before{content:'🟣';}
 </style>
 </head>
 <body>
@@ -240,6 +242,39 @@ function openModal(idx){
 function closeModal(e){if(e.target===document.getElementById('modal'))document.getElementById('modal').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('modal').classList.remove('open');});
 renderCatTabs();renderFilterBar();renderGrid();
+const TWITCH_CLIENT_ID='6svdxxcf588ae2osh7jwkx2v3rqlcd';
+const TWITCH_CLIENT_SECRET='jgdqkz94lpnbt4jqa3axtktwh4fvr8';
+async function getTwitchToken(){
+  const r=await fetch('https://id.twitch.tv/oauth2/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:`client_id=${TWITCH_CLIENT_ID}&client_secret=${TWITCH_CLIENT_SECRET}&grant_type=client_credentials`});
+  const d=await r.json();
+  return d.access_token;
+}
+async function fetchTwitchViewers(token,gameName){
+  const g=await fetch(`https://api.twitch.tv/helix/games?name=${encodeURIComponent(gameName)}`,{headers:{'Client-ID':TWITCH_CLIENT_ID,'Authorization':`Bearer ${token}`}});
+  const gd=await g.json();
+  if(!gd.data||!gd.data[0])return null;
+  const gameId=gd.data[0].id;
+  const s=await fetch(`https://api.twitch.tv/helix/streams?game_id=${gameId}&first=100`,{headers:{'Client-ID':TWITCH_CLIENT_ID,'Authorization':`Bearer ${token}`}});
+  const sd=await s.json();
+  if(!sd.data)return null;
+  return sd.data.reduce((sum,stream)=>sum+stream.viewer_count,0);
+}
+async function loadTwitchViewers(){
+  try{
+    const token=await getTwitchToken();
+    ARTICLES.forEach(async(a,idx)=>{
+      const viewers=await fetchTwitchViewers(token,a.title);
+      if(viewers===null||viewers===0)return;
+      const card=document.querySelectorAll('.card')[idx];
+      if(!card)return;
+      const el=document.createElement('div');
+      el.className='twitch-viewers';
+      el.textContent=` ${viewers.toLocaleString()}人が視聴中`;
+      card.querySelector('.card-body').appendChild(el);
+    });
+  }catch(e){console.log('Twitch API error:',e);}
+}
+loadTwitchViewers();
 </script>
 </body>
 </html>
