@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>出欠管理</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07080f;--card:rgba(13,14,26,.85);--bdr:rgba(255,255,255,.09);
+  --txt:#dde1ff;--muted:rgba(200,205,255,.42);
+  --abg:rgba(124,108,245,.13);--abdr:rgba(124,108,245,.38);
+  --gbg:rgba(52,211,153,.12);--gbdr:rgba(52,211,153,.32);--green:#6ee7b7;
+  --rbg:rgba(248,113,113,.12);--rbdr:rgba(248,113,113,.32);--red:#fca5a5;
+  --ybg:rgba(251,191,36,.12);--ybdr:rgba(251,191,36,.32);--amber:#fcd34d;
+}
+html{background:var(--bg)}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(ellipse 90% 55% at 8% 18%,rgba(111,76,255,.22) 0%,transparent 62%),
+    radial-gradient(ellipse 55% 75% at 92% 82%,rgba(34,211,238,.11) 0%,transparent 58%),
+    radial-gradient(rgba(255,255,255,.018) 1px,transparent 1px) var(--bg);
+  background-size:100% 100%,100% 100%,26px 26px;
+  background-attachment:fixed;
+  color:var(--txt);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:600px;margin:0 auto;padding:1rem 1rem 4rem}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:.75rem 0 1.25rem}
+.hdr-l{display:flex;align-items:center;gap:10px}
+.logo{font-size:17px;font-weight:700;background:linear-gradient(130deg,#c4b5fd,#7dd3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:flex;align-items:center;gap:8px}
+.logo i{-webkit-text-fill-color:rgba(124,108,245,.85);font-size:18px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:11px;border:1px solid var(--bdr);background:rgba(255,255,255,.055);color:var(--txt);font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.btn:active{transform:scale(.97)}
+.btn-accent{background:var(--abg);border-color:var(--abdr);color:#c4b8ff}
+.btn-del{background:var(--rbg);border-color:var(--rbdr);color:var(--red);padding:8px 12px}
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:16px;overflow:hidden}
+.card-row{display:flex;align-items:center;gap:12px;padding:13px 16px;border-top:1px solid var(--bdr)}
+.card-row:first-child{border-top:none}
+.ev-card{background:var(--card);border:1px solid var(--bdr);border-radius:16px;padding:16px 18px;cursor:pointer;margin-bottom:10px;transition:border-color .18s;position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.ev-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,transparent,rgba(124,108,245,.55),rgba(34,211,238,.35),transparent);opacity:0;transition:opacity .2s}
+.ev-card:active{border-color:var(--abdr)}.ev-card:active::after{opacity:1}
+.ava{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,rgba(111,76,255,.28),rgba(34,211,238,.18));border:1px solid rgba(255,255,255,.11);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#c4c9ff;flex-shrink:0}
+.sbtn{padding:8px 13px;border-radius:9px;font-size:13px;font-weight:500;border:1px solid var(--bdr);background:rgba(255,255,255,.04);color:var(--muted);cursor:pointer;transition:all .12s;display:inline-flex;align-items:center;gap:5px;font-family:inherit;min-width:74px;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.sbtn:active{transform:scale(.95)}
+.sbtn.a.on{background:var(--gbg);border-color:var(--gbdr);color:var(--green)}
+.sbtn.d.on{background:var(--rbg);border-color:var(--rbdr);color:var(--red)}
+.sbtn.t.on{background:var(--ybg);border-color:var(--ybdr);color:var(--amber)}
+input{width:100%;padding:11px 14px;background:rgba(255,255,255,.05);border:1px solid var(--bdr);border-radius:10px;color:var(--txt);font-size:15px;font-family:inherit;outline:none;transition:border-color .15s;-webkit-appearance:none;appearance:none}
+input:focus{border-color:var(--abdr)}
+input::placeholder{color:rgba(255,255,255,.2)}
+input[type=date],input[type=time]{color-scheme:dark}
+.pill{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:7px;font-size:12px;font-weight:500}
+.pa{background:var(--gbg);border:1px solid var(--gbdr);color:var(--green)}
+.pd{background:var(--rbg);border:1px solid var(--rbdr);color:var(--red)}
+.pt{background:var(--ybg);border:1px solid var(--ybdr);color:var(--amber)}
+.pn{background:rgba(255,255,255,.05);border:1px solid var(--bdr);color:var(--muted)}
+.prog{height:3px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden;margin:12px 0 10px}
+.prog-fill{height:100%;background:linear-gradient(90deg,rgba(111,76,255,.8),rgba(34,211,238,.7));border-radius:2px;transition:width .4s}
+.tag{display:inline-block;padding:5px 13px;margin:3px;background:rgba(255,255,255,.055);border:1px solid var(--bdr);border-radius:8px;font-size:13px}
+.glow-bar{height:1px;margin:1.5rem 0;background:linear-gradient(90deg,transparent,rgba(111,76,255,.3),rgba(34,211,238,.2),transparent)}
+.sec-hd{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.info-bar{background:var(--abg);border:1px solid var(--abdr);border-radius:12px;padding:12px 16px;font-size:13px;color:rgba(200,205,255,.65);margin-bottom:1.25rem;display:flex;align-items:center;gap:8px}
+.notice{background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.22);border-radius:12px;padding:11px 15px;font-size:12px;color:rgba(252,211,77,.7);margin-bottom:1.25rem;display:flex;align-items:flex-start;gap:8px;line-height:1.6}
+.empty{padding:2.5rem 1.5rem;text-align:center;color:var(--muted)}
+.empty i{font-size:36px;display:block;margin-bottom:14px;opacity:.4}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(16px);background:rgba(52,211,153,.18);border:1px solid rgba(52,211,153,.35);color:var(--green);padding:8px 20px;border-radius:30px;font-size:13px;font-weight:500;opacity:0;transition:all .25s;pointer-events:none;white-space:nowrap;z-index:99;display:flex;align-items:center;gap:6px}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:480px){.sbtn{min-width:64px;font-size:12px;padding:8px 9px}.sbtn-wrap{flex-wrap:wrap;gap:6px}.card-row{padding:12px 14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hdr">
+    <div class="hdr-l">
+      <button class="btn" id="backBtn" style="display:none;padding:9px 13px"><i class="ti ti-arrow-left"></i> 戻る</button>
+      <div class="logo"><i class="ti ti-calendar-event"></i><span id="titleTxt">イベント出欠</span></div>
+    </div>
+    <button class="btn btn-accent" id="adminBtn"><i class="ti ti-settings"></i> 管理</button>
+  </div>
+  <div class="notice" id="localNotice">
+    <i class="ti ti-info-circle" style="font-size:15px;flex-shrink:0;margin-top:1px"></i>
+    <span><b>ローカル保存モード</b>：データはこのブラウザにのみ保存されます。全員で共有するには、ファイル内の <code style="background:rgba(255,255,255,.08);padding:1px 5px;border-radius:4px">FIREBASE_URL</code> に Firebase の Database URL を設定してください。</span>
+  </div>
+  <div id="app"></div>
+</div>
+<div class="toast" id="toast"><i class="ti ti-check"></i> <span id="toastMsg">保存しました</span></div>
+
+<script>
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ★ 全員で共有したい場合: Firebase Database URL を貼り付けてください
+//   例: 'https://my-project-default-rtdb.firebaseio.com'
+//   空のままにするとブラウザ内に保存されます（自分だけ見える）
+const FIREBASE_URL = '';
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+const USE_FB = FIREBASE_URL.length > 0;
+
+// Storage abstraction
+function lsG(k){ try{return JSON.parse(localStorage.getItem('rsvp_'+k))}catch{return null} }
+function lsS(k,v){ try{localStorage.setItem('rsvp_'+k,JSON.stringify(v))}catch{} }
+
+async function fbG(p){ try{const r=await fetch(`${FIREBASE_URL}/${p}.json`);return r.json()}catch{return null} }
+async function fbS(p,d){ try{await fetch(`${FIREBASE_URL}/${p}.json`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)})}catch{} }
+async function fbD(p){ try{await fetch(`${FIREBASE_URL}/${p}.json`,{method:'DELETE'})}catch{} }
+
+async function dbG(k){ return USE_FB ? fbG(k) : lsG(k) }
+async function dbS(k,v){ USE_FB ? await fbS(k,v) : lsS(k,v) }
+async function dbD(k){ USE_FB ? await fbD(k) : localStorage.removeItem('rsvp_'+k) }
+
+const CFG={
+  accepted:{label:'参加',  cls:'a',icon:'ti-check',        color:'#6ee7b7'},
+  declined: {label:'不参加',cls:'d',icon:'ti-x',            color:'#fca5a5'},
+  tentative:{label:'保留', cls:'t',icon:'ti-question-mark', color:'#fcd34d'},
+};
+let ST={view:'list',activeId:null,members:[],events:[],responses:{}};
+
+function toast(msg='保存しました'){
+  const t=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent=msg;
+  t.classList.add('show');clearTimeout(t._t);
+  t._t=setTimeout(()=>t.classList.remove('show'),1800);
+}
+
+async function init(){
+  if(USE_FB) document.getElementById('localNotice').style.display='none';
+  const [m,e,r]=await Promise.all([dbG('members'),dbG('events'),dbG('responses')]);
+  ST.members=m||[]; ST.events=e||[]; ST.responses=r||{};
+  render();
+}
+
+function fd(d,t){
+  if(!d)return'';
+  const ds=new Date(d+'T00:00:00').toLocaleDateString('ja-JP',{year:'numeric',month:'long',day:'numeric',weekday:'short'});
+  return t?`${ds} ${t}`:ds;
+}
+
+function render(){
+  const back=document.getElementById('backBtn');
+  const txt=document.getElementById('titleTxt');
+  const adm=document.getElementById('adminBtn');
+  back.style.display=ST.view!=='list'?'':'none';
+  const isAdm=ST.view==='admin';
+  adm.style.background=isAdm?'rgba(124,108,245,.28)':'';
+  adm.style.borderColor=isAdm?'rgba(124,108,245,.6)':'';
+  if(ST.view==='list'){txt.textContent='イベント出欠';renderList()}
+  else if(ST.view==='detail'){const ev=ST.events.find(e=>e.id===ST.activeId);txt.textContent=ev?ev.title:'';renderDetail(ev)}
+  else{txt.textContent='管理パネル';renderAdmin()}
+}
+
+function renderList(){
+  const app=document.getElementById('app');
+  if(!ST.events.length){
+    app.innerHTML=`<div class="card"><div class="empty"><i class="ti ti-calendar-plus"></i><div style="font-size:15px;font-weight:600">イベントがありません</div><div style="font-size:13px;margin-top:6px;opacity:.7">管理ボタンから追加してください</div></div></div>`;return;
+  }
+  app.innerHTML=ST.events.map(ev=>{
+    const r=ST.responses[ev.id]||{};
+    const acc=ST.members.filter(m=>r[m]==='accepted').length;
+    const dec=ST.members.filter(m=>r[m]==='declined').length;
+    const ten=ST.members.filter(m=>r[m]==='tentative').length;
+    const none=ST.members.filter(m=>!r[m]).length;
+    const tot=ST.members.length;
+    const pct=tot?Math.round(Object.keys(r).filter(k=>ST.members.includes(k)).length/tot*100):0;
+    const pills=[
+      acc?`<span class="pill pa"><i class="ti ti-check" style="font-size:10px"></i>${acc}</span>`:'',
+      dec?`<span class="pill pd"><i class="ti ti-x" style="font-size:10px"></i>${dec}</span>`:'',
+      ten?`<span class="pill pt"><i class="ti ti-question-mark" style="font-size:10px"></i>${ten}</span>`:'',
+      none?`<span class="pill pn"><i class="ti ti-minus" style="font-size:10px"></i>未回答 ${none}</span>`:'',
+    ].filter(Boolean).join('');
+    return`<div class="ev-card" onclick="openEvt('${ev.id}')">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+        <div>
+          <div style="font-size:15px;font-weight:600;color:#e8eaff">${ev.title}</div>
+          <div style="font-size:12px;margin-top:3px;color:rgba(200,205,255,.42)">
+            <i class="ti ti-clock" style="font-size:11px"></i> ${fd(ev.date,ev.time)}
+          </div>
+          ${ev.note?`<div style="font-size:12px;margin-top:3px;color:rgba(200,205,255,.28)">${ev.note}</div>`:''}
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px">
+          <i class="ti ti-chevron-right" style="color:rgba(200,205,255,.22);font-size:16px"></i>
+          ${tot?`<span style="font-size:11px;color:rgba(200,205,255,.3)">${pct}%</span>`:''}
+        </div>
+      </div>
+      ${tot?`<div class="prog"><div class="prog-fill" style="width:${pct}%"></div></div>`:''}
+      <div style="display:flex;gap:6px;flex-wrap:wrap">${pills}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderDetail(ev){
+  if(!ev){document.getElementById('app').innerHTML='';return}
+  const resp=ST.responses[ev.id]||{};
+  const grouped={
+    accepted:ST.members.filter(m=>resp[m]==='accepted'),
+    declined:ST.members.filter(m=>resp[m]==='declined'),
+    tentative:ST.members.filter(m=>resp[m]==='tentative'),
+    none:ST.members.filter(m=>!resp[m]),
+  };
+  const rows=ST.members.length?ST.members.map(name=>{
+    const cur=resp[name];
+    const btns=Object.entries(CFG).map(([k,c])=>
+      `<button class="sbtn ${c.cls}${cur===k?' on':''}" onclick="setR('${name}','${k}')">
+        <i class="ti ${c.icon}" style="font-size:11px"></i>${c.label}
+      </button>`
+    ).join('');
+    return`<div class="card-row">
+      <div class="ava">${name.charAt(0).toUpperCase()}</div>
+      <span style="flex:1;font-size:14px">${name}</span>
+      <div class="sbtn-wrap" style="display:flex;gap:6px">${btns}</div>
+    </div>`;
+  }).join(''):`<div class="empty"><div style="font-size:13px">メンバーが登録されていません</div></div>`;
+
+  const summ=[
+    {label:'参加',color:'#6ee7b7',list:grouped.accepted},
+    {label:'不参加',color:'#fca5a5',list:grouped.declined},
+    {label:'保留',color:'#fcd34d',list:grouped.tentative},
+    {label:'未回答',color:'rgba(200,205,255,.35)',list:grouped.none},
+  ].filter(g=>g.list.length).map(g=>`<div style="margin-bottom:14px">
+    <div class="sec-hd" style="color:${g.color}"><i class="ti ti-users" style="font-size:11px"></i>${g.label} (${g.list.length})</div>
+    <div>${g.list.map(m=>`<span class="tag">${m}</span>`).join('')}</div>
+  </div>`).join('');
+
+  document.getElementById('app').innerHTML=`
+    <div class="info-bar">
+      <i class="ti ti-clock" style="color:rgba(124,108,245,.8);flex-shrink:0"></i>
+      <span>${fd(ev.date,ev.time)}${ev.note?` · ${ev.note}`:''}</span>
+    </div>
+    <div class="card" style="margin-bottom:1.5rem">${rows}</div>
+    <div class="glow-bar"></div>
+    <div style="padding:0 4px">${summ}</div>`;
+}
+
+function renderAdmin(){
+  const mList=ST.members.length?ST.members.map(n=>`
+    <div class="card-row">
+      <div class="ava">${n.charAt(0).toUpperCase()}</div>
+      <span style="flex:1;font-size:14px">${n}</span>
+      <button class="btn btn-del" onclick="rmMbr('${n}')"><i class="ti ti-trash" style="font-size:13px"></i></button>
+    </div>`).join(''):`<div class="empty" style="padding:1.5rem"><div style="font-size:13px">メンバーなし</div></div>`;
+
+  const eList=ST.events.length?ST.events.map(ev=>`
+    <div class="card-row">
+      <div style="flex:1">
+        <div style="font-size:14px">${ev.title}</div>
+        <div style="font-size:12px;margin-top:2px;color:rgba(200,205,255,.4)">${fd(ev.date,ev.time)}</div>
+      </div>
+      <button class="btn btn-del" onclick="rmEvt('${ev.id}')"><i class="ti ti-trash" style="font-size:13px"></i></button>
+    </div>`).join(''):`<div class="empty" style="padding:1.5rem"><div style="font-size:13px">イベントなし</div></div>`;
+
+  document.getElementById('app').innerHTML=`
+    <div style="margin-bottom:1.75rem">
+      <div class="sec-hd" style="margin-bottom:10px"><i class="ti ti-users" style="font-size:11px"></i>メンバー管理</div>
+      <div style="display:flex;gap:8px;margin-bottom:12px">
+        <input id="im" placeholder="メンバー名を入力" onkeydown="if(event.key==='Enter')addMbr()">
+        <button class="btn btn-accent" onclick="addMbr()" style="flex-shrink:0"><i class="ti ti-plus"></i> 追加</button>
+      </div>
+      <div class="card">${mList}</div>
+    </div>
+    <div class="glow-bar"></div>
+    <div style="margin-top:1.5rem;margin-bottom:1.75rem">
+      <div class="sec-hd" style="margin-bottom:10px"><i class="ti ti-calendar-plus" style="font-size:11px"></i>イベント追加</div>
+      <div style="display:flex;flex-direction:column;gap:9px">
+        <input id="it" placeholder="イベント名">
+        <div style="display:flex;gap:8px">
+          <input id="idate" type="date" style="flex:1">
+          <input id="itime" type="time" style="flex:0 0 115px">
+        </div>
+        <input id="inote" placeholder="メモ（任意）">
+        <button class="btn btn-accent" onclick="addEvt()"><i class="ti ti-plus"></i> イベントを作成</button>
+      </div>
+    </div>
+    <div class="glow-bar"></div>
+    <div style="margin-top:1.5rem">
+      <div class="sec-hd" style="margin-bottom:10px"><i class="ti ti-list" style="font-size:11px"></i>イベント一覧</div>
+      <div class="card">${eList}</div>
+    </div>`;
+}
+
+window.openEvt=id=>{ST.activeId=id;ST.view='detail';render()};
+window.setR=async(name,status)=>{
+  const id=ST.activeId;
+  const upd={...(ST.responses[id]||{})};
+  if(upd[name]===status)delete upd[name];else upd[name]=status;
+  ST.responses[id]=upd;render();
+  await dbS('responses',ST.responses);
+  toast();
+};
+window.addMbr=async()=>{
+  const v=(document.getElementById('im')?.value||'').trim();
+  if(!v||ST.members.includes(v))return;
+  ST.members=[...ST.members,v];render();
+  await dbS('members',ST.members);
+  toast('メンバーを追加しました');
+};
+window.rmMbr=async n=>{
+  if(!confirm(`「${n}」を削除しますか？`))return;
+  ST.members=ST.members.filter(m=>m!==n);render();
+  await dbS('members',ST.members);
+};
+window.addEvt=async()=>{
+  const t=(document.getElementById('it')?.value||'').trim();
+  const d=document.getElementById('idate')?.value||'';
+  const tm=document.getElementById('itime')?.value||'';
+  const n=(document.getElementById('inote')?.value||'').trim();
+  if(!t||!d)return;
+  const ev={id:''+Date.now(),title:t,date:d,time:tm,note:n};
+  ST.events=[ev,...ST.events];ST.responses[ev.id]={};render();
+  await dbS('events',ST.events);
+  toast('イベントを作成しました');
+};
+window.rmEvt=async id=>{
+  const ev=ST.events.find(e=>e.id===id);
+  if(!confirm(`「${ev?.title}」を削除しますか？`))return;
+  ST.events=ST.events.filter(e=>e.id!==id);
+  const{[id]:_,...rest}=ST.responses;ST.responses=rest;render();
+  await Promise.all([dbS('events',ST.events),dbS('responses',ST.responses)]);
+};
+document.getElementById('backBtn').onclick=()=>{ST.view='list';render()};
+document.getElementById('adminBtn').onclick=()=>{ST.view=ST.view==='admin'?'list':'admin';render()};
+init();
+</script>
+</body>
+</html>
